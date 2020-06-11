@@ -1,6 +1,6 @@
 -- create Table
 
-
+-- erstellen aller Tabellen
 -- erstellt am 11.06.2020
 -- Jennifer Mentner & Sven Gehring
 
@@ -10,6 +10,8 @@
 
 CREATE DATABASE casestudy;
 go
+
+USE casestudy
 
 CREATE TABLE anrede (
     id INT PRIMARY KEY,
