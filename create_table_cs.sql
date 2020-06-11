@@ -47,13 +47,10 @@ CREATE TABLE anbieter (
     unterschrift BOOLEAN NOT NULL
 );
 
-CREATE TABLE rechnung (
+CREATE TABLE aboart (
     id INT PRIMARY KEY,
-    abo_id INT FOREIGN KEY REFERENCES abo(id) NULL,
-    anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
-    termin_id INT FOREIGN KEY REFERENCES termin(id) NULL,
-    rechnungs_nr INT NOT NULL,
-    betrag INT NOT NULL
+    bezeichnung TEXT NOT NULL,
+    gebuehr INT NOT NULL
 );
 
 CREATE TABLE abo (
@@ -62,10 +59,31 @@ CREATE TABLE abo (
     aboart_id INT FOREIGN KEY REFERENCES aboart(id) NOT NULL,
 );
 
-CREATE TABLE aboart (
+CREATE TABLE standort (
     id INT PRIMARY KEY,
-    bezeichnung TEXT NOT NULL,
-    gebuehr INT NOT NULL
+    bezeichnung VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE standplatz (
+    id INT PRIMARY KEY,
+    standort_id INT FOREIGN KEY REFERENCES standort(id) NOT NULL,
+    standplatz_nr INT NOT NULL
+);
+
+CREATE TABLE termin (
+    id INT PRIMARY KEY,
+    standplatz_id INT FOREIGN KEY REFERENCES standplatz(id) NOT NULL,
+    anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
+    datum DATE NOT NULL
+);
+
+CREATE TABLE rechnung (
+    id INT PRIMARY KEY,
+    abo_id INT FOREIGN KEY REFERENCES abo(id) NULL,
+    anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
+    termin_id INT FOREIGN KEY REFERENCES termin(id) NULL,
+    rechnungs_nr INT NOT NULL,
+    betrag INT NOT NULL
 );
 
 CREATE TABLE nachfrager(
@@ -81,33 +99,18 @@ CREATE TABLE bewertung (
     score INT NULL
 );
 
-CREATE TABLE qualitaetsbewertung (
-    id INT PRIMARY KEY,
-    anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
-    qualitaetspruefer_id INT FOREIGN KEY REFERENCES quatlitaetspruefer(id) NOT NULL,
-    bezeichnung TEXT NULL
-);
-
-CREATE TABLE termin (
-    id INT PRIMARY KEY,
-    standplatz_id INT FOREIGN KEY REFERENCES standplatz(id) NOT NULL,
-    anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
-    datum DATE NOT NULL
-);
-
-CREATE TABLE standplatz (
-    id INT PRIMARY KEY,
-    standort_id INT FOREIGN KEY REFERENCES standort(id) NOT NULL,
-    standplatz_nr INT NOT NULL
-);
-
-CREATE TABLE standort (
-    id INT PRIMARY KEY,
-    bezeichnung VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE quatlitaetspruefer (
+CREATE TABLE qualitaetspruefer (
     id INT PRIMARY KEY,
     person_id INT FOREIGN KEY REFERENCES person(id) NOT NULL,
     lohn INT NULL
-); 
+);
+
+CREATE TABLE qualitaetsbewertung (
+    id INT PRIMARY KEY,
+    anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
+    qualitaetspruefer_id INT FOREIGN KEY REFERENCES qualitaetspruefer(id) NOT NULL,
+    bezeichnung TEXT NULL
+);
+
+
+
