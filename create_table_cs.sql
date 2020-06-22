@@ -1,6 +1,6 @@
 -- create Table
 
-
+-- erstellen aller Tabellen
 -- erstellt am 11.06.2020
 -- Jennifer Mentner & Sven Gehring
 
@@ -10,6 +10,9 @@
 
 CREATE DATABASE casestudy;
 go
+
+USE casestudy
+
 
 CREATE TABLE anrede (
     id INT PRIMARY KEY,
@@ -34,7 +37,7 @@ CREATE TABLE person (
     strasse_id INT FOREIGN KEY REFERENCES strasse(id) NOT NULL,
     vorname VARCHAR(255) NOT NULL,
     nachname VARCHAR(255) NOT NULL,
-    E-Mail VARCHAR(255) NOT NULL,
+    EMail VARCHAR(255) NOT NULL,
     geburtsdatum DATE NULL
 );
 
@@ -43,8 +46,8 @@ CREATE TABLE anbieter (
     person_id INT FOREIGN KEY REFERENCES person(id) NOT NULL,
     aufnahmedatum DATE NOT NULL,
     prov_aufnahmedatum DATE,
-    bonitaetspruefung BOOLEAN NOT NULL,
-    unterschrift BOOLEAN NOT NULL
+    bonitaetspruefung BIT NOT NULL,
+    unterschrift BIT NOT NULL
 );
 
 CREATE TABLE aboart (
@@ -111,6 +114,7 @@ CREATE TABLE qualitaetsbewertung (
     qualitaetspruefer_id INT FOREIGN KEY REFERENCES qualitaetspruefer(id) NOT NULL,
     bezeichnung TEXT NULL
 );
+
 
 
 
