@@ -70,9 +70,21 @@ namespace TI4_DT_SJ
     /// </summary>
     /// <param name="query">The SQL query to exectute</param>
     /// <returns>An SqlCommand object with the passed query</returns>
-    public SqlCommand command(String query)
+    public SqlCommand getCommand(String query)
     {
       return new SqlCommand(query, this.connection);
+    }
+
+    /// <summary>
+    /// Fire and forget an sql command with the current database connection information
+    /// </summary>
+    /// <param name="query">The SQL query to exectute</param>
+    /// <returns>An SqlCommand object with the passed query</returns>
+    public void runCommand(String query)
+    {
+      SqlCommand command = new SqlCommand(query, this.connection);
+      command.ExecuteNonQuery();
+      command.Dispose();
     }
   }
 }

@@ -68,8 +68,7 @@ namespace TI4_DT_SJ
           string cleanQuery = query.Trim().ToLower();
           if (cleanQuery == "" || cleanQuery == "go") continue;
 
-          SqlCommand command = Database.Instance.command(cleanQuery);
-          command.ExecuteNonQuery();
+          Database.Instance.runCommand(cleanQuery);
         } catch (Exception e)
         {
           MessageBox.Show($"Failed to run script query {query} with error {e.Message}");
@@ -96,8 +95,8 @@ namespace TI4_DT_SJ
       {
         if (method.Name.StartsWith("test"))
         {
-          Database.Instance.command("USE casestudy").ExecuteNonQuery();
-          Database.Instance.command("BEGIN TRANSACTION").ExecuteNonQuery();
+          Database.Instance.runCommand("USE casestudy");
+          Database.Instance.runCommand("BEGIN TRANSACTION");
           bool result = Convert.ToBoolean(method.Invoke(null, new object[] { }));
 
           /// To debug a failing test, uncomment the following block and set the debugger to the assert line!
@@ -106,7 +105,7 @@ namespace TI4_DT_SJ
           ///   bool assert = false;
           /// }
 
-          Database.Instance.command("ROLLBACK").ExecuteNonQuery();
+          Database.Instance.runCommand("ROLLBACK");
           testErrors += (!result) ? 1 : 0;
         }
       }

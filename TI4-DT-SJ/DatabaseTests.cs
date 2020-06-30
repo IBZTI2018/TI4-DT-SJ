@@ -10,10 +10,10 @@ namespace TI4_DT_SJ
       bool success = true;
 
       // Arrange
-      Database.Instance.command("INSERT INTO ort (id, plz, ort) VALUES(1, 8804, 'Au')").ExecuteNonQuery();
+      Database.Instance.runCommand("INSERT INTO ort (id, plz, ort) VALUES(1, 8804, 'Au')");
       
       // Act+Assert
-      SqlDataReader reader = Database.Instance.command("SELECT * FROM ort").ExecuteReader();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM ort").ExecuteReader();
       while (reader.Read())
       {
         if (reader.GetInt32(0) != 1) success = false;
