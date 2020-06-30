@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace TI4_DT_SJ
 {
@@ -21,19 +22,28 @@ namespace TI4_DT_SJ
       switch (mode) {
         case "create":
           Program.runDatabaseScript("DatabaseCreate");
+          MessageBox.Show("Successfully ran script DatabaseCreate");
           break;
         case "drop":
           Program.runDatabaseScript("DatabaseDrop");
+          MessageBox.Show("Successfully ran script DatabaseDrop");
           break;
         case "seed":
           Program.runDatabaseScript("DatabaseSeed");
+          MessageBox.Show("Successfully ran script DatabaseSeed");
+          break;
+        case "test":
+          Program.runDatabaseScript("DatabaseDrop");
+          Program.runDatabaseScript("DatabaseCreate");
+          Program.runDatabaseTests();
+          Program.runDatabaseScript("DatabaseDrop");
           break;
         default:
           Database.Instance.connect(withDatabase: true);
-
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
           Application.Run(new Form1());
+          Database.Instance.disconnect();
           break;
       }
     }
@@ -67,7 +77,48 @@ namespace TI4_DT_SJ
         }
       }
 
-      MessageBox.Show($"Successfully ran script {scriptName}.");
+      Database.Instance.disconnect();
+    }
+
+    /// <summary>
+    /// Drop the existing database, create it without seeding, then run all tests in isolated transactions.
+    /// In the end, close database connection to clean up. This is a very pragmatic setup.
+    /// </summary>
+    static void runDatabaseTests()
+    {
+      Type tests = typeof(DatabaseTests);
+      MethodInfo[] methods = tests.GetMethods();
+      Int32 testErrors = 0;
+
+      Database.Instance.connect(withDatabase: false);
+
+      foreach (MethodInfo method in methods)
+      {
+        if (method.Name.StartsWith("test"))
+        {
+          Database.Instance.command("USE casestudy").ExecuteNonQuery();
+          Database.Instance.command("BEGIN TRANSACTION").ExecuteNonQuery();
+          bool result = Convert.ToBoolean(method.Invoke(null, new object[] { }));
+
+          /// To debug a failing test, uncomment the following block and set the debugger to the assert line!
+          /// 
+          /// if (result == false) {
+          ///   bool assert = false;
+          /// }
+
+          Database.Instance.command("ROLLBACK").ExecuteNonQuery();
+          testErrors += (!result) ? 1 : 0;
+        }
+      }
+
+      if (testErrors == 0)
+      {
+        MessageBox.Show("Successfully ran tests with 0 errors.");
+      } else {
+        MessageBox.Show($"Failed tests with {testErrors} errors. Use the debugger to debug!");
+      }
+
+      Database.Instance.disconnect();
     }
   }
 }

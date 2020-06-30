@@ -58,6 +58,14 @@ namespace TI4_DT_SJ
     }
 
     /// <summary>
+    /// Disconnect the open database connection
+    /// </summary>
+    public void disconnect()
+    {
+      this.connection.Close();
+    }
+
+    /// <summary>
     /// Create an sql command with the current database connection information
     /// </summary>
     /// <param name="query">The SQL query to exectute</param>
