@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Threading;
 
 namespace TI4_DT_SJ
 {
@@ -40,22 +41,24 @@ namespace TI4_DT_SJ
     /// 
     /// We assume that a failure to connect to the database renders the program unusable for this simple proof
     /// of concept implementation. Proper error handling and db connection settings could be added later
+    /// <param name="withDatabase"/>Whether or not the casestudy database should be selected</param>
     /// </summary>
-    public void connect()
+    public void connect(bool withDatabase)
     {
       string databaseHost = ConfigurationManager.AppSettings["databaseHost"];
       string databaseUser = ConfigurationManager.AppSettings["databaseUser"];
       string databasePass = ConfigurationManager.AppSettings["databasePass"];
       string databaseName = ConfigurationManager.AppSettings["databaseName"];
 
-      connection = new SqlConnection($"Data Source={databaseHost};Initial Catalog={databaseName};User ID={databaseUser};Password={databasePass}");
+      String catalogString = (withDatabase) ? $"Initial Catalog={databaseName};" : "";
+      connection = new SqlConnection($"Data Source={databaseHost};{catalogString}User ID={databaseUser};Password={databasePass}");
 
       try
       {
         connection.Open();
-      } catch
+      } catch (Exception e)
       {
-        MessageBox.Show($"Failed to connect to database {databaseName} at {databaseHost} with user {databaseUser}!");
+        MessageBox.Show($"Failed to connect to database {databaseName} at {databaseHost} with user {databaseUser}!\n{e.Message}");
         System.Environment.Exit(1);
       }
     }

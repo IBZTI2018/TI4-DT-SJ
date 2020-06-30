@@ -19,16 +19,17 @@ namespace TI4_DT_SJ
       // If a mode parameter is given, the default mode is overwritten
       if (args.Length == 1) mode = args[0];
 
-      // We connect to the database when starting right away
-      Database.Instance.connect();
-
       switch (mode) {
         case "create":
+          Database.Instance.connect(withDatabase: false);
 
           break;
         case "drop":
+          Database.Instance.connect(withDatabase: false);
           break;
         default:
+          Database.Instance.connect(withDatabase: true);
+
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
           Application.Run(new Form1());
