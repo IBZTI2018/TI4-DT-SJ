@@ -8,5 +8,5 @@
 -- geändert am xx.xx.xxxx
 -------------------------------------------------
 
-DROP DATABASE casestudy;
+DROP DATABASE IF EXISTS casestudy;
 

@@ -9,9 +9,9 @@
 -----------------------------------------------------
 
 CREATE DATABASE casestudy;
-go
+GO;
 
-USE casestudy
+USE casestudy;
 
 
 CREATE TABLE anrede (
@@ -37,7 +37,7 @@ CREATE TABLE person (
     strasse_id INT FOREIGN KEY REFERENCES strasse(id) NOT NULL,
     vorname VARCHAR(255) NOT NULL,
     nachname VARCHAR(255) NOT NULL,
-    EMail VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     geburtsdatum DATE NULL
 );
 

@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
-using System.Threading;
 
 namespace TI4_DT_SJ
 {
@@ -61,6 +55,16 @@ namespace TI4_DT_SJ
         MessageBox.Show($"Failed to connect to database {databaseName} at {databaseHost} with user {databaseUser}!\n{e.Message}");
         System.Environment.Exit(1);
       }
+    }
+
+    /// <summary>
+    /// Create an sql command with the current database connection information
+    /// </summary>
+    /// <param name="query">The SQL query to exectute</param>
+    /// <returns>An SqlCommand object with the passed query</returns>
+    public SqlCommand command(String query)
+    {
+      return new SqlCommand(query, this.connection);
     }
   }
 }

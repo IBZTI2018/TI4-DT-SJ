@@ -1,6 +1,6 @@
 -- drop database
 
--- Datenbank löschen, wenn diese Bereits existiert. 
+-- Datenbank mit Beispielsdaten füllen. 
 
 -- erstellt am 11.06.2020
 -- Jennifer Mentner & Sven Gehring
