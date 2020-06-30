@@ -13,7 +13,6 @@ GO;
 
 USE casestudy;
 
-
 CREATE TABLE anrede (
     id INT PRIMARY KEY,
     bezeichnung VARCHAR(20) NULL
@@ -28,7 +27,8 @@ CREATE TABLE ort(
 CREATE TABLE strasse(
     id INT PRIMARY KEY,
     ort_id INT FOREIGN KEY REFERENCES ort(id) NOT NULL,
-    stassenname VARCHAR(255) NOT NULL
+    stassenname VARCHAR(255) NOT NULL,
+    hausnummer INT NOT NULL
 );
 
 CREATE TABLE person (
@@ -46,8 +46,8 @@ CREATE TABLE anbieter (
     person_id INT FOREIGN KEY REFERENCES person(id) NOT NULL,
     aufnahmedatum DATE NOT NULL,
     prov_aufnahmedatum DATE,
-    bonitaetspruefung BIT NOT NULL,
-    unterschrift BIT NOT NULL
+    bonitaetspruefung BOOLEAN NOT NULL,
+    unterschrift BOOLEAN NOT NULL
 );
 
 CREATE TABLE aboart (
@@ -114,7 +114,3 @@ CREATE TABLE qualitaetsbewertung (
     qualitaetspruefer_id INT FOREIGN KEY REFERENCES qualitaetspruefer(id) NOT NULL,
     bezeichnung TEXT NULL
 );
-
-
-
-
