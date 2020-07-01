@@ -19,8 +19,7 @@ GO
 CREATE USER administration FOR LOGIN casestudy WITH PASSWORD = 'administ'; 
 
 CREATE ROLE adminrole;
-GRANT UPDATE, ALTER, DROP ON abo TO adminrole;
-GRANT UPDATE, ALTER, DROP ON aboart TO adminrole;
+GRANT UPDATE, ALTER, DROP ON [abo, aboart] TO adminrole;
 GRANT UPDATE,  DROP ON person TO adminrole;
 GRANT adminrole to administration;
 
