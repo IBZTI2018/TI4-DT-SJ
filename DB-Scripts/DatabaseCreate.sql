@@ -53,7 +53,7 @@ CREATE TABLE anbieter (
 CREATE TABLE aboart (
     id INT PRIMARY KEY IDENTITY,
     bezeichnung TEXT NOT NULL,
-    gebuehr INT NOT NULL
+    gebuehr FLOAT NOT NULL
 );
 
 CREATE TABLE abo (
@@ -85,8 +85,8 @@ CREATE TABLE rechnung (
     abo_id INT FOREIGN KEY REFERENCES abo(id) NULL,
     anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
     termin_id INT FOREIGN KEY REFERENCES termin(id) NULL,
-    rechnungs_nr INT NOT NULL,
-    betrag INT NOT NULL
+    rechnungs_nr STRING NOT NULL,
+    betrag FLOAT NOT NULL
 );
 
 CREATE TABLE nachfrager(
@@ -99,13 +99,13 @@ CREATE TABLE bewertung (
     anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
     nachfrager_id INT FOREIGN KEY REFERENCES nachfrager(id) NOT NULL,
     bezeichnung TEXT NULL,
-    score INT NULL
+    score FLOAT NULL
 );
 
 CREATE TABLE qualitaetspruefer (
     id INT PRIMARY KEY IDENTITY,
     person_id INT FOREIGN KEY REFERENCES person(id) NOT NULL,
-    lohn INT NULL
+    lohn FLOAT NULL
 );
 
 CREATE TABLE qualitaetsbewertung (
