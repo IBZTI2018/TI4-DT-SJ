@@ -21,16 +21,16 @@ insert into ort (id, plz, ort)
             (3, 8804, 'Au');
 GO
 
-insert into strasse (id, ort_id, strassenname, hausnummer)
+insert into adresse (id, ort_id, strassenname, hausnummer)
     VALUES  (1, (SELECT ort_id FROM ort WHERE plz = '8804'), 'seestrasse', '241'),
             (2, (SELECT ort_id FROM ort WHERE plz = '8047'), 'untermoosstrasse', '17'),
             (3, (SELECt ort_id FROM ort WHERE plz = '8902'), 'Weihermattstrasse', '2');
 GO
 
 insert into person (id, anrede_id, strasse_id, vorname, nachname, geburtsdatum, email)
-    VALUES  (1, (SELECT anrede_id FROM anrede WHERE id = '1'), (SELECT strasse_id FROM strasse WHERE id= '1'), 'Fritz', 'Meyer', '01.03.1975', 'fritz.meyer@hotmail.com'),
-            (2, (SELECT anrede_id FROM anrede WHERE id = '2'), (SELECT strasse_id FROM strasse WHERE id= '3'), 'Jennifer', 'Mentner', '01.10.1997', 'jennifermentner@hotmail.com'),
-            (3, (SELECT anrede_id FROm anrede WHERE id = '1'), (SELECT strasse_id FROM strasse WHERE id= '2'), 'Sven', 'Gehring', '04.01.1997', 'sven.gehring@hotmail.com');
+    VALUES  (1, (SELECT anrede_id FROM anrede WHERE id = '1'), (SELECT adresse_id FROM strasse WHERE id= '1'), 'Fritz', 'Meyer', '01.03.1975', 'fritz.meyer@hotmail.com'),
+            (2, (SELECT anrede_id FROM anrede WHERE id = '2'), (SELECT adresse_id FROM strasse WHERE id= '3'), 'Jennifer', 'Mentner', '01.10.1997', 'jennifermentner@hotmail.com'),
+            (3, (SELECT anrede_id FROm anrede WHERE id = '1'), (SELECT adresse_id FROM strasse WHERE id= '2'), 'Sven', 'Gehring', '04.01.1997', 'sven.gehring@hotmail.com');
 GO
 
 insert into anbieter (id, person_id, aufnahmedatum, prov_aufnahmedatum, bonitaetspruefung, unterschrift)

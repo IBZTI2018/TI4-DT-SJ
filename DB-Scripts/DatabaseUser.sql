@@ -27,7 +27,7 @@ GRANT adminrole to administration;
 CREATE USER mitgliedsverwaltung FOR LOGIN casestudy WITH PASSWORD = 'mitgli';
 
 CREATE ROLE mitglrole;
-GRANT UPDATE, ALTER, DROP ON [person, anrede, ort, strasse, anbieter, nachfrager, rechnung, abo, aboart] TO mitglrole;
+GRANT UPDATE, ALTER, DROP ON [person, anrede, ort, adresse, anbieter, nachfrager, rechnung, abo, aboart] TO mitglrole;
 GRANT mitglrole TO mietgliederverwaltung
 
 CREATE USER standplatzverwalter FOR LOGIN casestudy WITH PASSWORD = 'standpl';
