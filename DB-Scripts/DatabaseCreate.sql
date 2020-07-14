@@ -46,8 +46,8 @@ CREATE TABLE anbieter (
     person_id INT FOREIGN KEY REFERENCES person(id) NOT NULL,
     aufnahmedatum DATE NOT NULL,
     prov_aufnahmedatum DATE,
-    bonitaetspruefung BOOLEAN NOT NULL,
-    unterschrift BOOLEAN NOT NULL
+    bonitaetspruefung BIT NOT NULL,
+    unterschrift BIT NOT NULL
 );
 
 CREATE TABLE aboart (

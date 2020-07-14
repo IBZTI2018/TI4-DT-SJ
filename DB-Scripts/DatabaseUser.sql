@@ -24,10 +24,22 @@ GRANT UPDATE,  DROP ON person TO adminrole;
 GRANT adminrole to administration;
 
 
-CREATE USER Mitgliedsverwaltung FOR LOGIN casestudy WITH PASSWORD = 'mitgli';
+CREATE USER mitgliedsverwaltung FOR LOGIN casestudy WITH PASSWORD = 'mitgli';
 
-CREATE USER Standplatzverwalter FOR LOGIN casestudy WITH PASSWORD = 'standpl';
+CREATE ROLE mitglrole;
+GRANT UPDATE, ALTER, DROP ON [person, anrede, ort, strasse, anbieter, nachfrager, rechnung, abo, aboart] TO mitglrole;
+GRANT mitglrole TO mietgliederverwaltung
 
-CREATE USER qualitaetsverantworliche FOR LOGIN casestudy WITH PASSWORD = 'quali';
+CREATE USER standplatzverwalter FOR LOGIN casestudy WITH PASSWORD = 'standpl';
+
+CREATE ROLE standplrole;
+GRANT UPDATE, ALTER ON [standort, standplatz, termin, rechnung] TO standplrole;
+GRANT standplrole TO standplatzverwalter;
+
+CREATE USER qualitaetsverantworlicher FOR LOGIN casestudy WITH PASSWORD = 'quali';
+
+CREATE ROLE qualirole;
+GRANT UPDATE, ALTER ON qualitaetsbewertung TO qualirole;
+GRANT qualirole TO qualitaetsverantwortlischer;
 
 
