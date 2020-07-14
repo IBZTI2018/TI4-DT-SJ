@@ -27,7 +27,7 @@ CREATE TABLE ort(
 CREATE TABLE adresse(
     id INT PRIMARY KEY IDENTITY,
     ort_id INT FOREIGN KEY REFERENCES ort(id) NOT NULL,
-    stassenname VARCHAR(255) NOT NULL,
+    strassenname VARCHAR(255) NOT NULL,
     hausnummer INT NOT NULL
 );
 
