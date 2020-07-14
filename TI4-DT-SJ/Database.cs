@@ -2,6 +2,8 @@
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TI4_DT_SJ
 {
@@ -73,6 +75,33 @@ namespace TI4_DT_SJ
     public SqlCommand getCommand(String query)
     {
       return new SqlCommand(query, this.connection);
+    }
+
+    public int insertCommand(String table, Dictionary<String, dynamic> values)
+    {
+      String[] keys = values.Keys.ToArray();
+      String fields = String.Join(", ", keys);
+      String placeholders = "@" + String.Join(", @", keys);
+
+      SqlCommand command = new SqlCommand(null, this.connection);
+      command.CommandText = "INSERT INTO " + table + " (" + fields + ") VALUES (" + placeholders + "); SELECT SCOPE_IDENTITY();";
+      
+      foreach (String key in keys)
+      {
+        command.Parameters.AddWithValue("@" + key, values[key]);
+      }
+
+      object newId = command.ExecuteScalar();
+      if (newId is null || newId is DBNull) return 0;
+      return Convert.ToInt32(newId);
+    }
+
+    public SqlCommand prepareCommand(String query, Func<SqlCommand, SqlCommand> preparator)
+    {
+      SqlCommand command = new SqlCommand(null, this.connection);
+      command.CommandText = query;
+      command = preparator(command);
+      return command;
     }
 
     /// <summary>

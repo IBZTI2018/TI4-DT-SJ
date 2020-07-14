@@ -97,16 +97,17 @@ namespace TI4_DT_SJ
         {
           Database.Instance.runCommand("USE casestudy");
           Database.Instance.runCommand("BEGIN TRANSACTION");
-          bool result = Convert.ToBoolean(method.Invoke(null, new object[] { }));
 
-          /// To debug a failing test, uncomment the following block and set the debugger to the assert line!
-          /// 
-          /// if (result == false) {
-          ///   bool assert = false;
-          /// }
+          try
+          {
+            Convert.ToBoolean(method.Invoke(null, new object[] { }));
+          } catch
+          {
+            /// To debug a failing test, put a breakpoint on the next line!
+            testErrors++;
+          }
 
           Database.Instance.runCommand("ROLLBACK");
-          testErrors += (!result) ? 1 : 0;
         }
       }
 
