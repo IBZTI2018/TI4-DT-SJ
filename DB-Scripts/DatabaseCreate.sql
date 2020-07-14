@@ -85,7 +85,7 @@ CREATE TABLE rechnung (
     abo_id INT FOREIGN KEY REFERENCES abo(id) NULL,
     anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
     termin_id INT FOREIGN KEY REFERENCES termin(id) NULL,
-    rechnungs_nr STRING NOT NULL,
+    rechnungs_nr VARCHAR(50) NOT NULL,
     betrag FLOAT NOT NULL
 );
 
