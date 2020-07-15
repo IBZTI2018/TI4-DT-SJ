@@ -28,5 +28,9 @@ namespace TI4_DT_SJ.Models
         {"bezeichnung", this.bezeichnung}
       });
     }
+
+    public static Anrede Select(int id) {
+      return new Anrede(Database.Instance.selectCommand("anrede", id));
+    }
   }
 }

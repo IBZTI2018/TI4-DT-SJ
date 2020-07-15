@@ -8,10 +8,14 @@ namespace TI4_DT_SJ
   {
     public static void testCanInsertNewAnredeWithoutAnError()
     {
-      Anrede anredeM = new Anrede(1, "Herr");
-      Anrede anredeW = new Anrede(2, "Frau");
-      anredeM.Insert();
-      anredeW.Insert();
+      (new Anrede(1, "Herr")).Insert();
+      (new Anrede(2, "Frau")).Insert();
+
+      Anrede anredeM = Anrede.Select(1);
+      Anrede anredeW = Anrede.Select(2);
+
+      if (anredeM.bezeichnung != "Herr") throw new Exception("Failed to insert anrede");
+      if (anredeW.bezeichnung != "Frau") throw new Exception("Failed to insert anrede");
     }
 
     public static void testCanCreateANewOrtAndGetItsId()

@@ -30,5 +30,10 @@ namespace TI4_DT_SJ.Models
         {"ort", this.ort}
       });
     }
+
+    public static Ort Select(int id)
+    {
+      return new Ort(Database.Instance.selectCommand("ort", id));
+    }
   }
 }

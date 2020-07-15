@@ -77,6 +77,12 @@ namespace TI4_DT_SJ
       return new SqlCommand(query, this.connection);
     }
 
+    /// <summary>
+    /// Create and run an insert command on a specific table with the given dictionary
+    /// </summary>
+    /// <param name="table">The name of the table to insert into</param>
+    /// <param name="values">The values that should be inserted</param>
+    /// <returns>The ID of the newly inserted row (or null if identity off)</returns>
     public int insertCommand(String table, Dictionary<String, dynamic> values)
     {
       String[] keys = values.Keys.ToArray();
@@ -96,6 +102,32 @@ namespace TI4_DT_SJ
       return Convert.ToInt32(newId);
     }
 
+    /// <summary>
+    /// Get the reader for a single item fetched by its ID (could also be done scalar)
+    /// </summary>
+    /// <param name="table">The name of the table to select from</param>
+    /// <param name="id">The id to select for</param>
+    /// <returns>An SQL data reader with the first result fetched</returns>
+    public SqlDataReader selectCommand(String table, int id)
+    {
+      SqlCommand command = this.prepareCommand("SELECT * FROM @table WHERE id = @id", (cmd) =>
+      {
+        cmd.Parameters.AddWithValue("@table", table);
+        cmd.Parameters.AddWithValue("@id", id);
+        return cmd;
+      });
+
+      SqlDataReader reader = command.ExecuteReader();
+      reader.Read();
+      return reader;
+    }
+
+    /// <summary>
+    /// Prepare a command for later execution
+    /// </summary>
+    /// <param name="query">The query string of the command</param>
+    /// <param name="preparator">A preparator lambda that can fill out parameters</param>
+    /// <returns></returns>
     public SqlCommand prepareCommand(String query, Func<SqlCommand, SqlCommand> preparator)
     {
       SqlCommand command = new SqlCommand(null, this.connection);
