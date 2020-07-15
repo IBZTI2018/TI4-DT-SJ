@@ -21,13 +21,23 @@ CREATE VIEW verwaltungmitglieder AS
     GROUP BY person_id;
 GO
 
-CREATE VIEW standplatzverwaltung AS
-    SELECT * FROM rechnung, standort, standplatz, termin;
-GO
-
 CREATE VIEW qualitaetsverantwortlich AS
     SELECT * FROM qualitaetsbewertung;
 GO
+
+CREATE VIEW anbieterview AS
+    SELECT * FROM person, adresse, anbieter, termin, standort, standplatz, bewertung, qualitaetsbewertung;
+GO
+
+CREATE VIEW nachfragerview AS
+    SELECT * FROM nachfrager, adresse, berwertung;
+GO
+
+CREATE VIEW standplatzview AS
+    SELECT * FROM standort, standplatz, termin, rechnung;
+GO
+
+
 
 
 

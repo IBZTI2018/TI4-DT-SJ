@@ -16,13 +16,13 @@ CREATE TABLE anrede (
 );
 
 CREATE TABLE ort(
-    id INT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY(1,1),
     plz INT NOT NULL,
     ort VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE adresse(
-    id INT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY(1,1),
     ort_id INT FOREIGN KEY REFERENCES ort(id) NOT NULL,
     strassenname VARCHAR(255) NOT NULL,
     hausnummer INT NOT NULL
@@ -144,22 +144,29 @@ GRANT UPDATE, ALTER, DELETE ON aboart TO casestudy_role_administration;
 GRANT UPDATE, DELETE ON person TO casestudy_role_administration;
 ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
 
--- TODO: REWRITE THESE FOR SQL SERVER
 
--- CREATE USER mitgliedsverwaltung FOR LOGIN casestudy WITH PASSWORD = 'mitgli';
 
--- CREATE ROLE mitglrole;
--- GRANT UPDATE, ALTER, DROP ON [person, anrede, ort, adresse, anbieter, nachfrager, rechnung, abo, aboart] TO mitglrole;
--- GRANT mitglrole TO mietgliederverwaltung
+CREATE ROLE casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON person TO casestudy_role_mitgliedsverwalter;
+GRANT UPDATE, ALTER, DELETE ON anrede TO casestudy_role_mitgliedsverwalter;
+GRANT UPDATE, ALTER, DELETE ON ort TO casestudy_role_mitgliedsverwalter;
+GRANT UPDATE, ALTER, DELETE ON adresse TO casestudy_role_mitgliedsverwalter;
+GRANT UPDATE, ALTER, DELETE ON anbieter TO casestudy_role_mitgliedsverwalter;
+GRANT UPDATE, ALTER, DELETE ON nachfrager TO casestudy_role_mitgliedsverwalter;
+GRANT UPDATE, ALTER, DELETE ON rechnung TO casestudy_role_mitgliedsverwalter;
+GRANT UPDATE, ALTER, DELETE ON abo TO casestudy_role_mitgliedsverwalter;
+GRANT UPDATE, ALTER, DELETE ON aboart TO casestudy_role_mitgliedsverwalter;
+ALTER ROLE casestudy_role_mitgliedsverwalter ADD MEMBER casestudy_mitgliederverwalter;
 
--- CREATE USER standplatzverwalter FOR LOGIN casestudy WITH PASSWORD = 'standpl';
 
--- CREATE ROLE standplrole;
--- GRANT UPDATE, ALTER ON [standort, standplatz, termin, rechnung] TO standplrole;
--- GRANT standplrole TO standplatzverwalter;
+CREATE ROLE casestudy_role_standplatzverwaltung;
+GRANT UPDATE, ALTER ON standort TO casestudy_role_standplatzverwaltung;
+GRANT UPDATE, ALTER ON standplatz TO casestudy_role_standplatzverwaltung;
+GRANT UPDATE, ALTER ON termin TO casestudy_role_standplatzverwaltung;
+GRANT UPDATE, ALTER ON rechnung TO casestudy_role_standplatzverwaltung;
+ALTER ROLE casestudy_role_standplatzverwaltung ADD MEMBER casestudy_standplatzverwalter;
 
--- CREATE USER qualitaetsverantworlicher FOR LOGIN casestudy WITH PASSWORD = 'quali';
+CREATE ROLE casestudy_role_qualitaetspruefung;
+GRANT UPDATE, ALTER ON qualtitaetsbewertung TO casestudy_role_qualitaetspruefung;
+ALTER ROLE casestudy_role_qualitaetspruefungg ADD MEMBER casestudy_qualtitaetsverantwortlicher;
 
--- CREATE ROLE qualirole;
--- GRANT UPDATE, ALTER ON qualitaetsbewertung TO qualirole;
--- GRANT qualirole TO qualitaetsverantwortlischer;
