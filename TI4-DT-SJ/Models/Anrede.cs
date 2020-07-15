@@ -29,8 +29,9 @@ namespace TI4_DT_SJ.Models
       });
     }
 
-    public static Anrede Select(int id) {
-      return new Anrede(Database.Instance.selectCommand("anrede", id));
+    public static Anrede Select(int id)
+    {
+      return (Anrede)Database.Instance.selectCommand("anrede", id, typeof(Anrede));
     }
   }
 }

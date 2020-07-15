@@ -108,18 +108,19 @@ namespace TI4_DT_SJ
     /// <param name="table">The name of the table to select from</param>
     /// <param name="id">The id to select for</param>
     /// <returns>An SQL data reader with the first result fetched</returns>
-    public SqlDataReader selectCommand(String table, int id)
+    public object selectCommand(String table, int id, Type type)
     {
-      SqlCommand command = this.prepareCommand("SELECT * FROM @table WHERE id = @id", (cmd) =>
+      SqlCommand command = this.prepareCommand("SELECT * FROM " + table + " WHERE id = @id", (cmd) =>
       {
-        cmd.Parameters.AddWithValue("@table", table);
         cmd.Parameters.AddWithValue("@id", id);
         return cmd;
       });
 
       SqlDataReader reader = command.ExecuteReader();
       reader.Read();
-      return reader;
+      object instance = Activator.CreateInstance(type, new object[] { reader });
+      reader.Close();
+      return instance;
     }
 
     /// <summary>

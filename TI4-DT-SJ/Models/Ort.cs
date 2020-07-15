@@ -33,7 +33,7 @@ namespace TI4_DT_SJ.Models
 
     public static Ort Select(int id)
     {
-      return new Ort(Database.Instance.selectCommand("ort", id));
+      return (Ort)Database.Instance.selectCommand("ort", id, typeof(Ort));
     }
   }
 }
