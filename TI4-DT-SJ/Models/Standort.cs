@@ -22,7 +22,7 @@ namespace TI4_DT_SJ.Models
 
     public Standort(int id, string bezeichnung)
     {
-      this.id = id
+      this.id = id;
       this.bezeichnung = bezeichnung;
     }
 

@@ -55,8 +55,21 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Abo.cs" />
+    <Compile Include="Models\Aboart.cs" />
+    <Compile Include="Models\Adresse.cs" />
+    <Compile Include="Models\Anbieter.cs" />
     <Compile Include="Models\Anrede.cs" />
+    <Compile Include="Models\Bewertung.cs" />
+    <Compile Include="Models\Qualitaetsbewertung.cs" />
+    <Compile Include="Models\Rechnung.cs" />
+    <Compile Include="Models\Termin.cs" />
+    <Compile Include="Models\Nachfrager.cs" />
     <Compile Include="Models\Ort.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Qualitaetspruefer.cs" />
+    <Compile Include="Models\Standort.cs" />
+    <Compile Include="Models\Standplatz.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

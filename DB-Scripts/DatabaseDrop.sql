@@ -8,5 +8,27 @@
 -- geändert am xx.xx.xxxx
 -------------------------------------------------
 
-DROP DATABASE IF EXISTS casestudy;
+USE casestudy;
+GO;
 
+ALTER ROLE casestudy_role_development DROP MEMBER casestudy;
+DROP ROLE IF EXISTS casestudy_role_development;
+
+ALTER ROLE casestudy_role_administration DROP MEMBER casestudy_administration;
+DROP ROLE IF EXISTS casestudy_role_administration;
+
+DROP TABLE qualitaetsbewertung;
+DROP TABLE bewertung;
+DROP TABLE nachfrager;
+DROP TABLE rechnung;
+DROP TABLE termin;
+DROP TABLE qualitaetspruefer;
+DROP TABLE abo;
+DROP TABLE aboart;
+DROP TABLE anbieter;
+DROP TABLE person;
+DROP TABLE standplatz;
+DROP TABLE standort;
+DROP TABLE adresse;
+DROP TABLE ort;
+DROP TABLE anrede;

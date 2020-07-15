@@ -22,21 +22,23 @@ namespace TI4_DT_SJ
       switch (mode) {
         case "create":
           Program.runDatabaseScript("DatabaseCreate");
-          MessageBox.Show("Successfully ran script DatabaseCreate");
+          MessageBox.Show("Finished running script DatabaseCreate");
           break;
         case "drop":
           Program.runDatabaseScript("DatabaseDrop");
-          MessageBox.Show("Successfully ran script DatabaseDrop");
+          MessageBox.Show("Finished running script DatabaseDrop");
           break;
         case "seed":
           Program.runDatabaseScript("DatabaseSeed");
-          MessageBox.Show("Successfully ran script DatabaseSeed");
+          MessageBox.Show("Finished running script DatabaseSeed");
           break;
         case "test":
-          Program.runDatabaseScript("DatabaseDrop");
           Program.runDatabaseScript("DatabaseCreate");
           Program.runDatabaseTests();
           Program.runDatabaseScript("DatabaseDrop");
+          break;
+        case "testonly":
+          Program.runDatabaseTests();
           break;
         default:
           Database.Instance.connect(withDatabase: true);
@@ -65,8 +67,8 @@ namespace TI4_DT_SJ
       {
         try
         {
-          string cleanQuery = query.Trim().ToLower();
-          if (cleanQuery == "" || cleanQuery == "go") continue;
+          string cleanQuery = query.Trim();
+          if (cleanQuery == "" || cleanQuery.ToLower() == "go") continue;
 
           Database.Instance.runCommand(cleanQuery);
         } catch (Exception e)

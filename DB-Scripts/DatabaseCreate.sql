@@ -8,9 +8,6 @@
 
 -----------------------------------------------------
 
-CREATE DATABASE casestudy;
-GO;
-
 USE casestudy;
 
 CREATE TABLE anrede (
@@ -114,3 +111,55 @@ CREATE TABLE qualitaetsbewertung (
     qualitaetspruefer_id INT FOREIGN KEY REFERENCES qualitaetspruefer(id) NOT NULL,
     bezeichnung TEXT NULL
 );
+
+---
+
+USE casestudy;
+GO;
+
+-- Grant all permissions on all tables to the casestudy dev user
+CREATE ROLE casestudy_role_development;
+GRANT ALL ON anrede TO casestudy_role_development;
+GRANT ALL ON ort TO casestudy_role_development;
+GRANT ALL ON adresse TO casestudy_role_development;
+GRANT ALL ON person TO casestudy_role_development;
+GRANT ALL ON anbieter TO casestudy_role_development;
+GRANT ALL ON aboart TO casestudy_role_development;
+GRANT ALL ON abo TO casestudy_role_development;
+GRANT ALL ON standort TO casestudy_role_development;
+GRANT ALL ON standplatz TO casestudy_role_development;
+GRANT ALL ON termin TO casestudy_role_development;
+GRANT ALL ON rechnung TO casestudy_role_development;
+GRANT ALL ON nachfrager TO casestudy_role_development;
+GRANT ALL ON bewertung TO casestudy_role_development;
+GRANT ALL ON qualitaetspruefer TO casestudy_role_development;
+GRANT ALL ON qualitaetsbewertung TO casestudy_role_development;
+ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
+
+---
+
+CREATE ROLE casestudy_role_administration;
+GRANT UPDATE, ALTER, DELETE ON abo TO casestudy_role_administration;
+GRANT UPDATE, ALTER, DELETE ON aboart TO casestudy_role_administration;
+GRANT UPDATE, DELETE ON person TO casestudy_role_administration;
+ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
+
+-- TODO: REWRITE THESE FOR SQL SERVER
+
+-- CREATE USER mitgliedsverwaltung FOR LOGIN casestudy WITH PASSWORD = 'mitgli';
+
+-- CREATE ROLE mitglrole;
+-- GRANT UPDATE, ALTER, DROP ON [person, anrede, ort, adresse, anbieter, nachfrager, rechnung, abo, aboart] TO mitglrole;
+-- GRANT mitglrole TO mietgliederverwaltung
+
+-- CREATE USER standplatzverwalter FOR LOGIN casestudy WITH PASSWORD = 'standpl';
+
+-- CREATE ROLE standplrole;
+-- GRANT UPDATE, ALTER ON [standort, standplatz, termin, rechnung] TO standplrole;
+-- GRANT standplrole TO standplatzverwalter;
+
+-- CREATE USER qualitaetsverantworlicher FOR LOGIN casestudy WITH PASSWORD = 'quali';
+
+-- CREATE ROLE qualirole;
+-- GRANT UPDATE, ALTER ON qualitaetsbewertung TO qualirole;
+-- GRANT qualirole TO qualitaetsverantwortlischer;
