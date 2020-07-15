@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace TI4_DT_SJ
 {
-  public partial class Form1 : Form
+  public partial class ManagementForm : Form
   {
-    public Form1()
+    private string role;
+
+    public ManagementForm(string role)
     {
+      this.role = role;
       InitializeComponent();
+    }
+
+    private void ManagementForm_Load(object sender, EventArgs e)
+    {
+      this.Text = "Freier Markt im Kleinen Management: " + this.role;
     }
   }
 }

@@ -44,7 +44,7 @@ namespace TI4_DT_SJ
           Database.Instance.connect(withDatabase: true);
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
-          Application.Run(new Form1());
+          Application.Run(new MainForm());
           Database.Instance.disconnect();
           break;
       }
