@@ -23,6 +23,13 @@ namespace TI4_DT_SJ.Models
       this.ort = ort;
     }
 
+    public Ort(int id, int plz, string ort)
+    {
+      this.id = id;
+      this.plz = plz;
+      this.ort = ort;
+    }
+
     public int Insert()
     {
       return Database.Instance.insertCommand("ort", new Dictionary<String, dynamic>() {
