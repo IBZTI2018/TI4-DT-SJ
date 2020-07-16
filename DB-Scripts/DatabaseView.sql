@@ -24,17 +24,34 @@ GO
 CREATE VIEW qualitaetsverantwortlich AS
     SELECT * FROM qualitaetsbewertung;
 GO
-
+--no kein plan öb das so funktioniert
 CREATE VIEW anbieterview AS
-    SELECT * FROM person, adresse, anbieter, termin, standort, standplatz, bewertung, qualitaetsbewertung;
+    SELECT  person.vorname, person.nachname, person.email,
+            adresse.strassenname, 
+            ort.plz, 
+            termin.datum, 
+            standplatz.standplatz_nr, standort.bezeichnung, 
+            anbieter.bonitaetspruefung, anbieter.aufnahmedatum, 
+            bewertung.bezeichnung, bewertung.score, 
+            qualitaetsbewertung.bezeichnung 
+    FROM person, adresse, ort, anbieter, termin, standort, standplatz, bewertung, qualitaetsbewertung;
 GO
 
 CREATE VIEW nachfragerview AS
-    SELECT * FROM nachfrager, adresse, berwertung;
+    SELECT  person.vorname, person.nachname, person.email, 
+            adresse.strassenname, 
+            ort.plz, 
+            bewertung.bezeichnung, bewertung.score 
+    FROM person, adresse, ort, bewertung;
 GO
 
 CREATE VIEW standplatzview AS
-    SELECT * FROM standort, standplatz, termin, rechnung;
+    SELECT  standort.bezeichnung,
+            standplatz.standplatz_nr,
+            termin.datum,
+            rechnung.betrag,
+            rechnung.rechnungs_nr
+    FROM standort, standplatz, termin, rechnung;
 GO
 
 
