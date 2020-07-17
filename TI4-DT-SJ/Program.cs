@@ -87,6 +87,12 @@ namespace TI4_DT_SJ
     /// </summary>
     static void runDatabaseTests()
     {
+      Database.Instance.connect(true);
+
+      // Per documentation, these always exist!
+      (new Models.Anrede(1, "Herr")).Insert();
+      (new Models.Anrede(2, "Frau")).Insert();
+
       Database.Instance.disconnect();
       Database.Instance.connect(true, "casestudy_administration", "password");
       Program.runDatabaseTestsFromFile(typeof(DatabaseTestsAdministration));
@@ -107,9 +113,7 @@ namespace TI4_DT_SJ
     {
       Type tests = fileType;
       MethodInfo[] methods = tests.GetMethods();
-      Int32 testErrors = 0;
-
-      Database.Instance.connect(withDatabase: false);
+      Int32 testErrors = 0;;
 
       foreach (MethodInfo method in methods)
       {
@@ -121,7 +125,7 @@ namespace TI4_DT_SJ
           try
           {
             Convert.ToBoolean(method.Invoke(null, new object[] { }));
-          } catch
+          } catch (Exception e)
           {
             /// To debug a failing test, put a breakpoint on the next line!
             testErrors++;
@@ -137,8 +141,6 @@ namespace TI4_DT_SJ
       } else {
         MessageBox.Show($"Failed {fileType.Name} with {testErrors} errors. Use the debugger to debug!");
       }
-
-      Database.Instance.disconnect();
     }
   }
 }
