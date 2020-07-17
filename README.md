@@ -36,8 +36,17 @@ CREATE USER casestudy_qualitaetsverantwortlicher FOR LOGIN casestudy_qualitaetsv
 ```
 
 #### 4. Run and Test
-You may now run the application.   
-TODO: Add more info
+You may now run the application. Since the application is built for a proof-of-concept case study, there is no intention for it to ever run as a properly compiled application. It is currently only intended to run from Visual Studio.
+
+The following command line options are supported for launching:
+* `create` - Run the `DatabaseCreate.sql` script.
+* `drop` - Run the `DatabaseDrop.sql` script.
+* `seed` - Run the `DatabaseSeed.sql` script.
+* `test` - Run `DatabaseCreate.sql`, all four different database test classes and `DatabaseDrop.sql`.
+* `testonly` - Run just the database test classees
+* _none_ - Run the UI. (Run `create` and `seed` first!)
+
+When the program crashes between properly creating and dropping the database, there might be leftovers that prevent future runs from succeeding. After a crash, make sure to use SQL management studio to remove all tables and roles!
 
 #### 5. Clean up
 After testing, the following commands can be run to drop all the users and logins that have been created by the section above for properly testing the database and its permission limits.
