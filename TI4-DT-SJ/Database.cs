@@ -19,7 +19,7 @@ namespace TI4_DT_SJ
     /// <summary>
     /// Internal empty constructor
     /// </summary>
-    private Database() { }
+    public Database() { }
 
     public static Database Instance
     {
@@ -39,12 +39,15 @@ namespace TI4_DT_SJ
     /// of concept implementation. Proper error handling and db connection settings could be added later
     /// <param name="withDatabase"/>Whether or not the casestudy database should be selected</param>
     /// </summary>
-    public void connect(bool withDatabase)
+    public Database connect(bool withDatabase, string username = null, string password = null)
     {
       string databaseHost = ConfigurationManager.AppSettings["databaseHost"];
       string databaseUser = ConfigurationManager.AppSettings["databaseUser"];
       string databasePass = ConfigurationManager.AppSettings["databasePass"];
       string databaseName = ConfigurationManager.AppSettings["databaseName"];
+
+      if (username != null) databaseUser = username;
+      if (password != null) databasePass = password;
 
       String catalogString = (withDatabase) ? $"Initial Catalog={databaseName};" : "";
       connection = new SqlConnection($"Data Source={databaseHost};{catalogString}User ID={databaseUser};Password={databasePass}");
@@ -57,14 +60,17 @@ namespace TI4_DT_SJ
         MessageBox.Show($"Failed to connect to database {databaseName} at {databaseHost} with user {databaseUser}!\n{e.Message}");
         System.Environment.Exit(1);
       }
+
+      return this;
     }
 
     /// <summary>
     /// Disconnect the open database connection
     /// </summary>
-    public void disconnect()
+    public Database disconnect()
     {
       this.connection.Close();
+      return this;
     }
 
     /// <summary>

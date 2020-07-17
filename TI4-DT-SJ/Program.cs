@@ -87,7 +87,25 @@ namespace TI4_DT_SJ
     /// </summary>
     static void runDatabaseTests()
     {
-      Type tests = typeof(DatabaseTests);
+      Database.Instance.disconnect();
+      Database.Instance.connect(true, "casestudy_administration", "password");
+      Program.runDatabaseTestsFromFile(typeof(DatabaseTestsAdministration));
+      Database.Instance.disconnect();
+      Database.Instance.connect(true, "casestudy_mitgliederverwalter", "password");
+      Program.runDatabaseTestsFromFile(typeof(DatabaseTestsMitgliederverwaltung));
+      Database.Instance.disconnect();
+      Database.Instance.connect(true, "casestudy_standplatzverwalter", "password");
+      Program.runDatabaseTestsFromFile(typeof(DatabaseTestsStandplatzverwaltung));
+      Database.Instance.disconnect();
+      Database.Instance.connect(true, "casestudy_qualitaetsverantwortlicher", "password");
+      Program.runDatabaseTestsFromFile(typeof(DatabaseTestsQualitaetsverantwortliche));
+      Database.Instance.disconnect();
+      Database.Instance.connect(true);
+  }
+
+    static void runDatabaseTestsFromFile(Type fileType)
+    {
+      Type tests = fileType;
       MethodInfo[] methods = tests.GetMethods();
       Int32 testErrors = 0;
 
@@ -115,9 +133,9 @@ namespace TI4_DT_SJ
 
       if (testErrors == 0)
       {
-        MessageBox.Show("Successfully ran tests with 0 errors.");
+        MessageBox.Show($"Successfully ran {fileType.Name} with 0 errors.");
       } else {
-        MessageBox.Show($"Failed tests with {testErrors} errors. Use the debugger to debug!");
+        MessageBox.Show($"Failed {fileType.Name} with {testErrors} errors. Use the debugger to debug!");
       }
 
       Database.Instance.disconnect();

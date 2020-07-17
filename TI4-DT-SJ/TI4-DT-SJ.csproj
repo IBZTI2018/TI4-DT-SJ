@@ -47,8 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseTestsQualitaetsverantwortliche.cs" />
+    <Compile Include="DatabaseTestsStandplatzverwaltung.cs" />
+    <Compile Include="DatabaseTestsMitgliederverwaltung.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="DatabaseTests.cs" />
+    <Compile Include="DatabaseTestsAdministration.cs" />
     <Compile Include="ManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
