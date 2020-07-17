@@ -147,16 +147,16 @@ ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
 
 
 CREATE ROLE casestudy_role_mitgliedsverwaltung;
-GRANT UPDATE, ALTER, DELETE ON person TO casestudy_role_mitgliedsverwalter;
-GRANT UPDATE, ALTER, DELETE ON anrede TO casestudy_role_mitgliedsverwalter;
-GRANT UPDATE, ALTER, DELETE ON ort TO casestudy_role_mitgliedsverwalter;
-GRANT UPDATE, ALTER, DELETE ON adresse TO casestudy_role_mitgliedsverwalter;
-GRANT UPDATE, ALTER, DELETE ON anbieter TO casestudy_role_mitgliedsverwalter;
-GRANT UPDATE, ALTER, DELETE ON nachfrager TO casestudy_role_mitgliedsverwalter;
-GRANT UPDATE, ALTER, DELETE ON rechnung TO casestudy_role_mitgliedsverwalter;
-GRANT UPDATE, ALTER, DELETE ON abo TO casestudy_role_mitgliedsverwalter;
-GRANT UPDATE, ALTER, DELETE ON aboart TO casestudy_role_mitgliedsverwalter;
-ALTER ROLE casestudy_role_mitgliedsverwalter ADD MEMBER casestudy_mitgliederverwalter;
+GRANT UPDATE, ALTER, DELETE ON person TO casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON anrede TO casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON ort TO casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON adresse TO casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON anbieter TO casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON nachfrager TO casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON rechnung TO casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON abo TO casestudy_role_mitgliedsverwaltung;
+GRANT UPDATE, ALTER, DELETE ON aboart TO casestudy_role_mitgliedsverwaltung;
+ALTER ROLE casestudy_role_mitgliedsverwaltung ADD MEMBER casestudy_mitgliederverwalter;
 
 
 CREATE ROLE casestudy_role_standplatzverwaltung;
@@ -167,6 +167,6 @@ GRANT UPDATE, ALTER ON rechnung TO casestudy_role_standplatzverwaltung;
 ALTER ROLE casestudy_role_standplatzverwaltung ADD MEMBER casestudy_standplatzverwalter;
 
 CREATE ROLE casestudy_role_qualitaetspruefung;
-GRANT UPDATE, ALTER ON qualtitaetsbewertung TO casestudy_role_qualitaetspruefung;
-ALTER ROLE casestudy_role_qualitaetspruefungg ADD MEMBER casestudy_qualtitaetsverantwortlicher;
+GRANT UPDATE, ALTER ON qualitaetsbewertung TO casestudy_role_qualitaetspruefung;
+ALTER ROLE casestudy_role_qualitaetspruefung ADD MEMBER casestudy_qualitaetsverantwortlicher;
 

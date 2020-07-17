@@ -17,6 +17,15 @@ DROP ROLE IF EXISTS casestudy_role_development;
 ALTER ROLE casestudy_role_administration DROP MEMBER casestudy_administration;
 DROP ROLE IF EXISTS casestudy_role_administration;
 
+ALTER ROLE casestudy_role_mitgliedsverwaltung DROP MEMBER casestudy_mitgliederverwalter;
+DROP ROLE IF EXISTS casestudy_role_mitgliedsverwaltung;
+
+ALTER ROLE casestudy_role_standplatzverwaltung DROP MEMBER casestudy_standplatzverwalter;
+DROP ROLE IF EXISTS casestudy_role_standplatzverwaltung;
+
+ALTER ROLE casestudy_role_qualitaetspruefung DROP MEMBER casestudy_qualitaetsverantwortlicher;
+DROP ROLE IF EXISTS casestudy_role_qualitaetspruefung;
+
 DROP TABLE qualitaetsbewertung;
 DROP TABLE bewertung;
 DROP TABLE nachfrager;
