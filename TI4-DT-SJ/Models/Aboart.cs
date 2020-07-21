@@ -52,6 +52,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("aboart", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("aboart", this.id);
+    }
+
     public static Aboart Select(int id)
     {
       return (Aboart)Database.Instance.selectCommand("aboart", id, typeof(Aboart));

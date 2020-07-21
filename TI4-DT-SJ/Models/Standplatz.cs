@@ -54,6 +54,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("standplatz", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("standplatz", this.id);
+    }
+
     public static Standplatz Select(int id)
     {
       Standplatz model = (Standplatz)Database.Instance.selectCommand("standplatz", id, typeof(Standplatz));

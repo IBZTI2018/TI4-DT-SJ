@@ -43,6 +43,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("anrede", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("anrede", this.id);
+    }
+
     public static Anrede Select(int id)
     {
       return (Anrede)Database.Instance.selectCommand("anrede", id, typeof(Anrede));

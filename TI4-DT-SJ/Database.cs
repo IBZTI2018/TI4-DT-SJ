@@ -108,6 +108,12 @@ namespace TI4_DT_SJ
       return Convert.ToInt32(newId);
     }
 
+    /// <summary>
+    /// Create and run an update command on a specific table with the given dictionary
+    /// </summary>
+    /// <param name="table">The name of the table to insert into</param>
+    /// <param name="id">The id of the row to update</param>
+    /// <param name="values">The values that should be inserted</param>
     public void updateCommand(String table, int id, Dictionary<String, dynamic> values)
     {
       String[] keys = values.Keys.ToArray();
@@ -124,6 +130,19 @@ namespace TI4_DT_SJ
         command.Parameters.AddWithValue("@" + key, values[key]);
       }
 
+      command.ExecuteNonQuery();
+    }
+
+    /// <summary>
+    /// Create and run a delete command on a specific table with the given id
+    /// </summary>
+    /// <param name="table">The name of the table to insert into</param>
+    /// <param name="id">The id of the row to update</param>
+    public void deleteCommand(String table, int id)
+    {
+      SqlCommand command = new SqlCommand(null, this.connection);
+      command.CommandText = "DELETE FROM " + table + " WHERE id=@id;";
+      command.Parameters.AddWithValue("@id", id);
       command.ExecuteNonQuery();
     }
 

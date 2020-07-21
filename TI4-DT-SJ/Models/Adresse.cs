@@ -59,6 +59,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("adresse", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("adresse", this.id);
+    }
+
     public static Adresse Select(int id)
     {
       Adresse model = (Adresse)Database.Instance.selectCommand("adresse", id, typeof(Adresse));

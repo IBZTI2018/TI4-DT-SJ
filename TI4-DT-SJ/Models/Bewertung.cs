@@ -65,6 +65,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("bewertung", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("bewertung", this.id);
+    }
+
     public static Bewertung Select(int id)
     {
       Bewertung model = (Bewertung)Database.Instance.selectCommand("bewertung", id, typeof(Bewertung));

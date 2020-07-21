@@ -71,6 +71,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("rechnung", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("rechnung", this.id);
+    }
+
     public static Rechnung Select(int id)
     {
       Rechnung model = (Rechnung)Database.Instance.selectCommand("rechnung", id, typeof(Rechnung));

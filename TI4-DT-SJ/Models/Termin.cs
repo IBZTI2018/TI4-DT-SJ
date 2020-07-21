@@ -60,6 +60,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("termin", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("termin", this.id);
+    }
+
     public static Termin Select(int id)
     {
       Termin model = (Termin)Database.Instance.selectCommand("termin", id, typeof(Termin));

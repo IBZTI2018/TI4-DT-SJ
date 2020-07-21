@@ -55,6 +55,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("abo", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("abo", this.id);
+    }
+
     public static Abo Select(int id)
     {
       Abo model = (Abo)Database.Instance.selectCommand("abo", id, typeof(Abo));

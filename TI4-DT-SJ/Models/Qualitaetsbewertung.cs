@@ -60,6 +60,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("qualitaetsbewertungbewertung", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("qualitaetsbewertungbewertung", this.id);
+    }
+
     public static Qualitaetsbewertung Select(int id)
     {
       Qualitaetsbewertung model = (Qualitaetsbewertung)Database.Instance.selectCommand("qualitaetsbewertungbewertung", id, typeof(Qualitaetsbewertung));

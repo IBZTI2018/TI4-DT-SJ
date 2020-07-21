@@ -69,6 +69,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("anbieter", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("anbieter", this.id);
+    }
+
     public static Anbieter Select(int id)
     {
       Anbieter model = (Anbieter)Database.Instance.selectCommand("anbieter", id, typeof(Anbieter));

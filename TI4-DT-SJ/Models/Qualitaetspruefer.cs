@@ -54,6 +54,11 @@ namespace TI4_DT_SJ.Models
       Database.Instance.updateCommand("qualitaetspruefer", this.id, this.ValuesAsDict);
     }
 
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("qualitaetspruefer", this.id);
+    }
+
     public static Qualitaetspruefer Select(int id)
     {
       Qualitaetspruefer model = (Qualitaetspruefer)Database.Instance.selectCommand("qualitaetspruefer", id, typeof(Qualitaetspruefer));

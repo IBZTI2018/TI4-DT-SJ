@@ -46,7 +46,12 @@ namespace TI4_DT_SJ.Models
 
     public void Update()
     {
-      Database.Instance.updateCommand("bewertung", this.id, this.ValuesAsDict);
+      Database.Instance.updateCommand("nachfrager", this.id, this.ValuesAsDict);
+    }
+
+    public void Delete()
+    {
+      Database.Instance.deleteCommand("nachfrager", this.id);
     }
 
     public static Nachfrager Select(int id)
