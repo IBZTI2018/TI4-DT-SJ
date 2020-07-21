@@ -43,12 +43,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("bewertung", new Dictionary<String, dynamic>() {
+      this.id = Database.Instance.insertCommand("bewertung", new Dictionary<String, dynamic>() {
         {"anbieter_id", this.anbieter_id},
         {"nachfrager_id", this.nachfrager_id},
         {"bezeichnung", this.bezeichnung},
         {"score", this.score}
       });
+      return this.id;
     }
 
     public static Bewertung Select(int id)

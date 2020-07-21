@@ -46,7 +46,7 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("anbieter", new Dictionary<String, dynamic>() {
+      this.id = Database.Instance.insertCommand("anbieter", new Dictionary<String, dynamic>() {
         {"id", this.id},
         {"person_id", this.person_id},
         {"aufnahmedatum", this.aufnahmedatum},
@@ -54,6 +54,7 @@ namespace TI4_DT_SJ.Models
         {"bonitaetspruefung", this.bonitaet},
         {"unterschrift", this.unterschrift}
       });
+      return this.id;
     }
 
     public static Anbieter Select(int id)

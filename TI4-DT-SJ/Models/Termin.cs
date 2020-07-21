@@ -39,11 +39,12 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("termin", new Dictionary<String, dynamic>() {
+      this.id = Database.Instance.insertCommand("termin", new Dictionary<String, dynamic>() {
         {"standplatz_id", this.standplatz_id},
         {"anbieter_id", this.anbieter_id},
         {"datum", this.datum}
       });
+      return this.id;
     }
 
     public static Termin Select(int id)

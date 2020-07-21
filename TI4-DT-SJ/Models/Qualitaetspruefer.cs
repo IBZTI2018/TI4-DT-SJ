@@ -34,11 +34,12 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("qualitaetspruefer", new Dictionary<String, dynamic>() {
+      this,id = Database.Instance.insertCommand("qualitaetspruefer", new Dictionary<String, dynamic>() {
         {"id", this.id},
         {"person_id", this.person_id},
         {"lohn", this.lohn}
       });
+      return this.id;
     }
 
     public static Qualitaetspruefer Select(int id)

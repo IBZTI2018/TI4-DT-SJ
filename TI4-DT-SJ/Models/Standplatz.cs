@@ -34,10 +34,11 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("standplatz", new Dictionary<String, dynamic>() {
+      this.id = Database.Instance.insertCommand("standplatz", new Dictionary<String, dynamic>() {
         {"standort_id", this.standort_id},
         {"standplatz_nr", this.standplatz_nr}
       });
+      return this.id;
     }
 
     public static Standplatz Select(int id)

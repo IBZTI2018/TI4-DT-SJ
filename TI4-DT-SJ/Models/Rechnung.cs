@@ -48,13 +48,14 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("rechnung", new Dictionary<String, dynamic>() {
+      this.id = Database.Instance.insertCommand("rechnung", new Dictionary<String, dynamic>() {
         {"abo_id", this.abo_id},
         {"anbieter_id", this.anbieter_id},
         {"termin_id", this.termin_id},
         {"rechnungs_nr", this.rechnungs_nr},
         {"betrag", this.betrag}
       });
+      return this.id;
     }
 
     public static Rechnung Select(int id)

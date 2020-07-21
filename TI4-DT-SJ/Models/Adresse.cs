@@ -47,7 +47,8 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("adresse", this.ValuesAsDict);
+      this.id =  Database.Instance.insertCommand("adresse", this.ValuesAsDict);
+      return this.id;
     }
 
     public void Update()

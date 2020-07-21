@@ -35,11 +35,12 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("abo", new Dictionary<String, dynamic>() {
+      this.id = Database.Instance.insertCommand("abo", new Dictionary<String, dynamic>() {
         {"id", this.id},
         {"anbieter_id", this.anbieter_id},
         {"aboart_id", this.aboart_id}
       });
+      return this.id;
     }
 
     public static Abo Select(int id)

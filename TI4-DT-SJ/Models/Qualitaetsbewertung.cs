@@ -39,11 +39,12 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("qualitaetsbewertungbewertung", new Dictionary<String, dynamic>() {
+      this.id =  Database.Instance.insertCommand("qualitaetsbewertungbewertung", new Dictionary<String, dynamic>() {
         {"anbieter_id", this.anbieter_id},
         {"qualitaetspruefer_id", this.qualitaetspruefer_id},
         {"bezeichnung", this.bezeichnung}
       });
+      return this.id;
     }
 
     public static Qualitaetsbewertung Select(int id)

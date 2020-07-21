@@ -51,7 +51,7 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("person", new Dictionary<String, dynamic>() {
+      this.id = Database.Instance.insertCommand("person", new Dictionary<String, dynamic>() {
         {"id", this.id},
         {"anrede_id", this.anrede_id},
         {"adresse_id", this.adresse_id},
@@ -60,6 +60,7 @@ namespace TI4_DT_SJ.Models
         {"email", this.email},
         {"geburtsdatum", this.geburtsdatum}
       });
+      return this.id;
     }
 
     public static Person Select(int id)

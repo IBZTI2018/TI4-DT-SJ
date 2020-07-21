@@ -30,10 +30,11 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("nachfrager", new Dictionary<String, dynamic>() {
+      this.id = eturn Database.Instance.insertCommand("nachfrager", new Dictionary<String, dynamic>() {
         {"id", this.id},
         {"person_id", this.person_id}
       });
+      return this.id;
     }
 
     public static Nachfrager Select(int id)
