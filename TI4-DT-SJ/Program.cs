@@ -133,7 +133,7 @@ namespace TI4_DT_SJ
           try
           {
             Convert.ToBoolean(method.Invoke(null, new object[] { }));
-          } catch (Exception e)
+          } catch
           {
             /// To debug a failing test, put a breakpoint on the next line!
             testErrors++;

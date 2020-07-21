@@ -108,6 +108,25 @@ namespace TI4_DT_SJ
       return Convert.ToInt32(newId);
     }
 
+    public void updateCommand(String table, int id, Dictionary<String, dynamic> values)
+    {
+      String[] keys = values.Keys.ToArray();
+      String[] changes = new string[keys.Length];
+      for (int i = 0; i < changes.Length; i++) {
+        changes[i] = $"{keys[i]}=@{keys[i]}";
+      }
+
+      SqlCommand command = new SqlCommand(null, this.connection);
+      command.CommandText = "UPDATE " + table + " SET " + String.Join(", ", changes) + " WHERE id=@id;";
+      command.Parameters.AddWithValue("@id", id);
+
+      foreach (String key in keys) {
+        command.Parameters.AddWithValue("@" + key, values[key]);
+      }
+
+      command.ExecuteNonQuery();
+    }
+
     /// <summary>
     /// Get the reader for a single item fetched by its ID (could also be done scalar)
     /// </summary>

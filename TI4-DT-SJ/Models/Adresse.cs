@@ -11,6 +11,15 @@ namespace TI4_DT_SJ.Models
     public string strassenname;
     public int hausnummer;
 
+    private Dictionary<String, dynamic> ValuesAsDict { get {
+      return new Dictionary<String, dynamic>() {
+        {"id", this.id},
+        {"ort_id", this.ort_id},
+        {"strassenname", this.strassenname},
+        {"hausnummer", this.hausnummer}
+      };
+    }}
+
     public Ort ort;
 
     public Adresse(SqlDataReader reader)
@@ -38,12 +47,12 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("adresse", new Dictionary<String, dynamic>() {
-        {"id", this.id},
-        {"ort_id", this.ort_id},
-        {"strassenname", this.strassenname},
-        {"hausnummer", this.hausnummer}
-      });
+      return Database.Instance.insertCommand("adresse", this.ValuesAsDict);
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("adresse", this.id, this.ValuesAsDict);
     }
 
     public static Adresse Select(int id)

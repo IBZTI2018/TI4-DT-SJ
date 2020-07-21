@@ -10,7 +10,14 @@ namespace TI4_DT_SJ.Models
     public int plz;
     public string ort;
 
-    public Ort(SqlDataReader reader)
+    private Dictionary<String, dynamic> ValuesAsDict { get {
+      return new Dictionary<String, dynamic>() {
+        { "plz", this.plz },
+        { "ort", this.ort }
+      };
+    }}
+
+public Ort(SqlDataReader reader)
     {
       this.id = reader.GetInt32(0);
       this.plz = reader.GetInt32(1);
@@ -32,10 +39,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      return Database.Instance.insertCommand("ort", new Dictionary<String, dynamic>() {
-        {"plz", this.plz},
-        {"ort", this.ort}
-      });
+      this.id = Database.Instance.insertCommand("ort", this.ValuesAsDict);
+      return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("ort", this.id, this.ValuesAsDict);
     }
 
     public static Ort Select(int id)

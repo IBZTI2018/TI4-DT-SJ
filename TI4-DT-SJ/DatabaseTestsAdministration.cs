@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.OleDb;
+using System.Runtime.InteropServices;
 using TI4_DT_SJ.Models;
 
 namespace TI4_DT_SJ
@@ -13,6 +15,17 @@ namespace TI4_DT_SJ
 
       if (ort1.Insert() == 0) throw new Exception("Administration konnte Ort nicht einfügen");
       if (ort2.Insert() == 0) throw new Exception("Administration konnte Ort nicht einfügen");
+    }
+
+    // Personal testing
+    public static void testSomeTest()
+    {
+      Ort ort = new Ort(8804, "Au ZH");
+      ort.Insert();
+      ort.plz = 3000;
+      ort.Update();
+      Ort ort_new = Ort.Select(ort.id);
+      int x = 20
     }
   }
 }
