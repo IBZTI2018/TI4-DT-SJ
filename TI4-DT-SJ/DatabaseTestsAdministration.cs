@@ -11,8 +11,8 @@ namespace TI4_DT_SJ
       Ort ort1 = new Ort(8804, "Au ZH");
       Ort ort2 = new Ort(8000, "Zueri City");
 
-      if (ort1.Insert() != 1) throw new Exception("Administration konnte Ort nicht einfügen");
-      if (ort2.Insert() != 2) throw new Exception("Administration konnte Ort nicht einfügen");
+      if (ort1.Insert() == 0) throw new Exception("Administration konnte Ort nicht einfügen");
+      if (ort2.Insert() == 0) throw new Exception("Administration konnte Ort nicht einfügen");
     }
   }
 }
