@@ -139,6 +139,7 @@ ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
 ---
 
 CREATE ROLE casestudy_role_administration;
+GRANT INSERT, UPDATE, ALTER, DELETE ON ort TO casestudy_role_administration;
 GRANT UPDATE, ALTER, DELETE ON abo TO casestudy_role_administration;
 GRANT UPDATE, ALTER, DELETE ON aboart TO casestudy_role_administration;
 GRANT UPDATE, DELETE ON person TO casestudy_role_administration;
@@ -147,9 +148,8 @@ ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
 
 
 CREATE ROLE casestudy_role_mitgliedsverwaltung;
+GRANT INSERT, UPDATE, ALTER, DELETE ON ort TO casestudy_role_mitgliedsverwaltung;
 GRANT UPDATE, ALTER, DELETE ON person TO casestudy_role_mitgliedsverwaltung;
-GRANT UPDATE, ALTER, DELETE ON anrede TO casestudy_role_mitgliedsverwaltung;
-GRANT UPDATE, ALTER, DELETE ON ort TO casestudy_role_mitgliedsverwaltung;
 GRANT UPDATE, ALTER, DELETE ON adresse TO casestudy_role_mitgliedsverwaltung;
 GRANT UPDATE, ALTER, DELETE ON anbieter TO casestudy_role_mitgliedsverwaltung;
 GRANT UPDATE, ALTER, DELETE ON nachfrager TO casestudy_role_mitgliedsverwaltung;
