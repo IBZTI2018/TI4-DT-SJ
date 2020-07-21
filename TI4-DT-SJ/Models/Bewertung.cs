@@ -53,7 +53,10 @@ namespace TI4_DT_SJ.Models
 
     public static Bewertung Select(int id)
     {
-      return (Bewertung)Database.Instance.selectCommand("bewertung", id, typeof(Bewertung));
+      Bewertung model = (Bewertung)Database.Instance.selectCommand("bewertung", id, typeof(Bewertung));
+      model.anbieter = Anbieter.Select(model.anbieter_id);
+      model.nachfrager = Nachfrager.Select(model.nachfrager_id);
+      return model;
     }
   }
 }

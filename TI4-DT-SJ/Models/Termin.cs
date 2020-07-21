@@ -48,7 +48,10 @@ namespace TI4_DT_SJ.Models
 
     public static Termin Select(int id)
     {
-      return (Termin)Database.Instance.selectCommand("termin", id, typeof(Termin));
+      Termin model = (Termin)Database.Instance.selectCommand("termin", id, typeof(Termin));
+      model.anbieter = Anbieter.Select(model.anbieter_id);
+      model.standplatz = Standplatz.Select(model.standplatz_id);
+      return model;
     }
   }
 }

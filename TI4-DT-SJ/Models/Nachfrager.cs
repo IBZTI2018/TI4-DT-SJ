@@ -38,7 +38,9 @@ namespace TI4_DT_SJ.Models
 
     public static Nachfrager Select(int id)
     {
-      return (Nachfrager)Database.Instance.selectCommand("nachfrager", id, typeof(Nachfrager));
+      Nachfrager model = (Nachfrager)Database.Instance.selectCommand("nachfrager", id, typeof(Nachfrager));
+      model.person = Person.Select(model.person_id);
+      return model;
     }
   }
 }

@@ -48,7 +48,9 @@ namespace TI4_DT_SJ.Models
 
     public static Adresse Select(int id)
     {
-      return (Adresse)Database.Instance.selectCommand("adresse", id, typeof(Adresse));
+      Adresse model = (Adresse)Database.Instance.selectCommand("adresse", id, typeof(Adresse));
+      model.ort = Ort.Select(model.ort_id);
+      return model;
     }
   }
 }

@@ -48,7 +48,10 @@ namespace TI4_DT_SJ.Models
 
     public static Qualitaetsbewertung Select(int id)
     {
-      return (Qualitaetsbewertung)Database.Instance.selectCommand("qualitaetsbewertungbewertung", id, typeof(Qualitaetsbewertung));
+      Qualitaetsbewertung model = (Qualitaetsbewertung)Database.Instance.selectCommand("qualitaetsbewertungbewertung", id, typeof(Qualitaetsbewertung));
+      model.qualitaetspruefer = Qualitaetspruefer.Select(model.qualitaetspruefer_id);
+      model.anbieter = Anbieter.Select(model.anbieter_id);
+      return model;
     }
   }
 }

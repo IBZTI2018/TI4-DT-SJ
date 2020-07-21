@@ -59,7 +59,11 @@ namespace TI4_DT_SJ.Models
 
     public static Rechnung Select(int id)
     {
-      return (Rechnung)Database.Instance.selectCommand("rechnung", id, typeof(Rechnung));
+      Rechnung model = (Rechnung)Database.Instance.selectCommand("rechnung", id, typeof(Rechnung));
+      model.anbieter = Anbieter.Select(model.id);
+      if (model.abo_id != 0) model.abo = Abo.Select(model.abo_id);
+      if (model.termin_id != 0) model.termin = Termin.Select(model.termin_id);
+      return model;
     }
   }
 }

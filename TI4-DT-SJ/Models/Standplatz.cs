@@ -42,7 +42,9 @@ namespace TI4_DT_SJ.Models
 
     public static Standplatz Select(int id)
     {
-      return (Standplatz)Database.Instance.selectCommand("standplatz", id, typeof(Standplatz));
+      Standplatz model = (Standplatz)Database.Instance.selectCommand("standplatz", id, typeof(Standplatz));
+      model.standort = Standort.Select(model.standort_id);
+      return model;
     }
   }
 }

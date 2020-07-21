@@ -44,7 +44,10 @@ namespace TI4_DT_SJ.Models
 
     public static Abo Select(int id)
     {
-      return (Abo)Database.Instance.selectCommand("abo", id, typeof(Abo));
+      Abo model = (Abo)Database.Instance.selectCommand("abo", id, typeof(Abo));
+      model.anbieter = Anbieter.Select(model.anbieter_id);
+      model.aboart = Aboart.Select(model.aboart_id);
+      return model;
     }
   }
 }

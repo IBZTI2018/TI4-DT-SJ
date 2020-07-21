@@ -58,7 +58,9 @@ namespace TI4_DT_SJ.Models
 
     public static Anbieter Select(int id)
     {
-      return (Anbieter)Database.Instance.selectCommand("anbieter", id, typeof(Anbieter));
+      Anbieter model = (Anbieter)Database.Instance.selectCommand("anbieter", id, typeof(Anbieter));
+      model.person = Person.Select(model.person_id);
+      return model;
     }
   }
 }

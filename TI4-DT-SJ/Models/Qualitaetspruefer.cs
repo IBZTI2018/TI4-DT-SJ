@@ -43,7 +43,9 @@ namespace TI4_DT_SJ.Models
 
     public static Qualitaetspruefer Select(int id)
     {
-      return (Qualitaetspruefer)Database.Instance.selectCommand("qualitaetspruefer", id, typeof(Qualitaetspruefer));
+      Qualitaetspruefer model = (Qualitaetspruefer)Database.Instance.selectCommand("qualitaetspruefer", id, typeof(Qualitaetspruefer));
+      model.person = Person.Select(model.person_id);
+      return model;
     }
   }
 }

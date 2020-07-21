@@ -64,7 +64,10 @@ namespace TI4_DT_SJ.Models
 
     public static Person Select(int id)
     {
-      return (Person)Database.Instance.selectCommand("person", id, typeof(Person));
+      Person model = (Person)Database.Instance.selectCommand("person", id, typeof(Person));
+      model.anrede = Anrede.Select(model.anrede_id);
+      model.adresse = Adresse.Select(model.adresse_id);
+      return model;
     }
   }
 }
