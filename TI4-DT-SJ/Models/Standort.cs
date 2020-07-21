@@ -9,6 +9,16 @@ namespace TI4_DT_SJ.Models
     public int id;
     public string bezeichnung;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"bezeichnung", this.bezeichnung}
+        };
+      }
+    }
+
     public Standort(SqlDataReader reader)
     {
       this.id = reader.GetInt32(0);
@@ -28,10 +38,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("standort", new Dictionary<String, dynamic>() {
-        {"bezeichnung", this.bezeichnung}
-      });
+      this.id = Database.Instance.insertCommand("standort", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("standort", this.id, this.ValuesAsDict);
     }
 
     public static Standort Select(int id)

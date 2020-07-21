@@ -11,6 +11,18 @@ namespace TI4_DT_SJ.Models
     public int anbieter_id;
     public DateTime datum;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"standplatz_id", this.standplatz_id},
+          {"anbieter_id", this.anbieter_id},
+          {"datum", this.datum}
+        };
+      }
+    }
+
     public Standplatz standplatz;
     public Anbieter anbieter;
 
@@ -39,12 +51,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("termin", new Dictionary<String, dynamic>() {
-        {"standplatz_id", this.standplatz_id},
-        {"anbieter_id", this.anbieter_id},
-        {"datum", this.datum}
-      });
+      this.id = Database.Instance.insertCommand("termin", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("termin", this.id, this.ValuesAsDict);
     }
 
     public static Termin Select(int id)

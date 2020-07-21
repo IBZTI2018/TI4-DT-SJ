@@ -13,6 +13,20 @@ namespace TI4_DT_SJ.Models
     public bool bonitaet;
     public bool unterschrift;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"person_id", this.person_id},
+          {"aufnahmedatum", this.aufnahmedatum},
+          {"prov_aufnahmedatum", this.prov_aufnahmedatum},
+          {"bonitaetspruefung", this.bonitaet},
+          {"unterschrift", this.unterschrift}
+        };
+      }
+    }
+
     public Person person;
 
     public Anbieter(SqlDataReader reader)
@@ -46,15 +60,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("anbieter", new Dictionary<String, dynamic>() {
-        {"id", this.id},
-        {"person_id", this.person_id},
-        {"aufnahmedatum", this.aufnahmedatum},
-        {"prov_aufnahmedatum", this.prov_aufnahmedatum},
-        {"bonitaetspruefung", this.bonitaet},
-        {"unterschrift", this.unterschrift}
-      });
+      this.id = Database.Instance.insertCommand("anbieter", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("anbieter", this.id, this.ValuesAsDict);
     }
 
     public static Anbieter Select(int id)

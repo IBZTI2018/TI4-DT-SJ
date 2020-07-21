@@ -10,6 +10,17 @@ namespace TI4_DT_SJ.Models
     public int person_id;
     public float lohn;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"person_id", this.person_id},
+          {"lohn", this.lohn}
+        };
+      }
+    }
+
     public Person person;
 
     public Qualitaetspruefer(SqlDataReader reader)
@@ -34,12 +45,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this,id = Database.Instance.insertCommand("qualitaetspruefer", new Dictionary<String, dynamic>() {
-        {"id", this.id},
-        {"person_id", this.person_id},
-        {"lohn", this.lohn}
-      });
+      this.id = Database.Instance.insertCommand("qualitaetspruefer", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("qualitaetspruefer", this.id, this.ValuesAsDict);
     }
 
     public static Qualitaetspruefer Select(int id)

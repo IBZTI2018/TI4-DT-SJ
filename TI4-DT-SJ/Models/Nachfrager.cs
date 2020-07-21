@@ -9,6 +9,16 @@ namespace TI4_DT_SJ.Models
     public int id;
     public int person_id;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"person_id", this.person_id}
+        };
+      }
+    }
+
     public Person person;
 
     public Nachfrager(SqlDataReader reader)
@@ -30,11 +40,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = eturn Database.Instance.insertCommand("nachfrager", new Dictionary<String, dynamic>() {
-        {"id", this.id},
-        {"person_id", this.person_id}
-      });
+      this.id = Database.Instance.insertCommand("nachfrager", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("bewertung", this.id, this.ValuesAsDict);
     }
 
     public static Nachfrager Select(int id)

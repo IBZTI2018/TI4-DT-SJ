@@ -10,14 +10,18 @@ namespace TI4_DT_SJ.Models
     public int plz;
     public string ort;
 
-    private Dictionary<String, dynamic> ValuesAsDict { get {
-      return new Dictionary<String, dynamic>() {
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
         { "plz", this.plz },
         { "ort", this.ort }
-      };
-    }}
+        };
+      }
+    }
 
-public Ort(SqlDataReader reader)
+    public Ort(SqlDataReader reader)
     {
       this.id = reader.GetInt32(0);
       this.plz = reader.GetInt32(1);

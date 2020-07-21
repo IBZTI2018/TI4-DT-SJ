@@ -11,14 +11,17 @@ namespace TI4_DT_SJ.Models
     public string strassenname;
     public int hausnummer;
 
-    private Dictionary<String, dynamic> ValuesAsDict { get {
-      return new Dictionary<String, dynamic>() {
-        {"id", this.id},
-        {"ort_id", this.ort_id},
-        {"strassenname", this.strassenname},
-        {"hausnummer", this.hausnummer}
-      };
-    }}
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"ort_id", this.ort_id},
+          {"strassenname", this.strassenname},
+          {"hausnummer", this.hausnummer}
+        };
+      }
+    }
 
     public Ort ort;
 

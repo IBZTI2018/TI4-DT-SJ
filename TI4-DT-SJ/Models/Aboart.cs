@@ -10,6 +10,17 @@ namespace TI4_DT_SJ.Models
     public string bezeichnung;
     public float gebuehr;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"bezeichnung", this.bezeichnung},
+          {"gebuehr", this.gebuehr}
+        };
+      }
+    }
+
     public Aboart(SqlDataReader reader)
     {
       this.id = reader.GetInt32(0);
@@ -32,11 +43,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("aboart", new Dictionary<String, dynamic>() {
-        {"bezeichnung", this.bezeichnung},
-        {"gebuehr", this.gebuehr}
-      });
+      this.id = Database.Instance.insertCommand("aboart", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("aboart", this.id, this.ValuesAsDict);
     }
 
     public static Aboart Select(int id)

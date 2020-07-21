@@ -11,6 +11,18 @@ namespace TI4_DT_SJ.Models
     public int qualitaetspruefer_id;
     public string bezeichnung;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"anbieter_id", this.anbieter_id},
+          {"qualitaetspruefer_id", this.qualitaetspruefer_id},
+          {"bezeichnung", this.bezeichnung}
+        };
+      }
+    }
+
     public Anbieter anbieter;
     public Qualitaetspruefer qualitaetspruefer;
 
@@ -39,12 +51,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id =  Database.Instance.insertCommand("qualitaetsbewertungbewertung", new Dictionary<String, dynamic>() {
-        {"anbieter_id", this.anbieter_id},
-        {"qualitaetspruefer_id", this.qualitaetspruefer_id},
-        {"bezeichnung", this.bezeichnung}
-      });
+      this.id =  Database.Instance.insertCommand("qualitaetsbewertungbewertung", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("qualitaetsbewertungbewertung", this.id, this.ValuesAsDict);
     }
 
     public static Qualitaetsbewertung Select(int id)

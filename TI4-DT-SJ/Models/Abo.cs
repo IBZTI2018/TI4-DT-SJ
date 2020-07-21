@@ -10,6 +10,17 @@ namespace TI4_DT_SJ.Models
     public int anbieter_id;
     public int aboart_id;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          { "anbieter_id", this.anbieter_id },
+          { "aboart_id", this.aboart_id }
+        };
+      }
+    }
+
     public Anbieter anbieter;
     public Aboart aboart;
 
@@ -35,12 +46,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("abo", new Dictionary<String, dynamic>() {
-        {"id", this.id},
-        {"anbieter_id", this.anbieter_id},
-        {"aboart_id", this.aboart_id}
-      });
+      this.id = Database.Instance.insertCommand("abo", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("abo", this.id, this.ValuesAsDict);
     }
 
     public static Abo Select(int id)

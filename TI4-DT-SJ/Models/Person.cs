@@ -14,6 +14,21 @@ namespace TI4_DT_SJ.Models
     public string email;
     public DateTime geburtsdatum;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"anrede_id", this.anrede_id},
+          {"adresse_id", this.adresse_id},
+          {"vorname", this.vorname},
+          {"nachname", this.nachname},
+          {"email", this.email},
+          {"geburtsdatum", this.geburtsdatum}
+        };
+      }
+    }
+
     public Anrede anrede;
     public Adresse adresse;
 
@@ -61,6 +76,11 @@ namespace TI4_DT_SJ.Models
         {"geburtsdatum", this.geburtsdatum}
       });
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("person", this.id, this.ValuesAsDict);
     }
 
     public static Person Select(int id)

@@ -10,6 +10,17 @@ namespace TI4_DT_SJ.Models
     public int standort_id;
     public int standplatz_nr;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"standort_id", this.standort_id},
+          {"standplatz_nr", this.standplatz_nr}
+        };
+      }
+    }
+
     public Standort standort;
 
     public Standplatz(SqlDataReader reader)
@@ -34,11 +45,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("standplatz", new Dictionary<String, dynamic>() {
-        {"standort_id", this.standort_id},
-        {"standplatz_nr", this.standplatz_nr}
-      });
+      this.id = Database.Instance.insertCommand("standplatz", this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("standplatz", this.id, this.ValuesAsDict);
     }
 
     public static Standplatz Select(int id)

@@ -12,6 +12,19 @@ namespace TI4_DT_SJ.Models
     public string bezeichnung;
     public float score;
 
+    private Dictionary<String, dynamic> ValuesAsDict
+    {
+      get
+      {
+        return new Dictionary<String, dynamic>() {
+          {"anbieter_id", this.anbieter_id},
+          {"nachfrager_id", this.nachfrager_id},
+          {"bezeichnung", this.bezeichnung},
+          {"score", this.score}
+        };
+      }
+    }
+
     public Anbieter anbieter;
     public Nachfrager nachfrager;
 
@@ -43,13 +56,13 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("bewertung", new Dictionary<String, dynamic>() {
-        {"anbieter_id", this.anbieter_id},
-        {"nachfrager_id", this.nachfrager_id},
-        {"bezeichnung", this.bezeichnung},
-        {"score", this.score}
-      });
+      this.id = Database.Instance.insertCommand("bewertung",  this.ValuesAsDict);
       return this.id;
+    }
+
+    public void Update()
+    {
+      Database.Instance.updateCommand("bewertung", this.id, this.ValuesAsDict);
     }
 
     public static Bewertung Select(int id)
