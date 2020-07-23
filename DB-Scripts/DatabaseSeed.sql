@@ -22,23 +22,23 @@ insert into ort (id, plz, ort)
 GO
 
 insert into adresse (id, ort_id, strassenname, hausnummer)
-    VALUES  (1, (SELECT ort_id FROM ort WHERE plz = '8804'), 'seestrasse', '241'),
-            (2, (SELECT ort_id FROM ort WHERE plz = '8047'), 'untermoosstrasse', '17'),
-            (3, (SELECt ort_id FROM ort WHERE plz = '8902'), 'Weihermattstrasse', '2');
+    VALUES  (1, (SELECT id FROM ort WHERE plz = '8804'), 'seestrasse', '241'),
+            (2, (SELECT id FROM ort WHERE plz = '8047'), 'untermoosstrasse', '17'),
+            (3, (SELECt id FROM ort WHERE plz = '8902'), 'Weihermattstrasse', '2');
 GO
 
 insert into person (id, anrede_id, strasse_id, vorname, nachname, geburtsdatum, email)
-    VALUES  (1, (SELECT anrede_id FROM anrede WHERE id = '1'), (SELECT adresse_id FROM strasse WHERE id= '1'), 'Fritz', 'Meyer', '01.03.1975', 'fritz.meyer@hotmail.com'),
-            (2, (SELECT anrede_id FROM anrede WHERE id = '2'), (SELECT adresse_id FROM strasse WHERE id= '3'), 'Jennifer', 'Mentner', '01.10.1997', 'jennifermentner@hotmail.com'),
-            (3, (SELECT anrede_id FROm anrede WHERE id = '1'), (SELECT adresse_id FROM strasse WHERE id= '2'), 'Sven', 'Gehring', '04.01.1997', 'sven.gehring@hotmail.com');
+    VALUES  (1, (SELECT id FROM anrede WHERE bezeichnung = 'Herr'), (SELECT id FROM adresse WHERE strassenname = 'seestrasse'), 'Fritz', 'Meyer', '01.03.1975', 'fritz.meyer@hotmail.com'),
+            (2, (SELECT id FROM anrede WHERE bezeichnung = 'Frau'), (SELECT id FROM adresse WHERE strassenname = 'untermoosstrasse'), 'Jennifer', 'Mentner', '01.10.1997', 'jennifermentner@hotmail.com'),
+            (3, (SELECT id FROm anrede WHERE bezeichnung = 'Herr'), (SELECT id FROM adresse WHERE strassenname = 'Weihermattstrasse'), 'Sven', 'Gehring', '04.01.1997', 'sven.gehring@hotmail.com');
 GO
 
 insert into anbieter (id, person_id, aufnahmedatum, prov_aufnahmedatum, bonitaetspruefung, unterschrift)
-    VALUES  (1, (SELECT person_id FROM person WHERE id = '2'), '20.5.2020', '01.02.2020', 'bestanden', 'eingereicht');
+    VALUES  (1, (SELECT id FROM person WHERE vorname = 'Jennifer'), '20.5.2020', '01.02.2020', 'bestanden', 'eingereicht');
 GO
 
 insert into nachfrager (id, person_id)
-    VALUES  (1, (SELECT person_id FROM person WHERE id = '1'));
+    VALUES  (1, (SELECT id FROM person WHERE id = '1'));
 GO
 
 insert into qualitaetspruefer (id, person_id, lohn)
