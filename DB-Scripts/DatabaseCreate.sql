@@ -49,7 +49,7 @@ CREATE TABLE anbieter (
 
 CREATE TABLE aboart (
     id INT PRIMARY KEY IDENTITY,
-    bezeichnung TEXT NOT NULL,
+    bezeichnung VARCHAR(255) NOT NULL,
     gebuehr FLOAT NOT NULL
 );
 
