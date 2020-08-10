@@ -38,15 +38,15 @@ insert into anbieter (id, person_id, aufnahmedatum, prov_aufnahmedatum, bonitaet
 GO
 
 insert into nachfrager (id, person_id)
-    VALUES  (1, (SELECT id FROM person WHERE id = '1'));
+    VALUES  (1, (SELECT id FROM person WHERE vorname = 'Fritz'));
 GO
 
 insert into qualitaetspruefer (id, person_id, lohn)
-    VALUES  (1, (SELECT person_id FROM person WHERE id = '3'), 5000);
+    VALUES  (1, (SELECT id FROM person WHERE vorname = 'Sven'), 5000);
 GO
 
 insert into bewertung (id, anbieter_id, nachfrager_id, bezeichnung, score)
-    VALUES  (1, (SELECT anbieter_id FROM anbieter WHERE id = '1'), (SELECT nachfrager_id FROM nachfrager WHERE id = '1'), 'preis ok, aussehen sehr gut', 5);
+    VALUES  (1, (SELECT id FROM anbieter WHERE person_id = '2'), (SELECT id FROM nachfrager WHERE person_id = '1'), 'preis ok, aussehen sehr gut', 5);
 GO
 
 insert into aboart (id, bezeichnung, gebuehr)
@@ -56,31 +56,31 @@ insert into aboart (id, bezeichnung, gebuehr)
 GO
 
 insert into abo (id, anbieter_id, aboart_id)
-    VALUES  (1, (SELECT anbieter_id FROM anbieter WHERE id = '1'), (SELECT aboart_id FROM aboart WHERE id = '2'));
+    VALUES  (1, (SELECT id FROM anbieter WHERE person_id = '2'), (SELECT id FROM aboart WHERE bezeichnung = 'big'));
 GO
 
 insert into standort (id, bezeichnung)
-    VALUES  (1, 'Zürich'),
+    VALUES  (1, 'Zuerich'),
             (2, 'Aarau'),
             (3, 'Bern'),
             (4, 'Basel');
 GO
 
 insert into standplatz (id, standort_id, standplatz_nr)
-    VALUES  (1, (SELECT standort_id FROM standort WHERE id = '1'), 20),
-            (2, (SELECT standort_id FROM standort WHERE id = '2'), 10);
+    VALUES  (1, (SELECT id FROM standort WHERE bezeichnung = 'Zuerich'), 20),
+            (2, (SELECT id FROM standort WHERE bezeichnung = 'Aarau'), 10);
 GO
 
 insert into termin (id, standplatz_id, anbieter_id, datum)
-    VALUES  (1, (SELECT standplatz_id FROM standplatz WHERE id = '1'), (SELECT anbieter_id FROM anbieter WHERE id = '1'), '22.08.2020');
+    VALUES  (1, (SELECT id FROM standplatz WHERE standort_id = '1'), (SELECT id FROM anbieter WHERE person_id = '2'), '22.08.2020');
 GO
 
 insert into rechnung (id, abo_id, anbieter_id, termin_id, rechnungs_nr, betrag)
-    VALUES  (1, (SELECT abo_id FROM abo WHERE id = '1'), (SELECT anbieter_id FROM anbieter WHERE id = '1'), (SELECT termin_id FROM termin WHERE id = '1'), 123456789, 420);
+    VALUES  (1, (SELECT id FROM abo WHERE aboart_id = '2'), (SELECT id FROM anbieter WHERE person_id = '2'), (SELECT id FROM termin WHERE datum = '22.08.2020'), 123456789, 420);
 GO
 
 insert into qualitaetsbewertung (id, anbieter_id, qualitaetspruefer_id, bezeichnung)
-    VALUES (1, (SELECT anbieter_id FROM anbieter WHERE id = '1'), (SELECT qualitaetspruefer_id FROM qualitaetspruefer WHERE id = '1'), 'prüfungen bestanden');
+    VALUES (1, (SELECT id FROM anbieter WHERE person_id = '2'), (SELECT id FROM qualitaetspruefer WHERE person_id = '3'), 'prüfungen bestanden');
 GO
 
 
