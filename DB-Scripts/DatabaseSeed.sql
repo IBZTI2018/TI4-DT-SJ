@@ -32,7 +32,6 @@ INSERT INTO person (anrede_id, adresse_id, vorname, nachname, geburtsdatum, emai
 INSERT INTO anbieter (person_id, aufnahmedatum, prov_aufnahmedatum, bonitaetspruefung, unterschrift)
     VALUES  ((SELECT id FROM person WHERE vorname = 'Jennifer'), '20200520', '20200201', 1, 1);
 
-<<<<<<< HEAD
 insert into nachfrager (id, person_id)
     VALUES  (1, (SELECT id FROM person WHERE vorname = 'Fritz'));
 GO
@@ -78,10 +77,6 @@ GO
 insert into qualitaetsbewertung (id, anbieter_id, qualitaetspruefer_id, bezeichnung)
     VALUES (1, (SELECT id FROM anbieter WHERE person_id = '2'), (SELECT id FROM qualitaetspruefer WHERE person_id = '3'), 'prüfungen bestanden');
 GO
-=======
-INSERT INTO nachfrager (person_id)
-    VALUES  ((SELECT id FROM person WHERE vorname = 'Fritz'));
->>>>>>> 308a95606b6a02f196d8cd345faa502700ae097d
 
 INSERT INTO qualitaetspruefer (person_id, lohn)
     VALUES  ((SELECT id FROM person WHERE vorname = 'Jennifer'), 5000);
