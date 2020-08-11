@@ -90,8 +90,9 @@ namespace TI4_DT_SJ
       Database.Instance.connect(true);
 
       // Per documentation, these always exist!
-      (new Models.Anrede(1, "Herr")).Insert();
-      (new Models.Anrede(2, "Frau")).Insert();
+      // TODO: How do we do this?
+      //(new Models.Anrede(1, "Herr")).Insert();
+      //(new Models.Anrede(2, "Frau")).Insert();
 
       int testErrors = 0;
       Database.Instance.disconnect();
