@@ -22,7 +22,6 @@ namespace TI4_DT_SJ
 
     public static void testCanCreateANewOrtwithoutplz()
     {
-      Ort ort = new Ort("uster");
       try
       {
         Database.Instance.getCommand("INSERT INTO ort (ort) VALUES ('Uster');").ExecuteNonQuery();
@@ -33,7 +32,6 @@ namespace TI4_DT_SJ
 
     public static void testCanCreateANewOrtwithoutOrtname()
     {
-      Ort ort = new Ort(8904);
       try
       {
         Database.Instance.getCommand("INSERT INTO ort (plz) VALUES ('8904');").ExecuteNonQuery();
@@ -46,7 +44,7 @@ namespace TI4_DT_SJ
     public static void testCanCreateANewAddressAndGetItsID()
     {
       Adresse adresse1 = new Adresse(1, "untermoos", 17);
-      Adresse adresse2 = new Adresse(2, "zürichstrasse", 21);
+      Adresse adresse2 = new Adresse(1, "zürichstrasse", 21);
 
       if (adresse1.Insert() == 0) throw new Exception("Administration konnte Adresse nicht einfügen");
       if (adresse2.Insert() == 0) throw new Exception("Administration konnte Adresse nicht einfügen");
@@ -54,7 +52,6 @@ namespace TI4_DT_SJ
     }
     public static void testCanCreateANewAddresswithoutStrassenname()
     {
-      Adresse adresse = new Adresse(1, 15);
       try
       {
         Database.Instance.getCommand("INSERT INTO adresse (ort_id, hausnummer) VALUES ('1', '15');").ExecuteNonQuery();
@@ -65,7 +62,6 @@ namespace TI4_DT_SJ
 
     public static void testCanCreateANewAdressWithoutHausnummer()
     {
-      Adresse adresse = new Adresse(12, "schlierestrass");
       try
       {
         Database.Instance.getCommand("INSERT INTO adresse (ort_id, strassenname) VALUES ('12', 'schlierestrass');").ExecuteNonQuery();
@@ -89,11 +85,9 @@ namespace TI4_DT_SJ
     }
     public static void testCanCreateANewPersonWithoutAnrede()
     {
-      DateTime datetime = new DateTime(1997, 01, 01);
-      Person person = new Person(2, "albert", "einstein", "albert.einstein@bluewin.ch", datetime);
       try
       {
-        Database.Instance.getCommand("INSERT INTO person (adresse_id, vorname, nachname, email, geburtsdatum) VALUES ('2', 'albert', 'einstein', 'albert.einstein@bluewin.ch', datetime);").ExecuteNonQuery();
+        Database.Instance.getCommand("INSERT INTO person (adresse_id, vorname, nachname, email, geburtsdatum) VALUES ('2', 'albert', 'einstein', 'albert.einstein@bluewin.ch', '1950-01-07');").ExecuteNonQuery();
       }
       catch { return; }
       throw new Exception("Aministration konnte Person ohne Anrede einfügen");
@@ -101,11 +95,9 @@ namespace TI4_DT_SJ
 
     public static void testCanCreateANewPersonWithoutAddress()
     {
-      DateTime datetime = new DateTime(1992, 04, 10);
-      Person person = new Person(1, "Ruedi", "Peter", "ruedi.peter@gmail.com",datetime);
       try
       {
-        Database.Instance.getCommand("INSERT INTP person (anrede_id, vorname, nachname, email, geburtsdatum) VALUES('1', 'Ruedi', 'Peter', 'ruedi.peter@gmail.com', 'datetime');").ExecuteNonQuery();
+        Database.Instance.getCommand("INSERT INTO person (anrede_id, vorname, nachname, email, geburtsdatum) VALUES('1', 'Ruedi', 'Peter', 'ruedi.peter@gmail.com', '1994-10-10');").ExecuteNonQuery();
       }
       catch { return; }
       throw new Exception("Administration konnte Person ohne Adresse einfügen");
@@ -113,11 +105,9 @@ namespace TI4_DT_SJ
 
     public static void testCanCreateANewPersonWithoutVorname()
     {
-      DateTime datetime = new DateTime(1994, 03, 20);
-      Person person = new Person(1, 4, "Baum", "a.baum@gmail.com", datetime);
       try
       {
-        Database.Instance.getCommand("INSERT INTO person(anrede_id, adresse_id, nachname, email, geburtsdatum) VALUES ('1', '4', 'Baum', 'a.baum@gmail.com', 'datetime');").ExecuteNonQuery();
+        Database.Instance.getCommand("INSERT INTO person(anrede_id, adresse_id, nachname, email, geburtsdatum) VALUES ('1', '4', 'Baum', 'a.baum@gmail.com', '1995-12-21');").ExecuteNonQuery();
       }
       catch { return; }
       throw new Exception("Administration konnte Person ohne Vorname einfügen");
@@ -125,11 +115,9 @@ namespace TI4_DT_SJ
 
     public static void testCanCreateANewPersonWithoutNachname()
     {
-      DateTime datetime = new DateTime(1993, 05, 10);
-      Person person = new Person(2, 5, datetime, "Lara", "lara.a@hotmail.com");
       try
       {
-        Database.Instance.getCommand("INSERT INTO person(anrede_id, adresse_id, geburtsdatum, vorname, email) VALUES ('2', '5', 'datetime', 'Lara', 'lara.a@hotmail.com');").ExecuteNonQuery();
+        Database.Instance.getCommand("INSERT INTO person(anrede_id, adresse_id, vorname, email, geburtsdatum) VALUES ('2', '5', 'Lara', 'lara.a@hotmail.com', '1997-01-01');").ExecuteNonQuery();
       }
       catch { return; }
       throw new Exception("Administration konnte Person ohne Nachname einfügen");
@@ -137,11 +125,9 @@ namespace TI4_DT_SJ
 
     public static void testCanCreateANewPersonWithoutEmail()
     {
-      DateTime datetime = new DateTime(1995, 10, 11);
-      Person person = new Person(21, "rudolf", "rednose", datetime, 1);
       try
       {
-        Database.Instance.getCommand("INSERT INTO person(adresse_id, vorname, nachname, geburtsdatum, anrede_id) VALUES ('21', 'rudolf', 'rednose', 'datetime', '1');").ExecuteNonQuery();
+        Database.Instance.getCommand("INSERT INTO person(anrede_id, adresse_id, vorname, nachname, geburtsdatum) VALUES ('1', '21', 'rudolf', 'rednose', 'datetime');").ExecuteNonQuery();
       }
       catch { return; }
       throw new Exception("Administration konnte Person ohne Email einfügen");
@@ -156,6 +142,18 @@ namespace TI4_DT_SJ
       if (nachfrager1.Insert() == 0) throw new Exception("Administration konnte Nachfrager nicht einfügen");
       if (nachfrager2.Insert() == 0) throw new Exception("Administration konnte Nachfrager nicht einfügen");
     }
+
+    // Eine neue Aboart kann nur von der Administration in die Datenbank eingetragen werden.
+    public static void testCanCreateAAboartAndGetItsID()
+    {
+      Aboart aboart1 = new Aboart("all_in_one", 2000);
+      Aboart aboart2 = new Aboart("love_the_summer", 800);
+
+      if (aboart1.Insert() == 0) throw new Exception("Administration konnte Aboart nicht einfügen");
+      if (aboart2.Insert() == 0) throw new Exception("Administration konnte Aboart nicht einfügen");
+    }
+
+
 
 
 

@@ -64,52 +64,6 @@ namespace TI4_DT_SJ.Models
       this.geburtsdatum = geburtsdatum;
     }
 
-    public Person(int adresse_id, string vorname, string nachname, string email, DateTime geburtsdatum)
-    {
-      this.adresse_id = adresse_id;
-      this.vorname = vorname;
-      this.nachname = nachname;
-      this.email = email;
-      this.geburtsdatum = geburtsdatum;
-    }
-
-    public Person(int anrede_id, string vorname, string nachname, DateTime geburtsdatum, string email)
-    {
-      this.anrede_id = anrede_id;
-      this.vorname = vorname;
-      this.nachname = nachname;
-      this.geburtsdatum = geburtsdatum;
-      this.email = email;
-    }
-
-    public Person(int anrede_id, int adresse_id, string nachname, string email, DateTime geburtsdatum)
-    {
-      this.anrede_id = anrede_id;
-      this.adresse_id = adresse_id;
-      this.nachname = nachname;
-      this.email = email;
-      this.geburtsdatum = geburtsdatum;
-    }
-
-
-    public Person(int anrede_id, int adresse_id, DateTime geburtsdatum, string vorname, string email)
-    {
-      this.anrede_id = anrede_id;
-      this.adresse_id = adresse_id;
-      this.geburtsdatum = geburtsdatum;
-      this.vorname = vorname;
-      this.email = email;
-    }
-
-    public Person(int adresse_id, string vorname, string nachname, DateTime geburtsdatum, int anrede_id)
-    {
-      this.adresse_id = adresse_id;
-      this.vorname = vorname;
-      this.nachname = nachname;
-      this.geburtsdatum = geburtsdatum;
-      this.anrede_id = anrede_id;
-    }
-
     public int Insert()
     {
       this.id = Database.Instance.insertCommand("person", new Dictionary<String, dynamic>() {

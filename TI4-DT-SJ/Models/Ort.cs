@@ -41,16 +41,6 @@ namespace TI4_DT_SJ.Models
       this.ort = ort;
     }
 
-    public Ort(string ort)
-    {
-      this.ort = ort;
-    }
-
-    public Ort(int plz)
-    {
-      this.plz = plz;
-    }
-
     public int Insert()
     {
       this.id = Database.Instance.insertCommand("ort", this.ValuesAsDict);

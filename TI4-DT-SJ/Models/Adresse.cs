@@ -48,19 +48,6 @@ namespace TI4_DT_SJ.Models
       this.strassenname = strassenname;
       this.hausnummer = hausnummer;
     }
-
-    public Adresse(int ort_id, int hausnummer)
-    {
-      this.ort_id = ort_id;
-      this.hausnummer = hausnummer;
-    }
-
-    public Adresse(int ort_id, string strassenname)
-    {
-      this.ort_id = ort_id;
-      this.strassenname = strassenname;
-    }
-
     public int Insert()
     {
       this.id =  Database.Instance.insertCommand("adresse", this.ValuesAsDict);
