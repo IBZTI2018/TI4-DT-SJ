@@ -1,7 +1,9 @@
 ﻿using System;
 using System.CodeDom;
 using System.Data.OleDb;
+using System.Drawing.Text;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using TI4_DT_SJ.Models;
 
 namespace TI4_DT_SJ
@@ -17,7 +19,7 @@ namespace TI4_DT_SJ
       if (ort1.Insert() == 0) throw new Exception("Administration konnte Ort nicht einfügen");
       if (ort2.Insert() == 0) throw new Exception("Administration konnte Ort nicht einfügen");
     }
-    
+
     public static void testCanCreateANewOrtwithoutplz()
     {
       Ort ort = new Ort("uster");
@@ -48,7 +50,7 @@ namespace TI4_DT_SJ
 
       if (adresse1.Insert() == 0) throw new Exception("Administration konnte Adresse nicht einfügen");
       if (adresse2.Insert() == 0) throw new Exception("Administration konnte Adresse nicht einfügen");
-        
+
     }
     public static void testCanCreateANewAddresswithoutStrassenname()
     {
@@ -75,13 +77,86 @@ namespace TI4_DT_SJ
 
     public static void testCanCreateANewPersonAndGetItsID()
     {
-      Person person1 = new Person(1, 2, "Hans", "Mueller", "hans.mueller@gmail.com", '1965-10-12' ); // datetime isch eifach kakke drum gaht das etz nonig
-      Person person2 = new Person(2, 3, "Frida", "Bachmann", "frida.b@hotmail.com", );
+      DateTime dateTime1 = new DateTime(1965, 10, 12);
+      DateTime dateTime2 = new DateTime(1975, 01, 07);
+
+      Person person1 = new Person(1, 2, "Hans", "Mueller", "hans.mueller@gmail.com", dateTime1);
+      Person person2 = new Person(2, 3, "Frida", "Bachmann", "frida.b@hotmail.com", dateTime2);
 
       if (person1.Insert() == 0) throw new Exception("Administration konnte Person nicht einfügen");
       if (person2.Insert() == 0) throw new Exception("Administration konnte Person nicht einfügen");
 
     }
+    public static void testCanCreateANewPersonWithoutAnrede()
+    {
+      DateTime datetime = new DateTime(1997, 01, 01);
+      Person person = new Person(2, "albert", "einstein", "albert.einstein@bluewin.ch", datetime);
+      try
+      {
+        Database.Instance.getCommand("INSERT INTO person (adresse_id, vorname, nachname, email, geburtsdatum) VALUES ('2', 'albert', 'einstein', 'albert.einstein@bluewin.ch', datetime);").ExecuteNonQuery();
+      }
+      catch { return; }
+      throw new Exception("Aministration konnte Person ohne Anrede einfügen");
+    }
+
+    public static void testCanCreateANewPersonWithoutAddress()
+    {
+      DateTime datetime = new DateTime(1992, 04, 10);
+      Person person = new Person(1, "Ruedi", "Peter", "ruedi.peter@gmail.com",datetime);
+      try
+      {
+        Database.Instance.getCommand("INSERT INTP person (anrede_id, vorname, nachname, email, geburtsdatum) VALUES('1', 'Ruedi', 'Peter', 'ruedi.peter@gmail.com', 'datetime');").ExecuteNonQuery();
+      }
+      catch { return; }
+      throw new Exception("Administration konnte Person ohne Adresse einfügen");
+    }
+
+    public static void testCanCreateANewPersonWithoutVorname()
+    {
+      DateTime datetime = new DateTime(1994, 03, 20);
+      Person person = new Person(1, 4, "Baum", "a.baum@gmail.com", datetime);
+      try
+      {
+        Database.Instance.getCommand("INSERT INTO person(anrede_id, adresse_id, nachname, email, geburtsdatum) VALUES ('1', '4', 'Baum', 'a.baum@gmail.com', 'datetime');").ExecuteNonQuery();
+      }
+      catch { return; }
+      throw new Exception("Administration konnte Person ohne Vorname einfügen");
+    }
+
+    public static void testCanCreateANewPersonWithoutNachname()
+    {
+      DateTime datetime = new DateTime(1993, 05, 10);
+      Person person = new Person(2, 5, datetime, "Lara", "lara.a@hotmail.com");
+      try
+      {
+        Database.Instance.getCommand("INSERT INTO person(anrede_id, adresse_id, geburtsdatum, vorname, email) VALUES ('2', '5', 'datetime', 'Lara', 'lara.a@hotmail.com');").ExecuteNonQuery();
+      }
+      catch { return; }
+      throw new Exception("Administration konnte Person ohne Nachname einfügen");
+    }
+
+    public static void testCanCreateANewPersonWithoutEmail()
+    {
+      DateTime datetime = new DateTime(1995, 10, 11);
+      Person person = new Person(21, "rudolf", "rednose", datetime, 1);
+      try
+      {
+        Database.Instance.getCommand("INSERT INTO person(adresse_id, vorname, nachname, geburtsdatum, anrede_id) VALUES ('21', 'rudolf', 'rednose', 'datetime', '1');").ExecuteNonQuery();
+      }
+      catch { return; }
+      throw new Exception("Administration konnte Person ohne Email einfügen");
+    }
+
+    // Eine neuer Nachfrager kann nur von der Administration oder der Mitgliederverwaltung in die Datenbank eingetragen werden.
+    public static void testCanCreateANachfragerAndGetItsID()
+    {
+      Nachfrager nachfrager1 = new Nachfrager(1);
+      Nachfrager nachfrager2 = new Nachfrager(2);
+
+      if (nachfrager1.Insert() == 0) throw new Exception("Administration konnte Nachfrager nicht einfügen");
+      if (nachfrager2.Insert() == 0) throw new Exception("Administration konnte Nachfrager nicht einfügen");
+    }
+
 
 
   }
