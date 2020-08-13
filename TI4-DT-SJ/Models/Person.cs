@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Person
+  internal class Person
   {
     public int id;
     public int anrede_id;

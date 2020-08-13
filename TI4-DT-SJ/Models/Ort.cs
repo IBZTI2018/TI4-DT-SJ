@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Ort
+  internal class Ort
   {
     public int id;
     public int plz;

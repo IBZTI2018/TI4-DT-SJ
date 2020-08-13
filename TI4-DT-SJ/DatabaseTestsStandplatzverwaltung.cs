@@ -18,8 +18,24 @@ namespace TI4_DT_SJ {
 
     public static void testCanCreateANewStandortAndGetItsID()
     {
-      Standplatz standplatz1 = new Standplatz()
+      Standort standort1 = new Standort("Lindenplatz");
+      Standort standort2 = new Standort("Zentrumsplatz_Davos");
+
+      if (standort1.Insert() == 0) throw new Exception("Standplatzverwalter konnte Standort nicht einfügen");
+      if (standort2.Insert() == 0) throw new Exception("Standplatzverwalter konnte Standort nicht einfügen");
 
     }
+
+    public static void testCanCreateANewStandortWithoutBezeichnung()
+    {
+      try
+      {
+        Database.Instance.getCommand("INSERT INTO standort (id) VALUES ('1');").ExecuteNonQuery();
+      } catch { return; }
+      throw new Exception("Standplatzverwalter konnte Standort ohne Bezeichnung einfügen");
+    }
+
+
+
   }
 }

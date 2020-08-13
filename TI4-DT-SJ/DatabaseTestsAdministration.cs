@@ -158,8 +158,13 @@ namespace TI4_DT_SJ
     // Ein neuer Anbieter kann nur von der Administration oder der Mitgliederverwaltung in die Datenbank eingetragen werden.
    public static void testCanCreateAAnbieterAndGetItsID()
     {
-      Anbieter anbieter1 = new Anbieter(1);
-      Anbieter anbieter2 = new Anbieter(2);
+      DateTime dateTime1 = new DateTime(1965, 10, 12);
+      DateTime dateTime2 = new DateTime(1975, 01, 07);
+      DateTime dateTime3 = new DateTime(2020, 08, 13);
+      DateTime dateTime4 = new DateTime(2020, 07, 14);
+
+      Anbieter anbieter1 = new Anbieter(1, dateTime1, dateTime2, true, true);
+      Anbieter anbieter2 = new Anbieter(2, dateTime4, dateTime3, true, true);
 
       if (anbieter1.Insert() == 0) throw new Exception("Administration konnte Anbieter nicht einfügen");
       if (anbieter2.Insert() == 0) throw new Exception("Administration konnte Anbieter nicht einfügen");
