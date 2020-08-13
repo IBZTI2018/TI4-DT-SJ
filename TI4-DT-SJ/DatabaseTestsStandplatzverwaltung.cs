@@ -15,5 +15,11 @@ namespace TI4_DT_SJ {
       catch { return; }
       throw new Exception("Standplatzverwalter konnte Ort einfügen");
     }
+
+    public static void testCanCreateANewStandortAndGetItsID()
+    {
+      Standplatz standplatz1 = new Standplatz()
+
+    }
   }
 }

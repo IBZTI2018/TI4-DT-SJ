@@ -133,7 +133,7 @@ namespace TI4_DT_SJ
       throw new Exception("Administration konnte Person ohne Email einfügen");
     }
 
-    // Eine neuer Nachfrager kann nur von der Administration oder der Mitgliederverwaltung in die Datenbank eingetragen werden.
+    // Ein neuer Nachfrager kann nur von der Administration oder der Mitgliederverwaltung in die Datenbank eingetragen werden.
     public static void testCanCreateANachfragerAndGetItsID()
     {
       Nachfrager nachfrager1 = new Nachfrager(1);
@@ -154,6 +154,21 @@ namespace TI4_DT_SJ
     }
 
 
+
+    // Ein neuer Anbieter kann nur von der Administration oder der Mitgliederverwaltung in die Datenbank eingetragen werden.
+   public static void testCanCreateAAnbieterAndGetItsID()
+    {
+      Anbieter anbieter1 = new Anbieter(1);
+      Anbieter anbieter2 = new Anbieter(2);
+
+      if (anbieter1.Insert() == 0) throw new Exception("Administration konnte Anbieter nicht einfügen");
+      if (anbieter2.Insert() == 0) throw new Exception("Administration konnte Anbieter nicht einfügen");
+    }
+
+
+
+
+    
 
 
 

@@ -140,6 +140,7 @@ ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
 
 CREATE ROLE casestudy_role_administration;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ort TO casestudy_role_administration;
+GRANT SELECT, INSERT, UPDATE, DELETE ON adresse to casestudy_role_administration;
 GRANT UPDATE, ALTER, DELETE ON abo TO casestudy_role_administration;
 GRANT UPDATE, ALTER, DELETE ON aboart TO casestudy_role_administration;
 GRANT UPDATE, DELETE ON person TO casestudy_role_administration;
