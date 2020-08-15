@@ -14,5 +14,14 @@ namespace TI4_DT_SJ {
       if (ort1.Insert() == 0) throw new Exception("Mitgliederverwaltung konnte Ort nicht einfügen");
       if (ort2.Insert() == 0) throw new Exception("Mitgliederverwaltung konnte Ort nicht einfügen");
     }
+
+    public static void testCanConnectAboAndAnbieter()
+    {
+
+    }
+
+
+
+
   }
 }

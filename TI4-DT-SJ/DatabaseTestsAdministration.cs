@@ -144,7 +144,7 @@ namespace TI4_DT_SJ
     }
 
     // Eine neue Aboart kann nur von der Administration in die Datenbank eingetragen werden.
-    public static void testCanCreateAAboartAndGetItsID()
+    public static void testCanCreateANewAboartAndGetItsID()
     {
       Aboart aboart1 = new Aboart("all_in_one", 2000);
       Aboart aboart2 = new Aboart("love_the_summer", 800);
@@ -152,6 +152,30 @@ namespace TI4_DT_SJ
       if (aboart1.Insert() == 0) throw new Exception("Administration konnte Aboart nicht einfügen");
       if (aboart2.Insert() == 0) throw new Exception("Administration konnte Aboart nicht einfügen");
     }
+
+    public static void tesCanCreateANewAboartWithoutBezeichnung()
+    {
+      try
+      {
+        Database.Instance.getCommand("INSERT INTO aboart(gebuehr) VALUES ('3000');").ExecuteNonQuery;
+      }
+      catch { return; }
+      throw new Exception("Administration konnte AboArt ohne Bezeichnung einfügen");
+      }
+
+    public static void testCanCreateAAboartWithoutGebuehr()
+    {
+      try
+      {
+        Database.Instance.getCommand("INSERT INTO aboart(bezeichnung) VLAUE ('project2020');").ExecuteNonQuery;
+      }
+      catch { return; }
+      throw new Exception("Administration konnte AboArt ohne Gebuehr erstellen");    
+    }
+
+
+
+
 
 
 
