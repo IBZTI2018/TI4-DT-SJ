@@ -157,17 +157,17 @@ namespace TI4_DT_SJ
     {
       try
       {
-        Database.Instance.getCommand("INSERT INTO aboart(gebuehr) VALUES ('3000');").ExecuteNonQuery;
+        Database.Instance.getCommand("INSERT INTO aboart(gebuehr) VALUES ('3000');").ExecuteNonQuery();
       }
       catch { return; }
       throw new Exception("Administration konnte AboArt ohne Bezeichnung einfügen");
-      }
+    }
 
     public static void testCanCreateAAboartWithoutGebuehr()
     {
       try
       {
-        Database.Instance.getCommand("INSERT INTO aboart(bezeichnung) VLAUE ('project2020');").ExecuteNonQuery;
+        Database.Instance.getCommand("INSERT INTO aboart(bezeichnung) VLAUE ('project2020');").ExecuteNonQuery();
       }
       catch { return; }
       throw new Exception("Administration konnte AboArt ohne Gebuehr erstellen");    

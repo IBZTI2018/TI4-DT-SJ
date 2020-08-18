@@ -68,7 +68,7 @@ namespace TI4_DT_SJ {
     public static void testCanCreateTerminAndGetItsID()
     { 
       DateTime datetime1 = new DateTime(1995, 01, 01);
-      DateTie datetime2 = new DateTime(1997, 01, 10);
+      DateTime datetime2 = new DateTime(1997, 01, 10);
       Termin termin1 = new Termin(1, 2, datetime1);
       Termin termin2 = new Termin(1, 3, datetime2);
 
