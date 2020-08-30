@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,8 +16,8 @@ namespace TI4_DT_SJ
   public partial class MainForm : Form
   {
     private string role = "";
-    private ManagementForm form = null;
-
+    //private AdministrationForm form = null;
+    
     public MainForm()
     {
       InitializeComponent();
@@ -28,37 +31,38 @@ namespace TI4_DT_SJ
     private void button1_Click(object sender, EventArgs e)
     {
       this.role = "administration";
-      this.openManagementForm();
+      Administration f1 = new Administration();
+      f1.Show();
+
     }
 
     private void button2_Click(object sender, EventArgs e)
     {
       this.role = "mitgliederverwaltung";
-      this.openManagementForm();
+      Mitgliederverwaltung f2 = new Mitgliederverwaltung();
+      f2.Show();
+
     }
 
     private void button3_Click(object sender, EventArgs e)
     {
       this.role = "standplatzverwaltung";
-      this.openManagementForm();
+      Standplatzverwaltung f3 = new Standplatzverwaltung();
+      f3.Show();
+     
     }
 
     private void button4_Click(object sender, EventArgs e)
     {
       this.role = "qualitaetsbeauftragter";
-      this.openManagementForm();
+      Qualitaetsbeauftragter f4 = new Qualitaetsbeauftragter();
+      f4.Show();
+
     }
 
-    private void openManagementForm()
+    private void label3_Click(object sender, EventArgs e)
     {
-      if (this.form != null)
-      {
-        this.form.Hide();
-        this.form.Dispose();
-      }
 
-      this.form = new ManagementForm(this.role);
-      this.form.Show();
     }
   }
 }
