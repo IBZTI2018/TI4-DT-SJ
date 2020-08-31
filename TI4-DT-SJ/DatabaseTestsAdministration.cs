@@ -43,8 +43,8 @@ namespace TI4_DT_SJ
     // Eine neue Adresse kann nur von der Administration und der Mietgliederverwaltung in die Datenbank eingetragen werden.
     public static void testCanCreateANewAddressAndGetItsID()
     {
-      Adresse adresse1 = new Adresse(1, "untermoos", 17);
-      Adresse adresse2 = new Adresse(1, "zürichstrasse", 21);
+      Models.Adresse adresse1 = new Models.Adresse(1, "untermoos", 17);
+      Models.Adresse adresse2 = new Models.Adresse(1, "zürichstrasse", 21);
 
       if (adresse1.Insert() == 0) throw new Exception("Administration konnte Adresse nicht einfügen");
       if (adresse2.Insert() == 0) throw new Exception("Administration konnte Adresse nicht einfügen");

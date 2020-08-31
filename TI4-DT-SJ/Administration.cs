@@ -15,14 +15,32 @@ namespace TI4_DT_SJ
       InitializeComponent();
     }
 
+    private void button1_Click(object sender, EventArgs e)
+    {
+
+    }
     private void button2_Click(object sender, EventArgs e)
+    {
+      Adresse f6 = new Adresse();
+      f6.Show();
+    }
+
+    private void button3_Click(object sender, EventArgs e)
     {
 
     }
 
     private void button4_Click(object sender, EventArgs e)
     {
+      Anrede f5 = new Anrede();
+      f5.Show();
+    }
+
+    private void button5_Click(object sender, EventArgs e)
+    {
 
     }
+
+
   }
 }
