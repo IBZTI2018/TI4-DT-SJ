@@ -34,5 +34,29 @@ namespace TI4_DT_SJ
     {
 
     }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+      Termin f15 = new Termin();
+      f15.Show();
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+      Rechnung f16 = new Rechnung();
+      f16.Show();
+    }
+
+    private void button3_Click(object sender, EventArgs e)
+    {
+      Standort f17 = new Standort();
+      f17.Show();
+    }
+
+    private void button4_Click(object sender, EventArgs e)
+    {
+      Standplatz f18 = new Standplatz();
+      f18.Show();
+    }
   }
 }

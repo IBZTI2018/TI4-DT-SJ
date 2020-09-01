@@ -1,6 +1,6 @@
 ﻿namespace TI4_DT_SJ
 {
-  partial class AboArt
+  partial class Rechnung
   {
     /// <summary>
     /// Erforderliche Designervariable.
@@ -35,18 +35,16 @@
       this.button1 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button3 = new System.Windows.Forms.Button();
-      this.label5 = new System.Windows.Forms.Label();
-      this.button4 = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(467, 9);
+      this.label3.Location = new System.Drawing.Point(461, 9);
       this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(210, 17);
-      this.label3.TabIndex = 9;
+      this.label3.TabIndex = 8;
       this.label3.Text = "Jennifer Mentner; Sven Gehring";
       // 
       // label2
@@ -56,85 +54,63 @@
       this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(160, 17);
-      this.label2.TabIndex = 10;
+      this.label2.TabIndex = 9;
       this.label2.Text = "TI4-ZH DT3 Case-Study";
       // 
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(264, 9);
+      this.label1.Location = new System.Drawing.Point(296, 9);
       this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(50, 17);
-      this.label1.TabIndex = 11;
-      this.label1.Text = "Aboart";
+      this.label1.Size = new System.Drawing.Size(73, 17);
+      this.label1.TabIndex = 10;
+      this.label1.Text = "Rechnung";
       // 
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(32, 68);
+      this.label4.Location = new System.Drawing.Point(279, 51);
       this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(241, 17);
-      this.label4.TabIndex = 14;
-      this.label4.Text = "Welche AboArt wolle Sie bearbeiten?";
+      this.label4.Size = new System.Drawing.Size(129, 17);
+      this.label4.TabIndex = 15;
+      this.label4.Text = "Was wollen sie tun:";
       // 
       // button1
       // 
-      this.button1.Location = new System.Drawing.Point(12, 88);
+      this.button1.AccessibleDescription = "button1_Click";
+      this.button1.Location = new System.Drawing.Point(136, 83);
       this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(95, 35);
-      this.button1.TabIndex = 15;
-      this.button1.Text = "small";
+      this.button1.Size = new System.Drawing.Size(124, 49);
+      this.button1.TabIndex = 16;
+      this.button1.Text = "Neue Rechnung erstellen";
       this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
       // button2
       // 
-      this.button2.Location = new System.Drawing.Point(113, 88);
+      this.button2.AccessibleDescription = "button2_Click";
+      this.button2.Location = new System.Drawing.Point(266, 83);
       this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(95, 35);
-      this.button2.TabIndex = 16;
-      this.button2.Text = "big";
+      this.button2.Size = new System.Drawing.Size(157, 49);
+      this.button2.TabIndex = 17;
+      this.button2.Text = "Vorhandene Rechnung bearbeiten";
       this.button2.UseVisualStyleBackColor = true;
       this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
       // button3
       // 
-      this.button3.Location = new System.Drawing.Point(214, 88);
+      this.button3.AccessibleDescription = "button3_Click";
+      this.button3.Location = new System.Drawing.Point(429, 83);
       this.button3.Name = "button3";
-      this.button3.Size = new System.Drawing.Size(95, 35);
-      this.button3.TabIndex = 17;
-      this.button3.Text = "luxussmall";
+      this.button3.Size = new System.Drawing.Size(120, 49);
+      this.button3.TabIndex = 18;
+      this.button3.Text = "Rechnung Löschen";
       this.button3.UseVisualStyleBackColor = true;
-      this.button3.Click += new System.EventHandler(this.button3_Click);
       // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(354, 68);
-      this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(151, 17);
-      this.label5.TabIndex = 18;
-      this.label5.Text = "Neue AboArt erstellen:";
-      // 
-      // button4
-      // 
-      this.button4.AccessibleDescription = "button4_Click";
-      this.button4.Location = new System.Drawing.Point(539, 65);
-      this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(101, 58);
-      this.button4.TabIndex = 19;
-      this.button4.Text = "Neue AboArt";
-      this.button4.UseVisualStyleBackColor = true;
-      this.button4.Click += new System.EventHandler(this.button4_Click);
-      // 
-      // AboArt
+      // Form16
       // 
       this.ClientSize = new System.Drawing.Size(684, 149);
-      this.Controls.Add(this.button4);
-      this.Controls.Add(this.label5);
       this.Controls.Add(this.button3);
       this.Controls.Add(this.button2);
       this.Controls.Add(this.button1);
@@ -143,8 +119,9 @@
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label3);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-      this.Name = "AboArt";
+      this.Name = "Form16";
       this.Text = "Freier Markt im Kleinen";
+      this.Load += new System.EventHandler(this.Form16_Load);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -159,7 +136,5 @@
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.Button button3;
-    private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.Button button4;
   }
 }

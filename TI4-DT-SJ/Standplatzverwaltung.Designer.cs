@@ -73,39 +73,47 @@
       // 
       // button1
       // 
+      this.button1.AccessibleDescription = "button1_Click";
       this.button1.Location = new System.Drawing.Point(456, 96);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(122, 69);
       this.button1.TabIndex = 10;
       this.button1.Text = "Termin";
       this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
       // button2
       // 
+      this.button2.AccessibleDescription = "button2_Click";
       this.button2.Location = new System.Drawing.Point(316, 96);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(123, 68);
       this.button2.TabIndex = 11;
       this.button2.Text = "Rechnung";
       this.button2.UseVisualStyleBackColor = true;
+      this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
       // button3
       // 
+      this.button3.AccessibleDescription = "button3_Click";
       this.button3.Location = new System.Drawing.Point(171, 96);
       this.button3.Name = "button3";
       this.button3.Size = new System.Drawing.Size(123, 68);
       this.button3.TabIndex = 12;
       this.button3.Text = "Standort";
       this.button3.UseVisualStyleBackColor = true;
+      this.button3.Click += new System.EventHandler(this.button3_Click);
       // 
       // button4
       // 
+      this.button4.AccessibleDescription = "button4_Click";
       this.button4.Location = new System.Drawing.Point(16, 97);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(123, 68);
       this.button4.TabIndex = 13;
       this.button4.Text = "Standplatz";
       this.button4.UseVisualStyleBackColor = true;
+      this.button4.Click += new System.EventHandler(this.button4_Click);
       // 
       // label4
       // 

@@ -19,8 +19,8 @@ namespace TI4_DT_SJ {
 
     public static void testCanCreateANewStandortAndGetItsID()
     {
-      Standort standort1 = new Standort("Lindenplatz");
-      Standort standort2 = new Standort("Zentrumsplatz_Davos");
+      Models.Standort standort1 = new Models.Standort("Lindenplatz");
+      Models.Standort standort2 = new Models.Standort("Zentrumsplatz_Davos");
 
       if (standort1.Insert() == 0) throw new Exception("Standplatzverwalter konnte Standort nicht einfügen");
       if (standort2.Insert() == 0) throw new Exception("Standplatzverwalter konnte Standort nicht einfügen");
@@ -38,8 +38,8 @@ namespace TI4_DT_SJ {
 
     public static void testCanCreateANewStandplatzAndGetItsID()
     {
-      Standplatz standplatz1 = new Standplatz(1, 1);
-      Standplatz standplatz2 = new Standplatz(1, 2);
+      Models.Standplatz standplatz1 = new Models.Standplatz(1, 1);
+      Models.Standplatz standplatz2 = new Models.Standplatz(1, 2);
 
       if (standplatz1.Insert() == 0) throw new Exception("Standplatzverwalter konnte standplatz nicht einfügen");
       if (standplatz2.Insert() == 0) throw new Exception("Standplatzverwalter konnte standplatz nicht einfügen");
@@ -69,8 +69,8 @@ namespace TI4_DT_SJ {
     { 
       DateTime datetime1 = new DateTime(1995, 01, 01);
       DateTime datetime2 = new DateTime(1997, 01, 10);
-      Termin termin1 = new Termin(1, 2, datetime1);
-      Termin termin2 = new Termin(1, 3, datetime2);
+      Models.Termin termin1 = new Models.Termin(1, 2, datetime1);
+      Models.Termin termin2 = new Models.Termin(1, 3, datetime2);
 
       if (termin1.Insert() == 0) throw new Exception("Standplatzverwalter konnte Termin nicht einfügen");
       if (termin2.Insert() == 0) throw new Exception("Standplatzverwalter konnte Termin nicht einfügen");

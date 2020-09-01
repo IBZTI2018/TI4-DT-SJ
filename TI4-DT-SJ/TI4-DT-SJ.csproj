@@ -76,6 +76,36 @@
     <Compile Include="AboArt.Designer.cs">
       <DependentUpon>AboArt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Standplatz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Standplatz.Designer.cs">
+      <DependentUpon>Standplatz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Standort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Standort.Designer.cs">
+      <DependentUpon>Standort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rechnung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rechnung.Designer.cs">
+      <DependentUpon>Rechnung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Termin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Termin.Designer.cs">
+      <DependentUpon>Termin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personalleanzeigen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personalleanzeigen.Designer.cs">
+      <DependentUpon>Personalleanzeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Personerstellenqualitätsprüfer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +194,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AboArt.resx">
       <DependentUpon>AboArt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rechnung.resx">
+      <DependentUpon>Rechnung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Termin.resx">
+      <DependentUpon>Termin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personalleanzeigen.resx">
+      <DependentUpon>Personalleanzeigen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personerstellenqualitätsprüfer.resx">
       <DependentUpon>Personerstellenqualitätsprüfer.cs</DependentUpon>

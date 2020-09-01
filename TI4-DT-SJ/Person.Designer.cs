@@ -35,12 +35,13 @@
       this.label1 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.button3 = new System.Windows.Forms.Button();
+      this.button4 = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(362, 9);
+      this.label3.Location = new System.Drawing.Point(402, 9);
       this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(210, 17);
@@ -60,7 +61,7 @@
       // button1
       // 
       this.button1.AccessibleDescription = "button1_click";
-      this.button1.Location = new System.Drawing.Point(77, 105);
+      this.button1.Location = new System.Drawing.Point(24, 109);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(138, 47);
       this.button1.TabIndex = 11;
@@ -71,7 +72,7 @@
       // button2
       // 
       this.button2.AccessibleDescription = "button2_click";
-      this.button2.Location = new System.Drawing.Point(221, 107);
+      this.button2.Location = new System.Drawing.Point(168, 111);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(138, 45);
       this.button2.TabIndex = 12;
@@ -82,7 +83,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(249, 9);
+      this.label1.Location = new System.Drawing.Point(289, 9);
       this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(53, 17);
@@ -92,7 +93,7 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(221, 76);
+      this.label4.Location = new System.Drawing.Point(249, 81);
       this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(129, 17);
@@ -102,7 +103,7 @@
       // button3
       // 
       this.button3.AccessibleDescription = "button3_click";
-      this.button3.Location = new System.Drawing.Point(365, 107);
+      this.button3.Location = new System.Drawing.Point(312, 111);
       this.button3.Name = "button3";
       this.button3.Size = new System.Drawing.Size(138, 45);
       this.button3.TabIndex = 15;
@@ -110,9 +111,21 @@
       this.button3.UseVisualStyleBackColor = true;
       this.button3.Click += new System.EventHandler(this.button3_Click);
       // 
+      // button4
+      // 
+      this.button4.AccessibleDescription = "button4_click";
+      this.button4.Location = new System.Drawing.Point(456, 111);
+      this.button4.Name = "button4";
+      this.button4.Size = new System.Drawing.Size(138, 45);
+      this.button4.TabIndex = 16;
+      this.button4.Text = "Alle Personen anzeigen";
+      this.button4.UseVisualStyleBackColor = true;
+      this.button4.Click += new System.EventHandler(this.button4_Click);
+      // 
       // Person
       // 
-      this.ClientSize = new System.Drawing.Size(581, 164);
+      this.ClientSize = new System.Drawing.Size(625, 168);
+      this.Controls.Add(this.button4);
       this.Controls.Add(this.button3);
       this.Controls.Add(this.label4);
       this.Controls.Add(this.label1);
@@ -137,5 +150,6 @@
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Button button3;
+    private System.Windows.Forms.Button button4;
   }
 }
