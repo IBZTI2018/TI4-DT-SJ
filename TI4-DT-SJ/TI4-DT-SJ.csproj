@@ -70,6 +70,42 @@
     <Compile Include="Adresse.Designer.cs">
       <DependentUpon>Adresse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Personerstellenqualitätsprüfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personerstellenqualitätsprüfer.Designer.cs">
+      <DependentUpon>Personerstellenqualitätsprüfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personerstellennachfrager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personerstellennachfrager.Designer.cs">
+      <DependentUpon>Personerstellennachfrager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personerstellenanbieter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personerstellenanbieter.Designer.cs">
+      <DependentUpon>Personerstellenanbieter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personerstellen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personerstellen.Designer.cs">
+      <DependentUpon>Personerstellen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person.Designer.cs">
+      <DependentUpon>Person.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ort.Designer.cs">
+      <DependentUpon>Ort.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mitgliederverwaltung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +155,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Adresse.resx">
       <DependentUpon>Adresse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personerstellenqualitätsprüfer.resx">
+      <DependentUpon>Personerstellenqualitätsprüfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personerstellennachfrager.resx">
+      <DependentUpon>Personerstellennachfrager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personerstellenanbieter.resx">
+      <DependentUpon>Personerstellenanbieter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personerstellen.resx">
+      <DependentUpon>Personerstellen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person.resx">
+      <DependentUpon>Person.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ort.resx">
+      <DependentUpon>Ort.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mitgliederverwaltung.resx">
       <DependentUpon>Mitgliederverwaltung.cs</DependentUpon>

@@ -17,7 +17,8 @@ namespace TI4_DT_SJ
 
     private void button1_Click(object sender, EventArgs e)
     {
-
+      Ort f7 = new Ort();
+      f7.Show();
     }
     private void button2_Click(object sender, EventArgs e)
     {
@@ -27,7 +28,8 @@ namespace TI4_DT_SJ
 
     private void button3_Click(object sender, EventArgs e)
     {
-
+      Person f8 = new Person();
+      f8.Show();
     }
 
     private void button4_Click(object sender, EventArgs e)

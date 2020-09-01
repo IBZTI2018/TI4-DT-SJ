@@ -13,8 +13,8 @@ namespace TI4_DT_SJ
     // Ein neuer Ort kann nur von der Administration oder der Mitgliederverwaltung in die Datenbank eingetragen werden. 
     public static void testCanCreateANewOrtAndGetItsId()
     {
-      Ort ort1 = new Ort(8804, "Au ZH");
-      Ort ort2 = new Ort(8000, "Zueri City");
+      Models.Ort ort1 = new Models.Ort(8804, "Au ZH");
+      Models.Ort ort2 = new Models.Ort(8000, "Zueri City");
 
       if (ort1.Insert() == 0) throw new Exception("Administration konnte Ort nicht einfügen");
       if (ort2.Insert() == 0) throw new Exception("Administration konnte Ort nicht einfügen");
@@ -76,8 +76,8 @@ namespace TI4_DT_SJ
       DateTime dateTime1 = new DateTime(1965, 10, 12);
       DateTime dateTime2 = new DateTime(1975, 01, 07);
 
-      Person person1 = new Person(1, 2, "Hans", "Mueller", "hans.mueller@gmail.com", dateTime1);
-      Person person2 = new Person(2, 3, "Frida", "Bachmann", "frida.b@hotmail.com", dateTime2);
+      Models.Person person1 = new Models.Person(1, 2, "Hans", "Mueller", "hans.mueller@gmail.com", dateTime1);
+      Models.Person person2 = new Models.Person(2, 3, "Frida", "Bachmann", "frida.b@hotmail.com", dateTime2);
 
       if (person1.Insert() == 0) throw new Exception("Administration konnte Person nicht einfügen");
       if (person2.Insert() == 0) throw new Exception("Administration konnte Person nicht einfügen");

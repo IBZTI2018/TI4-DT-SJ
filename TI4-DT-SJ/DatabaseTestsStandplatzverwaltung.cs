@@ -7,7 +7,7 @@ namespace TI4_DT_SJ {
     // Ein neuer Ort kann nur von der Administration oder der Mitgliederverwaltung in die Datenbank eingetragen werden. 
     public static void testCanCreateANewOrtAndGetItsId()
     {
-      Ort ort = new Ort(8804, "Au ZH");
+      Models.Ort ort = new Models.Ort(8804, "Au ZH");
 
       try
       {
