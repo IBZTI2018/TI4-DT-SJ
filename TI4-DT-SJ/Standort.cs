@@ -32,7 +32,8 @@ namespace TI4_DT_SJ
 
     private void button1_Click(object sender, EventArgs e)
     {
-
+      Standorterstellen f22 = new Standorterstellen();
+      f22.Show();
     }
   }
 }
