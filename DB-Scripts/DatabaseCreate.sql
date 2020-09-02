@@ -30,7 +30,10 @@ CREATE TABLE anrede (
 CREATE TABLE ort(
   id INT PRIMARY KEY IDENTITY(1, 1),
   plz INT NOT NULL,
-  ort VARCHAR(255) NOT NULL
+  ort VARCHAR(255) NOT NULL,
+
+  CONSTRAINT uq_ort_plz UNIQUE(plz),
+  CONSTRAINT c_plz_range CHECK(plz > 0 AND plz < 10000)
 );
 
 -- In der Adress-Tabelle werden Adressen, zugehörig zu einem Ort, mit ihrem Strassennamen sowie
@@ -52,7 +55,9 @@ CREATE TABLE person (
   vorname VARCHAR(255) NOT NULL,
   nachname VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  geburtsdatum DATE NULL
+  geburtsdatum DATE NULL,
+
+  CONSTRAINT u_person_email UNIQUE(email)
 );
 
 -- In der Anbieter-Tabelle werden sämtliche Anbieter mit ihren zugehörigen Personendaten gespeichert.
@@ -65,7 +70,32 @@ CREATE TABLE anbieter (
   aufnahmedatum DATE NULL ,
   prov_aufnahmedatum DATE NULL,
   bonitaetspruefung BIT NOT NULL,
-  unterschrift BIT NOT NULL
+  unterschrift BIT NOT NULL,
+
+  CONSTRAINT ck_anbieter CHECK (
+    -- Noch nicht aufgenommenes Mitglied hat keine Daten hinterlegt
+	(
+	  aufnahmedatum IS NULL AND
+	  prov_aufnahmedatum IS NULL
+	) OR
+
+	-- Provisorische Aufnahme kann nur eingetragen werden, wenn die
+	-- Bonitätsprüfung und Unterschrift OK sind
+	(
+	  aufnahmedatum IS NULL AND
+	  prov_aufnahmedatum IS NOT NULL AND
+	  bonitaetspruefung = 1 AND
+	  unterschrift = 1
+	 ) OR
+
+	 -- Finale Aufnahme kann nur eingetragen sein, wenn das Mitglied
+	 -- bereits provisorisch aufgenommen ist und mindestens 2 Q-Bewertungen hat.
+	 -- Letzteres kann nicht mit Constraints geprüft werden, nur mit Funktionen.
+	 (
+	   aufnahmedatum IS NOT NULL AND
+	   prov_aufnahmedatum IS NOT NULL
+	 )
+  )
 );
 
 -- In der Abo-Art-Tabelle werden alle möglichen Arten von Abonnements, welche an Anbieter verkauft
@@ -74,7 +104,9 @@ CREATE TABLE anbieter (
 CREATE TABLE aboart (
   id INT PRIMARY KEY IDENTITY(1, 1),
   bezeichnung VARCHAR(255) NOT NULL,
-  gebuehr FLOAT NOT NULL
+  gebuehr FLOAT NOT NULL,
+
+  CONSTRAINT u_bezeichnung UNIQUE(bezeichnung)
 );
 
 -- In der Abo-Tabelle werden von Anbietern abgeschlossene Abonnemente gespeichert. Sie verbindet die
@@ -124,7 +156,13 @@ CREATE TABLE rechnung (
   anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
   termin_id INT FOREIGN KEY REFERENCES termin(id) NULL,
   rechnungs_nr VARCHAR(50) NOT NULL,
-  betrag FLOAT NOT NULL
+  betrag FLOAT NOT NULL,
+
+  -- Rechnungen müssen entweder einem Termin oder einem Abo zugewiesen sein
+  CONSTRAINT ck_rechnung_fuer CHECK (
+	(abo_id IS NULL AND termin_id IS NOT NULL) OR
+	(abo_id IS NOT NULL AND termin_id IS NULL)
+  )
 );
 
 -- In der Nachfrager-Tabelle werden sämtliche Nachfrager mit ihren zugehörigen Personendaten
@@ -146,8 +184,8 @@ CREATE TABLE bewertung (
   bezeichnung TEXT NULL,
   score FLOAT NULL,
 
-  CONSTRAINT c_score_min CHECK (score > 0.0),
-  CONSTRAINT c_score_max CHECK (score < 10.0)
+  -- Score muss zwischen 0 und 10 liegen
+  CONSTRAINT c_score_range CHECK ((score > 0.0) AND (score < 10.0))
 );
 
 -- In der Qualitätsprüfer-Tabelle werden sämtliche Qualitätsprüfer, welche für das Projekt tätig
@@ -277,6 +315,8 @@ ALTER ROLE casestudy_role_qualitaetspruefung ADD MEMBER casestudy_qualitaetsvera
 -- Erstellung von Views für einfachere UI-Abfragen                                               --
 ---------------------------------------------------------------------------------------------------
 
+GO
+
 CREATE VIEW view_anbieter AS
   SELECT 
     anrede.bezeichnung AS anrede,
@@ -301,6 +341,8 @@ CREATE VIEW view_anbieter AS
       ON ort.id = adresse.ort_id
     INNER JOIN anrede
       ON anrede.id = person.anrede_id;
+
+GO
 
 CREATE VIEW view_nachfrager AS
   SELECT 
