@@ -86,6 +86,7 @@
       this.button1.TabIndex = 16;
       this.button1.Text = "Neue Rechnung erstellen";
       this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
       // button2
       // 
@@ -108,7 +109,7 @@
       this.button3.Text = "Rechnung Löschen";
       this.button3.UseVisualStyleBackColor = true;
       // 
-      // Form16
+      // Rechnung
       // 
       this.ClientSize = new System.Drawing.Size(684, 149);
       this.Controls.Add(this.button3);
@@ -119,7 +120,7 @@
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label3);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-      this.Name = "Form16";
+      this.Name = "Rechnung";
       this.Text = "Freier Markt im Kleinen";
       this.Load += new System.EventHandler(this.Form16_Load);
       this.ResumeLayout(false);

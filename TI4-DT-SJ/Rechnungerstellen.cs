@@ -8,17 +8,16 @@ using System.Windows.Forms;
 
 namespace TI4_DT_SJ
 {
-  public partial class Standplatz : Form
+  public partial class Rechnungerstellen : Form
   {
-    public Standplatz()
+    public Rechnungerstellen()
     {
       InitializeComponent();
     }
 
-    private void button2_Click(object sender, EventArgs e)
+    private void Form19_Load(object sender, EventArgs e)
     {
-      Standplatzlöschen f20 = new Standplatzlöschen();
-      f20.Show();
+
     }
 
     private void button1_Click(object sender, EventArgs e)

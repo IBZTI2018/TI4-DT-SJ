@@ -24,5 +24,11 @@ namespace TI4_DT_SJ
     {
 
     }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+      Rechnungerstellen f19 = new Rechnungerstellen();
+      f19.Show();
+    }
   }
 }
