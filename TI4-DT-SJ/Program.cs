@@ -78,7 +78,7 @@ namespace TI4_DT_SJ
           Database.Instance.runCommand(cleanQuery);
         } catch (Exception e)
         {
-          MessageBox.Show($"Failed to run script query {query} with error {e.Message}");
+          MessageBox.Show($"Failed to run script query {query} with error {e.Message}\n\n There might be leftovers in the database, please clean it using the drop script in the management studio!");
           break;
         }
       }

@@ -46,6 +46,11 @@ The following command line options are supported for launching:
 * `testonly` - Run just the database test classees
 * _none_ - Run the UI. (Run `create` and `seed` first!)
 
+The following is what you might want to do in this state:
+* Run `test` to run the automated database tests
+* Run `create`, then `seed` and then without params, to access the UI (then run `drop`)
+* Instead of using the program parameters, you could also run the `create`, `seed` and `drop` scripts in the management studio.
+
 When the program crashes between properly creating and dropping the database, there might be leftovers that prevent future runs from succeeding. After a crash, make sure to use SQL management studio to remove all tables and roles!
 
 #### 5. Clean up
