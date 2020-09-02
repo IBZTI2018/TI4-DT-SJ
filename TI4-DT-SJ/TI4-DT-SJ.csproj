@@ -76,6 +76,24 @@
     <Compile Include="AboArt.Designer.cs">
       <DependentUpon>AboArt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Qualiberichterstellen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Qualiberichterstellen.Designer.cs">
+      <DependentUpon>Qualiberichterstellen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Standplatzlöschen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Standplatzlöschen.Designer.cs">
+      <DependentUpon>Standplatzlöschen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rechnungerstellen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rechnungerstellen.Designer.cs">
+      <DependentUpon>Rechnungerstellen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Standplatz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,11 +172,11 @@
     <Compile Include="Standplatzverwaltung.Designer.cs">
       <DependentUpon>Standplatzverwaltung.cs</DependentUpon>
     </Compile>
-    <Compile Include="Qualitaetsbeauftragter.cs">
+    <Compile Include="Qualitätsprüfer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Qualitaetsbeauftragter.Designer.cs">
-      <DependentUpon>Qualitaetsbeauftragter.cs</DependentUpon>
+    <Compile Include="Qualitätsprüfer.Designer.cs">
+      <DependentUpon>Qualitätsprüfer.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -195,8 +213,23 @@
     <EmbeddedResource Include="AboArt.resx">
       <DependentUpon>AboArt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Qualiberichterstellen.resx">
+      <DependentUpon>Qualiberichterstellen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Standort.resx">
+      <DependentUpon>Standort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Standplatzlöschen.resx">
+      <DependentUpon>Standplatzlöschen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rechnungerstellen.resx">
+      <DependentUpon>Rechnungerstellen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rechnung.resx">
       <DependentUpon>Rechnung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Standplatz.resx">
+      <DependentUpon>Standplatz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Termin.resx">
       <DependentUpon>Termin.cs</DependentUpon>
@@ -225,8 +258,8 @@
     <EmbeddedResource Include="Mitgliederverwaltung.resx">
       <DependentUpon>Mitgliederverwaltung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Qualitaetsbeauftragter.resx">
-      <DependentUpon>Qualitaetsbeauftragter.cs</DependentUpon>
+    <EmbeddedResource Include="Qualitätsprüfer.resx">
+      <DependentUpon>Qualitätsprüfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Standplatzverwaltung.resx">
       <DependentUpon>Standplatzverwaltung.cs</DependentUpon>

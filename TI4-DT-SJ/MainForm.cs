@@ -55,7 +55,7 @@ namespace TI4_DT_SJ
     private void button4_Click(object sender, EventArgs e)
     {
       this.role = "qualitaetsbeauftragter";
-      Qualitaetsbeauftragter f4 = new Qualitaetsbeauftragter();
+      Qualitätsprüfer f4 = new Qualitätsprüfer();
       f4.Show();
 
     }

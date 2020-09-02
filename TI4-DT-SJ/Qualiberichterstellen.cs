@@ -8,11 +8,16 @@ using System.Windows.Forms;
 
 namespace TI4_DT_SJ
 {
-  public partial class Qualitaetsbeauftragter : Form
+  public partial class Qualiberichterstellen : Form
   {
-    public Qualitaetsbeauftragter()
+    public Qualiberichterstellen()
     {
       InitializeComponent();
+    }
+
+    private void Form21_Load(object sender, EventArgs e)
+    {
+
     }
   }
 }

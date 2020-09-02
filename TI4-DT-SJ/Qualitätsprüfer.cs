@@ -8,31 +8,17 @@ using System.Windows.Forms;
 
 namespace TI4_DT_SJ
 {
-  public partial class Standort : Form
+  public partial class Qualitätsprüfer : Form
   {
-    public Standort()
+    public Qualitätsprüfer()
     {
       InitializeComponent();
     }
 
-    private void Standort_Load(object sender, EventArgs e)
-    {
-
-    }
-
-    private void button3_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void button2_Click(object sender, EventArgs e)
-    {
-
-    }
-
     private void button1_Click(object sender, EventArgs e)
     {
-
+      Qualiberichterstellen f21 = new Qualiberichterstellen();
+      f21.Show();
     }
   }
 }
