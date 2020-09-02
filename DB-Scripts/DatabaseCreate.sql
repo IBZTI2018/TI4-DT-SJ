@@ -73,7 +73,7 @@ CREATE TABLE anbieter (
   unterschrift BIT NOT NULL,
 
   CONSTRAINT ck_anbieter CHECK (
-  -- Noch nicht aufgenommenes Mitglied hat keine Daten hinterlegt
+    -- Noch nicht aufgenommenes Mitglied hat keine Daten hinterlegt
 	(
 	  aufnahmedatum IS NULL AND
 	  prov_aufnahmedatum IS NULL
@@ -160,8 +160,8 @@ CREATE TABLE rechnung (
 
   -- Rechnungen müssen entweder einem Termin oder einem Abo zugewiesen sein
   CONSTRAINT ck_rechnung_fuer CHECK (
-    (abo_id IS NULL AND termin_id IS NOT NULL) OR
-    (abo_id IS NOT NULL AND termin_id IS NULL)
+	(abo_id IS NULL AND termin_id IS NOT NULL) OR
+	(abo_id IS NOT NULL AND termin_id IS NULL)
   )
 );
 
@@ -331,7 +331,10 @@ CREATE VIEW view_anbieter AS
     anbieter.aufnahmedatum,
     anbieter.prov_aufnahmedatum,
     anbieter.bonitaetspruefung,
-    anbieter.unterschrift
+    anbieter.unterschrift,
+	  (SELECT COUNT(*) FROM qualitaetsbewertung 
+	    WHERE qualitaetsbewertung.anbieter_id = anbieter.id
+    ) AS qbewertungen
   FROM anbieter
     INNER JOIN person
       ON person.id = anbieter.person_id
