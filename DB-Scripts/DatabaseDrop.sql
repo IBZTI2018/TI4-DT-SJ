@@ -1,16 +1,17 @@
--- drop database
+---------------------------------------------------------------------------------------------------
+-- IBZ TI4-ZH Datenbanktechnologie 3 Case-Study                   Jennifer Mentner, Sven Gehring --
+--                                                                                               --
+-- SQL-Skript zur Löschung der Datenbank für das Konzept "Freier Markt im Kleinen"               --
+--                                                                                               --
+-- Dieses Skript lösch sämtliche Tabellen, Views und Indizes                                     --
+---------------------------------------------------------------------------------------------------
 
--- Datenbank löschen, wenn diese Bereits existiert. 
-
--- erstellt am 11.06.2020
--- Jennifer Mentner & Sven Gehring
-
--- geändert am xx.xx.xxxx
--------------------------------------------------
-
+-- Gemäss Dokumentation soll immer die Datenbank "casestudy" verwendet werden.
 USE casestudy;
-GO;
 
+---------------------------------------------------------------------------------------------------
+-- Löschung von Rollen und Entzug von Berechtungen                                               --
+---------------------------------------------------------------------------------------------------
 ALTER ROLE casestudy_role_development DROP MEMBER casestudy;
 DROP ROLE IF EXISTS casestudy_role_development;
 
@@ -25,6 +26,10 @@ DROP ROLE IF EXISTS casestudy_role_standplatzverwaltung;
 
 ALTER ROLE casestudy_role_qualitaetspruefung DROP MEMBER casestudy_qualitaetsverantwortlicher;
 DROP ROLE IF EXISTS casestudy_role_qualitaetspruefung;
+
+---------------------------------------------------------------------------------------------------
+-- Löschung der Tabellenstruktur                                                                 --
+---------------------------------------------------------------------------------------------------
 
 DROP TABLE qualitaetsbewertung;
 DROP TABLE bewertung;
@@ -41,3 +46,10 @@ DROP TABLE standort;
 DROP TABLE adresse;
 DROP TABLE ort;
 DROP TABLE anrede;
+
+---------------------------------------------------------------------------------------------------
+-- Löschung von Views                                                                            --
+---------------------------------------------------------------------------------------------------
+
+DROP VIEW view_anbieter;
+DROP VIEW view_nachfrager;
