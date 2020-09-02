@@ -67,8 +67,13 @@ namespace TI4_DT_SJ
       {
         try
         {
-          string cleanQuery = query.Trim();
+          string cleanQuery = query.Trim().Trim('\r', '\n');
           if (cleanQuery == "" || cleanQuery.ToLower() == "go") continue;
+          if (cleanQuery.ToLower().StartsWith("go"))
+          {
+            // TODO: Make this less hacky and ensure it cannot interfere with proper lines!
+            cleanQuery = cleanQuery.Replace("go", "").Replace("GO", "").Replace("Go", "");
+          }
 
           Database.Instance.runCommand(cleanQuery);
         } catch (Exception e)

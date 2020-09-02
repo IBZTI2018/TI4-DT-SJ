@@ -67,6 +67,6 @@ DROP USER casestudy_qualitaetsverantwortlicher;
 DROP LOGIN casestudy_qualitaetsverantwortlicher;
 
 -- Drop the database itself
-GO;
+GO
 DROP DATABASE casestudy;
 ```
