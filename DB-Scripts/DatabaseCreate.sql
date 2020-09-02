@@ -84,6 +84,7 @@ CREATE TABLE abo (
   id INT PRIMARY KEY IDENTITY(1, 1),
   anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
   aboart_id INT FOREIGN KEY REFERENCES aboart(id) NOT NULL,
+  abschlussdatum DATE NOT NULL,
 );
 
 -- In der Standorte-Tabelle werden sämtliche vom Team verwalteten Standorte mit einer Bezeichnung
