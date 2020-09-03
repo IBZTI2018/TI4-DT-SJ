@@ -10,6 +10,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TI4_DT_SJ.Components;
+using TI4_DT_SJ.Models;
 
 namespace TI4_DT_SJ
 {
@@ -42,6 +44,11 @@ namespace TI4_DT_SJ
       Mitgliederverwaltung f2 = new Mitgliederverwaltung();
       f2.Show();
 
+      //this.openManagementForm();
+      //List<Dictionaryable> list = new List<Dictionaryable>();
+      //foreach (Ort ort in Ort.List()) list.Add(ort);
+      //ListForm x = new ListForm(list);
+      //x.Show();
     }
 
     private void button3_Click(object sender, EventArgs e)

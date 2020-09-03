@@ -47,12 +47,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\ListForm.Designer.cs">
+      <DependentUpon>ListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseTestsQualitaetsverantwortliche.cs" />
     <Compile Include="DatabaseTestsStandplatzverwaltung.cs" />
     <Compile Include="DatabaseTestsMitgliederverwaltung.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DatabaseTestsAdministration.cs" />
     <Compile Include="Administration.cs">
+    </Compile>
+    <Compile Include="DictionaryListCapable.cs" />
+    <Compile Include="ManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administration.Designer.cs">
@@ -263,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Standplatzverwaltung.resx">
       <DependentUpon>Standplatzverwaltung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\ListForm.resx">
+      <DependentUpon>ListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

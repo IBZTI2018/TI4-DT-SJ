@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  internal class Ort
+  class Ort : Dictionaryable
   {
     public int id;
     public int plz;
     public string ort;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
@@ -60,6 +60,18 @@ namespace TI4_DT_SJ.Models
     public static Ort Select(int id)
     {
       return (Ort)Database.Instance.selectCommand("ort", id, typeof(Ort));
+    }
+
+    public static List<Ort> List(string where = "")
+    {
+      List<Ort> models = new List<Ort>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM ort " + where).ExecuteReader();
+      while (reader.Read())
+      {
+        models.Add(new Ort(reader));
+      }
+      reader.Close();
+      return models;
     }
   }
 }
