@@ -33,7 +33,7 @@ namespace TI4_DT_SJ
     private void button1_Click(object sender, EventArgs e)
     {
       this.role = "administration";
-      Administration f1 = new Administration();
+      AdministrationsForm f1 = new AdministrationsForm();
       f1.Show();
 
     }
@@ -41,20 +41,14 @@ namespace TI4_DT_SJ
     private void button2_Click(object sender, EventArgs e)
     {
       this.role = "mitgliederverwaltung";
-      Mitgliederverwaltung f2 = new Mitgliederverwaltung();
+      MitgliederverwaltungForm f2 = new MitgliederverwaltungForm();
       f2.Show();
-
-      //this.openManagementForm();
-      //List<Dictionaryable> list = new List<Dictionaryable>();
-      //foreach (Ort ort in Ort.List()) list.Add(ort);
-      //ListForm x = new ListForm(list);
-      //x.Show();
     }
 
     private void button3_Click(object sender, EventArgs e)
     {
       this.role = "standplatzverwaltung";
-      Standplatzverwaltung f3 = new Standplatzverwaltung();
+      StandplatzverwaltungForm f3 = new StandplatzverwaltungForm();
       f3.Show();
      
     }
@@ -62,7 +56,7 @@ namespace TI4_DT_SJ
     private void button4_Click(object sender, EventArgs e)
     {
       this.role = "qualitaetsbeauftragter";
-      Qualitätsprüfer f4 = new Qualitätsprüfer();
+      QualitätsprüferForm f4 = new QualitätsprüferForm();
       f4.Show();
 
     }

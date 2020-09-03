@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Anrede
+  class Anrede : Dictionaryable
   {
     public int id;
     public string bezeichnung;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
@@ -51,6 +51,15 @@ namespace TI4_DT_SJ.Models
     public static Anrede Select(int id)
     {
       return (Anrede)Database.Instance.selectCommand("anrede", id, typeof(Anrede));
+    }
+
+    public static List<Anrede> List()
+    {
+      List<Anrede> models = new List<Anrede>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM anrede;").ExecuteReader();
+      while (reader.Read()) models.Add(new Anrede(reader));
+      reader.Close();
+      return models;
     }
   }
 }
