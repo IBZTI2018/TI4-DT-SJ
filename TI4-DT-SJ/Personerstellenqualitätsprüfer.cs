@@ -18,8 +18,8 @@ namespace TI4_DT_SJ
 
     private void button1_Click(object sender, EventArgs e)
     {
-      Person person = new Person()
-      Qualitätsprüfer q = new Qualitätsprüfer()
+      Person person = new Person();
+      Qualitätsprüfer q = new Qualitätsprüfer();
 
     }
   }

@@ -53,17 +53,11 @@
     <Compile Include="Components\ListForm.Designer.cs">
       <DependentUpon>ListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseTestsQualitaetsverantwortliche.cs" />
-    <Compile Include="DatabaseTestsStandplatzverwaltung.cs" />
-    <Compile Include="DatabaseTestsMitgliederverwaltung.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="DatabaseTestsAdministration.cs" />
     <Compile Include="Administration.cs">
-    </Compile>
-    <Compile Include="DictionaryListCapable.cs" />
-    <Compile Include="ManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DictionaryListCapable.cs" />
     <Compile Include="Administration.Designer.cs">
       <DependentUpon>Administration.cs</DependentUpon>
     </Compile>
