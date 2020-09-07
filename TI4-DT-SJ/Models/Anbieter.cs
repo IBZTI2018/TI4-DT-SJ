@@ -30,14 +30,16 @@ namespace TI4_DT_SJ.Models
 
     public Person person;
 
+    public Anbieter() { }
+
     public Anbieter(SqlDataReader reader)
     {
       if (reader.HasRows)
       {
         this.id = reader.GetInt32(0);
         this.person_id = reader.GetInt32(1);
-        this.aufnahmedatum = reader.GetDateTime(2);
-        this.prov_aufnahmedatum = reader.GetDateTime(3);
+        if (!reader.IsDBNull(2)) this.aufnahmedatum = reader.GetDateTime(2);
+        if (!reader.IsDBNull(3)) this.aufnahmedatum = reader.GetDateTime(3);
         this.bonitaet = reader.GetBoolean(4);
         this.unterschrift = reader.GetBoolean(5);
       }

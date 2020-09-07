@@ -60,8 +60,8 @@ namespace TI4_DT_SJ.Models {
         this.ort = reader.GetString(7);
         this.geburtsdatum = reader.GetDateTime(8);
         this.email = reader.GetString(9);
-        this.aufnahmedatum = reader.GetDateTime(10);
-        this.provAufnahmedatum = reader.GetDateTime(11);
+        if (!reader.IsDBNull(10)) this.aufnahmedatum = reader.GetDateTime(10);
+        if (!reader.IsDBNull(11)) this.provAufnahmedatum = reader.GetDateTime(11);
         this.bonitaet = reader.GetBoolean(12);
         this.unterschrift = reader.GetBoolean(13);
         this.qbewertungen = reader.GetInt32(14);

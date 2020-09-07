@@ -93,7 +93,9 @@ CREATE TABLE anbieter (
    -- Letzteres kann nicht mit Constraints geprüft werden, nur mit Funktionen.
    (
      aufnahmedatum IS NOT NULL AND
-     prov_aufnahmedatum IS NOT NULL
+     prov_aufnahmedatum IS NOT NULL AND
+     bonitaetspruefung = 1 AND
+     unterschrift = 1
    )
   )
 );

@@ -52,7 +52,7 @@ namespace TI4_DT_SJ.Components {
         personForm.onSave = (Person person) =>
         {
           int id = person.Insert();
-          this.nachfrager.person = Person.Select(id);
+          this.nachfrager.person = person;
           personForm.Close();
           listForm.reload();
         };

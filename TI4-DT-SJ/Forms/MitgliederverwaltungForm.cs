@@ -24,17 +24,41 @@ namespace TI4_DT_SJ
 
     }
 
-    private void button2_Click(object sender, EventArgs e)
+    private void anbieterButtonClick(object sender, EventArgs e)
     {
-      List<Dictionaryable> models = new List<Dictionaryable>();
-      foreach (AnbieterView anrede in AnbieterView.List("")) models.Add(anrede);
       GenericListFormOptions opts = new GenericListFormOptions();
-      //opts.onCreate = () => {
-      //  GenericAnbieterForm form = new GenericAnbieterForm();
-      //  form.Show();
-      //};
-      //GenericListForm listAnbieter = new GenericListForm("Anbieterliste", models, opts);
-      //listAnbieter.Show();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (AnbieterView anbieter in AnbieterView.List("")) models.Add(anbieter);
+        return models;
+      };
+      opts.onCreate = (GenericListForm listForm) =>
+      {
+        GenericAnbieterForm anbieterForm = new GenericAnbieterForm();
+        anbieterForm.Show();
+        anbieterForm.onSave = (Anbieter anbieter) =>
+        {
+          int id = anbieter.Insert();
+          anbieterForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onUpdate = (GenericListForm listForm, int id) =>
+      {
+        Anbieter anbieter = Anbieter.Select(id);
+        GenericAnbieterForm anbieterForm = new GenericAnbieterForm(anbieter);
+        anbieterForm.Show();
+        anbieterForm.onSave = (Anbieter anbieterNeu) =>
+        {
+          anbieterNeu.Update();
+          anbieterForm.Close();
+          listForm.reload();
+        };
+      };
+
+      GenericListForm anbieterViewList = new GenericListForm("Anbieter", opts);
+      anbieterViewList.Show();
     }
 
     private void nachfragerButton_Click(object sender, EventArgs e)
