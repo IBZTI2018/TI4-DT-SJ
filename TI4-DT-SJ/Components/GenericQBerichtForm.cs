@@ -32,6 +32,17 @@ namespace TI4_DT_SJ.Components {
 
     private void saveButton_Click(object sender, EventArgs e)
     {
+      if (this.bewertung.anbieter == null)
+      {
+        MessageBox.Show("Es muss ein Anbieter zugewiesen werden!");
+        return;
+      }
+      if (this.bewertung.qualitaetspruefer == null)
+      {
+        MessageBox.Show("Es muss ein Qualitätsprüfer zugewiesen werden!");
+        return;
+      }
+
       this.bewertung.bezeichnung = this.inputText.Text;
       this.bewertung.anbieter_id = this.bewertung.anbieter.id;
       this.bewertung.qualitaetspruefer_id = this.bewertung.qualitaetspruefer.id;

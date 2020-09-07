@@ -65,6 +65,12 @@ namespace TI4_DT_SJ.Components {
 
     private void saveButton_Click_1(object sender, EventArgs e)
     {
+      if (this.qpruefer.person == null)
+      {
+        MessageBox.Show("Es muss eine Person zugewiesen werden!");
+        return;
+      }
+
       this.qpruefer.person_id = this.qpruefer.person.id;
       this.qpruefer.lohn = Convert.ToDouble(this.lohnPicker.Value);
 

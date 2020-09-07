@@ -64,6 +64,12 @@ namespace TI4_DT_SJ.Components {
 
     private void saveButton_Click(object sender, EventArgs e)
     {
+      if (this.nachfrager.person == null)
+      {
+        MessageBox.Show("Es muss eine Person zugewiesen werden!");
+        return;
+      }
+
       this.nachfrager.person_id = this.nachfrager.person.id;
 
       if (this.onSave != null) this.onSave(this.nachfrager);

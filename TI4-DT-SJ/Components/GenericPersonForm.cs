@@ -85,6 +85,18 @@ namespace TI4_DT_SJ.Components {
 
     private void saveButton_Click(object sender, EventArgs e)
     {
+      if (this.person.anrede == null)
+      {
+        MessageBox.Show("Es muss eine Anrede zugewiesen werden!");
+        return;
+      }
+
+      if (this.person.adresse == null)
+      {
+        MessageBox.Show("Es muss eine Adresse zugewiesen werden!");
+        return;
+      }
+
       this.person.vorname = this.inputVorname.Text;
       this.person.nachname = this.inputNachname.Text;
       this.person.email = this.inputEmail.Text;

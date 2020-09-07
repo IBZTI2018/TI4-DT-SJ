@@ -72,6 +72,12 @@ namespace TI4_DT_SJ.Components {
 
     private void saveButton_Click(object sender, EventArgs e)
     {
+      if (this.anbieter.person == null)
+      {
+        MessageBox.Show("Es muss eine Person zugewiesen werden!");
+        return;
+      }
+
       this.anbieter.prov_aufnahmedatum = this.provAufnPicker.Value;
       this.anbieter.aufnahmedatum = this.aufnPicker.Value;
       this.anbieter.bonitaet = this.checkBoni.Checked;

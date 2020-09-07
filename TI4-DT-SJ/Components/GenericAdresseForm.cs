@@ -65,6 +65,12 @@ namespace TI4_DT_SJ.Components {
 
     private void saveButton_Click(object sender, EventArgs e)
     {
+      if (this.adresse.ort == null)
+      {
+        MessageBox.Show("Es muss ein Ort zugewiesen werden!");
+        return;
+      }
+
       this.adresse.strassenname = this.strasseInput.Text;
       this.adresse.hausnummer = Convert.ToInt32(this.hausNrSelector.Value);
       this.adresse.ort_id = this.adresse.ort.id;
