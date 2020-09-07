@@ -19,6 +19,7 @@ namespace TI4_DT_SJ.Components {
     {
       InitializeComponent();
       this.qpruefer = qpruefer;
+      this.lohnPicker.Value = Convert.ToDecimal(this.qpruefer.lohn);
       this.labelPerson.Text = this.qpruefer.person.vorname + " " + this.qpruefer.person.nachname;
     }
 
@@ -65,6 +66,7 @@ namespace TI4_DT_SJ.Components {
     private void saveButton_Click_1(object sender, EventArgs e)
     {
       this.qpruefer.person_id = this.qpruefer.person.id;
+      this.qpruefer.lohn = Convert.ToDouble(this.lohnPicker.Value);
 
       if (this.onSave != null) this.onSave(this.qpruefer);
     }

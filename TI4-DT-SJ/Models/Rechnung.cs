@@ -11,7 +11,7 @@ namespace TI4_DT_SJ.Models
     public int anbieter_id;
     public int termin_id;
     public string rechnungs_nr;
-    public float betrag;
+    public double betrag;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -41,7 +41,7 @@ namespace TI4_DT_SJ.Models
         this.anbieter_id = reader.GetInt32(2);
         this.termin_id = reader.GetInt32(3);
         this.rechnungs_nr = reader.GetString(4);
-        this.betrag = reader.GetFloat(5);
+        this.betrag = reader.GetDouble(5);
       }
     }
 

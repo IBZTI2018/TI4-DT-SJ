@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\GenericAboArtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericAboArtForm.Designer.cs">
+      <DependentUpon>GenericAboArtForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\GenericAdresseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     <Compile Include="Models\Standplatz.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\GenericAboArtForm.resx">
+      <DependentUpon>GenericAboArtForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericAdresseForm.resx">
       <DependentUpon>GenericAdresseForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,7 +8,7 @@ namespace TI4_DT_SJ.Models
   {
     public int id;
     public string bezeichnung;
-    public float gebuehr;
+    public double gebuehr;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -22,13 +22,15 @@ namespace TI4_DT_SJ.Models
       }
     }
 
+    public Aboart() { }
+
     public Aboart(SqlDataReader reader)
     {
       if (reader.HasRows)
       {
         this.id = reader.GetInt32(0);
         this.bezeichnung = reader.GetString(1);
-        this.gebuehr = reader.GetFloat(2);
+        this.gebuehr = reader.GetDouble(2);
       }
     }
 
@@ -68,6 +70,15 @@ namespace TI4_DT_SJ.Models
     public static Aboart Select(int id)
     {
       return (Aboart)Database.Instance.selectCommand("aboart", id, typeof(Aboart));
+    }
+
+    public static List<Aboart> List()
+    {
+      List<Aboart> models = new List<Aboart>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM aboart;").ExecuteReader();
+      while (reader.Read()) models.Add(new Aboart(reader));
+      reader.Close();
+      return models;
     }
   }
 }

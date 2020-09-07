@@ -10,7 +10,7 @@ namespace TI4_DT_SJ.Models
     public int anbieter_id;
     public int nachfrager_id;
     public string bezeichnung;
-    public float score;
+    public double score;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -37,7 +37,7 @@ namespace TI4_DT_SJ.Models
         this.anbieter_id = reader.GetInt32(1);
         this.nachfrager_id = reader.GetInt32(2);
         this.bezeichnung = reader.GetString(3);
-        this.score = reader.GetFloat(4);
+        this.score = reader.GetDouble(4);
       }
     }
 

@@ -86,8 +86,19 @@ namespace TI4_DT_SJ
       opts.dataLoader = () =>
       {
         List<Dictionaryable> models = new List<Dictionaryable>();
-        foreach (Qualitaetspruefer qpruefer in Qualitaetspruefer.List()) models.Add(qpruefer);
+        foreach (QualitaetsprueferView qprueferView in QualitaetsprueferView.List()) models.Add(qprueferView);
         return models;
+      };
+      opts.onCreate = (GenericListForm listForm) =>
+      {
+        GenericQbeauftrForm qbeauftrForm = new GenericQbeauftrForm();
+        qbeauftrForm.Show();
+        qbeauftrForm.onSave = (Qualitaetspruefer qpr) =>
+        {
+          int id = qpr.Insert();
+          qbeauftrForm.Close();
+          listForm.reload();
+        };
       };
       opts.onUpdate = (GenericListForm listForm, int id) =>
       {
@@ -144,12 +155,47 @@ namespace TI4_DT_SJ
       personList.Show();
     }
 
-    private void button5_Click(object sender, EventArgs e)
+    private void aboartButton_Click(object sender, EventArgs e)
     {
-      AboArtForm f13 = new AboArtForm();
-      f13.Show();
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (Aboart aboart in Aboart.List()) models.Add(aboart);
+        return models;
+      };
+      opts.onCreate = (GenericListForm listForm) =>
+      {
+        GenericAboArtForm aboartForm = new GenericAboArtForm();
+        aboartForm.Show();
+        aboartForm.onSave = (Aboart aboartNeu) =>
+        {
+          int id = aboartNeu.Insert();
+          aboartForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onUpdate = (GenericListForm listForm, int id) =>
+      {
+        Aboart aboart = Aboart.Select(id);
+        GenericAboArtForm aboartForm = new GenericAboArtForm(aboart);
+        aboartForm.Show();
+        aboartForm.onSave = (Aboart aboartNeu) =>
+        {
+          aboartNeu.Update();
+          aboartForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onDelete = (GenericListForm listForm, int id) =>
+      {
+        Aboart aboart = Aboart.Select(id);
+        aboart.Delete();
+        listForm.reload();
+      };
+
+      GenericListForm aboartList = new GenericListForm("Abonnements-Typen", opts);
+      aboartList.Show();
     }
-
-
   }
 }

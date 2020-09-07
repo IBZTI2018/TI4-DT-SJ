@@ -79,19 +79,38 @@ namespace TI4_DT_SJ.Components {
 
     private void deleteButton_Click(object sender, EventArgs e)
     {
-      this.options.onDelete(this, this.dataId);
+      try
+      {
+        this.options.onDelete(this, this.dataId);
+      } catch(Exception ex)
+      {
+        MessageBox.Show("Fehler beim Löschen!\n\n" + ex.Message);
+      }
       this.loadDataFromDataLoader();
     }
 
     private void createButton_Click(object sender, EventArgs e)
     {
-      this.options.onCreate(this);
+      try
+      {
+        this.options.onCreate(this);
+      } catch (Exception ex)
+      {
+        MessageBox.Show("Fehler beim Erstellen!\n\n" + ex.Message);
+      }
     }
 
     private void updateButton_Click(object sender, EventArgs e)
     {
-      this.options.onUpdate(this, this.dataId);
-      this.loadDataFromDataLoader();
+      try
+      {
+        this.options.onUpdate(this, this.dataId);
+        this.loadDataFromDataLoader();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Fehler beim Bearbeiten!\n\n" + ex.Message);
+      }
     }
 
     private void dataGridView1_SelectionChanged(object sender, EventArgs e)

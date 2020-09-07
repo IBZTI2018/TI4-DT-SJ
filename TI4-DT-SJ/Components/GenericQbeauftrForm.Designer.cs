@@ -30,6 +30,9 @@
       this.labelPerson = new System.Windows.Forms.Label();
       this.personSelector = new System.Windows.Forms.Button();
       this.saveButton = new System.Windows.Forms.Button();
+      this.label2 = new System.Windows.Forms.Label();
+      this.lohnPicker = new System.Windows.Forms.NumericUpDown();
+      ((System.ComponentModel.ISupportInitialize)(this.lohnPicker)).BeginInit();
       this.SuspendLayout();
       // 
       // label1
@@ -61,7 +64,7 @@
       // 
       // saveButton
       // 
-      this.saveButton.Location = new System.Drawing.Point(69, 42);
+      this.saveButton.Location = new System.Drawing.Point(69, 59);
       this.saveButton.Name = "saveButton";
       this.saveButton.Size = new System.Drawing.Size(103, 23);
       this.saveButton.TabIndex = 3;
@@ -69,17 +72,42 @@
       this.saveButton.UseVisualStyleBackColor = true;
       this.saveButton.Click += new System.EventHandler(this.saveButton_Click_1);
       // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(12, 33);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(31, 13);
+      this.label2.TabIndex = 4;
+      this.label2.Text = "Lohn";
+      // 
+      // lohnPicker
+      // 
+      this.lohnPicker.DecimalPlaces = 2;
+      this.lohnPicker.Location = new System.Drawing.Point(69, 33);
+      this.lohnPicker.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+      this.lohnPicker.Name = "lohnPicker";
+      this.lohnPicker.Size = new System.Drawing.Size(103, 20);
+      this.lohnPicker.TabIndex = 5;
+      // 
       // GenericQbeauftrForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(213, 72);
+      this.ClientSize = new System.Drawing.Size(211, 89);
+      this.Controls.Add(this.lohnPicker);
+      this.Controls.Add(this.label2);
       this.Controls.Add(this.saveButton);
       this.Controls.Add(this.personSelector);
       this.Controls.Add(this.labelPerson);
       this.Controls.Add(this.label1);
       this.Name = "GenericQbeauftrForm";
       this.Text = "Qualitätsbeauftragter";
+      ((System.ComponentModel.ISupportInitialize)(this.lohnPicker)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -91,5 +119,7 @@
         private System.Windows.Forms.Label labelPerson;
         private System.Windows.Forms.Button personSelector;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown lohnPicker;
     }
 }

@@ -301,6 +301,7 @@ CREATE VIEW view_qualitaetspruefer AS
     anrede.bezeichnung AS anrede,
     person.vorname,
     person.nachname,
+    qualitaetspruefer.lohn,
     adresse.strassenname,
     adresse.hausnummer,
     ort.plz,
@@ -388,7 +389,7 @@ ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
 -- Mitarbeitenden erfasst und bearbeitet werden zu bearbeiten und zu berichtigen.
 CREATE ROLE casestudy_role_administration;
 
-GRANT SELECT ON anrede TO casestudy_role_development;
+GRANT SELECT ON anrede TO casestudy_role_administration;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ort TO casestudy_role_administration;
 GRANT SELECT, INSERT, UPDATE, DELETE ON adresse to casestudy_role_administration;
 GRANT SELECT, INSERT, UPDATE, DELETE ON abo TO casestudy_role_administration;

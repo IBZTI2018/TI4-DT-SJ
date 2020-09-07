@@ -8,7 +8,7 @@ namespace TI4_DT_SJ.Models
   {
     public int id;
     public int person_id;
-    public float lohn;
+    public double lohn;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -32,7 +32,7 @@ namespace TI4_DT_SJ.Models
       {
         this.id = reader.GetInt32(0);
         this.person_id = reader.GetInt32(1);
-        this.lohn = reader.GetFloat(2);
+        this.lohn = reader.GetDouble(2);
       }
     }
 

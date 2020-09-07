@@ -8,6 +8,7 @@ namespace TI4_DT_SJ.Models {
     public string anrede;
     public string vorname;
     public string nachname;
+    public double lohn;
     public string strassenname;
     public int hausnummer;
     public int plz;
@@ -24,6 +25,7 @@ namespace TI4_DT_SJ.Models {
           {"anrede", this.anrede},
           {"vorname", this.vorname},
           {"nachname", this.nachname},
+          {"lohn", this.lohn},
           {"strassenname", this.strassenname},
           {"hausnummer", this.hausnummer},
           {"plz", this.plz},
@@ -44,12 +46,13 @@ namespace TI4_DT_SJ.Models {
         this.anrede = reader.GetString(1);
         this.vorname = reader.GetString(2);
         this.nachname = reader.GetString(3);
-        this.strassenname = reader.GetString(4);
-        this.hausnummer = reader.GetInt32(5);
-        this.plz = reader.GetInt32(6);
-        this.ort = reader.GetString(7);
-        this.geburtsdatum = reader.GetDateTime(8);
-        this.email = reader.GetString(9);
+        this.lohn = reader.GetDouble(4);
+        this.strassenname = reader.GetString(5);
+        this.hausnummer = reader.GetInt32(6);
+        this.plz = reader.GetInt32(7);
+        this.ort = reader.GetString(8);
+        this.geburtsdatum = reader.GetDateTime(9);
+        this.email = reader.GetString(10);
       }
     }
 
