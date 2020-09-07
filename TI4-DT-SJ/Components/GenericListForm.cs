@@ -90,7 +90,7 @@ namespace TI4_DT_SJ.Components {
 
     private void updateButton_Click(object sender, EventArgs e)
     {
-      this.options.onUpdate(this, this.dataIndex);
+      this.options.onUpdate(this, this.dataId);
       this.loadDataFromDataLoader();
     }
 
