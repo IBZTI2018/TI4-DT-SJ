@@ -4,17 +4,18 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Standplatz
+  public class Standplatz : Dictionaryable
   {
     public int id;
     public int standort_id;
     public int standplatz_nr;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"standort_id", this.standort_id},
           {"standplatz_nr", this.standplatz_nr}
         };
@@ -25,9 +26,12 @@ namespace TI4_DT_SJ.Models
 
     public Standplatz(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.standort_id = reader.GetInt32(1);
-      this.standplatz_nr = reader.GetInt32(2);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.standort_id = reader.GetInt32(1);
+        this.standplatz_nr = reader.GetInt32(2);
+      }
     }
 
     public Standplatz(int standort_id, int standplatz_nr)
@@ -45,7 +49,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("standplatz", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("standplatz", values);
       return this.id;
     }
 

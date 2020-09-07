@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Rechnung
+  public class Rechnung : Dictionaryable
   {
     public int id;
     public int abo_id;
@@ -13,11 +13,12 @@ namespace TI4_DT_SJ.Models
     public string rechnungs_nr;
     public float betrag;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"abo_id", this.abo_id},
           {"anbieter_id", this.anbieter_id},
           {"termin_id", this.termin_id},
@@ -33,12 +34,15 @@ namespace TI4_DT_SJ.Models
 
     public Rechnung(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.abo_id = reader.GetInt32(1);
-      this.anbieter_id = reader.GetInt32(2);
-      this.termin_id = reader.GetInt32(3);
-      this.rechnungs_nr = reader.GetString(4);
-      this.betrag = reader.GetFloat(5);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.abo_id = reader.GetInt32(1);
+        this.anbieter_id = reader.GetInt32(2);
+        this.termin_id = reader.GetInt32(3);
+        this.rechnungs_nr = reader.GetString(4);
+        this.betrag = reader.GetFloat(5);
+      }
     }
 
     public Rechnung(int abo_id, int anbieter_id, int termin_id, string rechnungs_nr, float betrag)
@@ -62,7 +66,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("rechnung", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("rechnung", values);
       return this.id;
     }
 

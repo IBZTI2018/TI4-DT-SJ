@@ -4,18 +4,19 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Qualitaetsbewertung
+  public class Qualitaetsbewertung : Dictionaryable
   {
     public int id;
     public int anbieter_id;
     public int qualitaetspruefer_id;
     public string bezeichnung;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"anbieter_id", this.anbieter_id},
           {"qualitaetspruefer_id", this.qualitaetspruefer_id},
           {"bezeichnung", this.bezeichnung}
@@ -28,10 +29,13 @@ namespace TI4_DT_SJ.Models
 
     public Qualitaetsbewertung(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.anbieter_id = reader.GetInt32(1);
-      this.qualitaetspruefer_id = reader.GetInt32(2);
-      this.bezeichnung = reader.GetString(3);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.anbieter_id = reader.GetInt32(1);
+        this.qualitaetspruefer_id = reader.GetInt32(2);
+        this.bezeichnung = reader.GetString(3);
+      }
     }
 
     public Qualitaetsbewertung(int anbieter_id, int qualitaetspruefer_id, string bezeichnung, float score)
@@ -51,7 +55,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id =  Database.Instance.insertCommand("qualitaetsbewertungbewertung", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("qualitaetsbewertungbewertung", values);
       return this.id;
     }
 

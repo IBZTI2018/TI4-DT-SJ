@@ -19,6 +19,7 @@ namespace TI4_DT_SJ.Models
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"anrede_id", this.anrede_id},
           {"adresse_id", this.adresse_id},
           {"vorname", this.vorname},
@@ -36,13 +37,16 @@ namespace TI4_DT_SJ.Models
 
     public Person(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.anrede_id = reader.GetInt32(1);
-      this.adresse_id = reader.GetInt32(2);
-      this.vorname = reader.GetString(3);
-      this.nachname = reader.GetString(4);
-      this.email = reader.GetString(5);
-      this.geburtsdatum = reader.GetDateTime(6);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.anrede_id = reader.GetInt32(1);
+        this.adresse_id = reader.GetInt32(2);
+        this.vorname = reader.GetString(3);
+        this.nachname = reader.GetString(4);
+        this.email = reader.GetString(5);
+        this.geburtsdatum = reader.GetDateTime(6);
+      }
     }
 
     public Person(int anrede_id, int adresse_id, string vorname, string nachname, string email, DateTime geburtsdatum)

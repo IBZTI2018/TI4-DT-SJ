@@ -4,17 +4,18 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Qualitaetspruefer
+  public class Qualitaetspruefer : Dictionaryable
   {
     public int id;
     public int person_id;
     public float lohn;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"person_id", this.person_id},
           {"lohn", this.lohn}
         };
@@ -25,9 +26,12 @@ namespace TI4_DT_SJ.Models
 
     public Qualitaetspruefer(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.person_id = reader.GetInt32(1);
-      this.lohn = reader.GetFloat(2);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.person_id = reader.GetInt32(1);
+        this.lohn = reader.GetFloat(2);
+      }
     }
 
     public Qualitaetspruefer(int person_id, float lohn)
@@ -45,7 +49,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("qualitaetspruefer", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("qualitaetspruefer", values);
       return this.id;
     }
 

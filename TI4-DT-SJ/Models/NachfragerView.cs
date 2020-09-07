@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models {
-  public class AnbieterView : Dictionaryable {
+  public class NachfragerView : Dictionaryable {
     public int id;
     public string anrede;
     public string vorname;
@@ -14,11 +14,6 @@ namespace TI4_DT_SJ.Models {
     public string ort;
     public DateTime geburtsdatum;
     public string email;
-    public DateTime aufnahmedatum;
-    public DateTime provAufnahmedatum;
-    public bool bonitaet;
-    public bool unterschrift;
-    public int qbewertungen;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -34,19 +29,14 @@ namespace TI4_DT_SJ.Models {
           {"plz", this.plz},
           {"ort", this.ort},
           {"geburtsdatum", this.geburtsdatum},
-          {"email", this.email},
-          {"aufnahmedatum", this.aufnahmedatum},
-          {"provAufnahmedatum", this.provAufnahmedatum},
-          {"bonitaet", this.bonitaet},
-          {"unterschrift", this.unterschrift},
-          {"qbewertungen", this.qbewertungen}
+          {"email", this.email}
         };
       }
     }
 
-    public AnbieterView() { }
+    public NachfragerView() { }
 
-    public AnbieterView(SqlDataReader reader)
+    public NachfragerView(SqlDataReader reader)
     {
       if (reader.HasRows)
       {
@@ -60,22 +50,17 @@ namespace TI4_DT_SJ.Models {
         this.ort = reader.GetString(7);
         this.geburtsdatum = reader.GetDateTime(8);
         this.email = reader.GetString(9);
-        this.aufnahmedatum = reader.GetDateTime(10);
-        this.provAufnahmedatum = reader.GetDateTime(11);
-        this.bonitaet = reader.GetBoolean(12);
-        this.unterschrift = reader.GetBoolean(13);
-        this.qbewertungen = reader.GetInt32(14);
       }
     }
 
 
-    public static List<AnbieterView> List(string where = "")
+    public static List<NachfragerView> List(string where = "")
     {
-      List<AnbieterView> models = new List<AnbieterView>();
-      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM view_anbieter " + where).ExecuteReader();
+      List<NachfragerView> models = new List<NachfragerView>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM view_nachfrager " + where).ExecuteReader();
       while (reader.Read())
       {
-        models.Add(new AnbieterView(reader));
+        models.Add(new NachfragerView(reader));
       }
       reader.Close();
       return models;

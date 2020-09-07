@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Anbieter : Dictionaryable
+  public class Anbieter : Dictionaryable
   {
     public int id;
     public int person_id;
@@ -18,6 +18,7 @@ namespace TI4_DT_SJ.Models
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"person_id", this.person_id},
           {"aufnahmedatum", this.aufnahmedatum},
           {"prov_aufnahmedatum", this.prov_aufnahmedatum},
@@ -31,12 +32,15 @@ namespace TI4_DT_SJ.Models
 
     public Anbieter(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.person_id = reader.GetInt32(1);
-      this.aufnahmedatum = reader.GetDateTime(2);
-      this.prov_aufnahmedatum = reader.GetDateTime(3);
-      this.bonitaet = reader.GetBoolean(4);
-      this.unterschrift = reader.GetBoolean(5);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.person_id = reader.GetInt32(1);
+        this.aufnahmedatum = reader.GetDateTime(2);
+        this.prov_aufnahmedatum = reader.GetDateTime(3);
+        this.bonitaet = reader.GetBoolean(4);
+        this.unterschrift = reader.GetBoolean(5);
+      }
     }
 
     public Anbieter(int person_id, DateTime aufnahmedatum, DateTime prov_aufnahmedatum, bool bonitaet, bool unterschrift)
@@ -60,7 +64,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("anbieter", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("anbieter", values);
       return this.id;
     }
 

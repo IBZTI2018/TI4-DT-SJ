@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Bewertung
+  public class Bewertung : Dictionaryable
   {
     public int id;
     public int anbieter_id;
@@ -12,11 +12,12 @@ namespace TI4_DT_SJ.Models
     public string bezeichnung;
     public float score;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"anbieter_id", this.anbieter_id},
           {"nachfrager_id", this.nachfrager_id},
           {"bezeichnung", this.bezeichnung},
@@ -30,11 +31,14 @@ namespace TI4_DT_SJ.Models
 
     public Bewertung(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.anbieter_id = reader.GetInt32(1);
-      this.nachfrager_id = reader.GetInt32(2);
-      this.bezeichnung = reader.GetString(3);
-      this.score = reader.GetFloat(4);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.anbieter_id = reader.GetInt32(1);
+        this.nachfrager_id = reader.GetInt32(2);
+        this.bezeichnung = reader.GetString(3);
+        this.score = reader.GetFloat(4);
+      }
     }
 
     public Bewertung(int anbieter_id, int nachfrager_id, string bezeichnung, float score)
@@ -56,7 +60,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("bewertung",  this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("bewertung", values);
       return this.id;
     }
 

@@ -4,18 +4,19 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Termin
+  public class Termin : Dictionaryable
   {
     public int id;
     public int standplatz_id;
     public int anbieter_id;
     public DateTime datum;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"standplatz_id", this.standplatz_id},
           {"anbieter_id", this.anbieter_id},
           {"datum", this.datum}
@@ -28,10 +29,13 @@ namespace TI4_DT_SJ.Models
 
     public Termin(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.standplatz_id = reader.GetInt32(1);
-      this.anbieter_id = reader.GetInt32(2);
-      this.datum = reader.GetDateTime(3);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.standplatz_id = reader.GetInt32(1);
+        this.anbieter_id = reader.GetInt32(2);
+        this.datum = reader.GetDateTime(3);
+      }
     }
 
     public Termin(int standplatz_id, int anbieter_id, DateTime datum)
@@ -51,7 +55,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("termin", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("termin", values);
       return this.id;
     }
 

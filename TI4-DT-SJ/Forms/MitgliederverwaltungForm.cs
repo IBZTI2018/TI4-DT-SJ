@@ -37,10 +37,33 @@ namespace TI4_DT_SJ
       //listAnbieter.Show();
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void nachfragerButton_Click(object sender, EventArgs e)
     {
-      GenericPersonForm f = new GenericPersonForm();
-      f.Show();
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (NachfragerView nachfrager in NachfragerView.List("")) models.Add(nachfrager);
+        return models;
+      };
+      opts.onCreate = (GenericListForm listForm) =>
+      {
+        GenericNachfragerForm nachfragerForm = new GenericNachfragerForm();
+        nachfragerForm.Show();
+        nachfragerForm.onSave = (Nachfrager nachfrager) =>
+        {
+          int id = nachfrager.Insert();
+          nachfragerForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onUpdate = (GenericListForm listForm, int id) =>
+      {
+
+      };
+
+      GenericListForm nachfragerViewList = new GenericListForm("Nachfrager", opts);
+      nachfragerViewList.Show();
     }
 
     private void button3_Click(object sender, EventArgs e)

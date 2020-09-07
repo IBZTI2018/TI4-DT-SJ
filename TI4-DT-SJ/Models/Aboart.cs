@@ -4,17 +4,18 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Aboart
+  public class Aboart : Dictionaryable
   {
     public int id;
     public string bezeichnung;
     public float gebuehr;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"bezeichnung", this.bezeichnung},
           {"gebuehr", this.gebuehr}
         };
@@ -23,9 +24,12 @@ namespace TI4_DT_SJ.Models
 
     public Aboart(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.bezeichnung = reader.GetString(1);
-      this.gebuehr = reader.GetFloat(2);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.bezeichnung = reader.GetString(1);
+        this.gebuehr = reader.GetFloat(2);
+      }
     }
 
     public Aboart(string bezeichnung, float gebuehr)
@@ -43,7 +47,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("aboart", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("aboart", values);
       return this.id;
     }
 

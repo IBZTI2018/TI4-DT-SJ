@@ -31,10 +31,13 @@ namespace TI4_DT_SJ.Models
 
     public Adresse(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.ort_id = reader.GetInt32(1);
-      this.strassenname = reader.GetString(2);
-      this.hausnummer = reader.GetInt32(3);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.ort_id = reader.GetInt32(1);
+        this.strassenname = reader.GetString(2);
+        this.hausnummer = reader.GetInt32(3);
+      }
     }
 
     public Adresse(int ort_id, string strassenname, int hausnummer)

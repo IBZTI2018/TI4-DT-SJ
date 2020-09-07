@@ -22,8 +22,11 @@ namespace TI4_DT_SJ.Models
 
     public Anrede(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.bezeichnung = reader.GetString(1);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.bezeichnung = reader.GetString(1);
+      }
     }
 
     public Anrede(int id, string bezeichnung)

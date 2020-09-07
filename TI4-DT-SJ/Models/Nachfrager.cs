@@ -4,16 +4,17 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Nachfrager
+  public class Nachfrager : Dictionaryable
   {
     public int id;
     public int person_id;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"person_id", this.person_id}
         };
       }
@@ -21,10 +22,15 @@ namespace TI4_DT_SJ.Models
 
     public Person person;
 
+    public Nachfrager() { }
+
     public Nachfrager(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.person_id = reader.GetInt32(1);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.person_id = reader.GetInt32(1);
+      }
     }
 
     public Nachfrager(int person_id)
@@ -40,7 +46,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("nachfrager", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("nachfrager", values);
       return this.id;
     }
 

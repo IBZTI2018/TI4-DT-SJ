@@ -62,12 +62,12 @@ namespace TI4_DT_SJ.Components {
           table.Rows.Add(fields);
         }
 
+        this.dataGridView1.DataSource = table;
+
         if (this.dataGridView1.Columns["id"] != null)
         {
           this.dataGridView1.Columns["id"].Visible = false;
         }
-
-        this.dataGridView1.DataSource = table;
       }
     }
 
@@ -79,7 +79,7 @@ namespace TI4_DT_SJ.Components {
 
     private void deleteButton_Click(object sender, EventArgs e)
     {
-      this.options.onDelete(this.dataId);
+      this.options.onDelete(this, this.dataId);
       this.loadDataFromDataLoader();
     }
 
@@ -90,7 +90,7 @@ namespace TI4_DT_SJ.Components {
 
     private void updateButton_Click(object sender, EventArgs e)
     {
-      this.options.onUpdate(this.dataId);
+      this.options.onUpdate(this, this.dataIndex);
       this.loadDataFromDataLoader();
     }
 
@@ -107,8 +107,8 @@ namespace TI4_DT_SJ.Components {
 
   public class GenericListFormOptions {
     public Action<int> onSelect;
-    public Action<int> onUpdate;
-    public Action<int> onDelete;
+    public Action<GenericListForm, int> onUpdate;
+    public Action<GenericListForm, int> onDelete;
     public Action<GenericListForm> onCreate;
 
     public Func<List<Dictionaryable>> dataLoader;

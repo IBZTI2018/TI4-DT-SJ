@@ -65,6 +65,12 @@
     <Compile Include="Components\GenericListForm.Designer.cs">
       <DependentUpon>GenericListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GenericNachfragerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericNachfragerForm.Designer.cs">
+      <DependentUpon>GenericNachfragerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\GenericOrtForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,6 +224,7 @@
     <Compile Include="Models\AnbieterView.cs" />
     <Compile Include="Models\Anrede.cs" />
     <Compile Include="Models\Bewertung.cs" />
+    <Compile Include="Models\NachfragerView.cs" />
     <Compile Include="Models\Qualitaetsbewertung.cs" />
     <Compile Include="Models\Rechnung.cs" />
     <Compile Include="Models\Termin.cs" />
@@ -234,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericAnbieterForm.resx">
       <DependentUpon>GenericAnbieterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GenericNachfragerForm.resx">
+      <DependentUpon>GenericNachfragerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericOrtForm.resx">
       <DependentUpon>GenericOrtForm.cs</DependentUpon>

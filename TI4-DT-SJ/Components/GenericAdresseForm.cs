@@ -65,6 +65,7 @@ namespace TI4_DT_SJ.Components {
     {
       this.adresse.strassenname = this.strasseInput.Text;
       this.adresse.hausnummer = Convert.ToInt32(this.hausNrSelector.Value);
+      this.adresse.ort_id = this.adresse.ort.id;
 
       if (this.onSave != null) this.onSave(this.adresse);
     }

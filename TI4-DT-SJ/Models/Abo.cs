@@ -4,17 +4,18 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Abo
+  public class Abo : Dictionaryable
   {
     public int id;
     public int anbieter_id;
     public int aboart_id;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           { "anbieter_id", this.anbieter_id },
           { "aboart_id", this.aboart_id }
         };
@@ -26,9 +27,12 @@ namespace TI4_DT_SJ.Models
 
     public Abo(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.anbieter_id = reader.GetInt32(1);
-      this.aboart_id = reader.GetInt32(2);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.anbieter_id = reader.GetInt32(1);
+        this.aboart_id = reader.GetInt32(2);
+      }
     }
 
     public Abo(int anbieter_id, int aboart_id)
@@ -46,7 +50,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("abo", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("abo", values);
       return this.id;
     }
 

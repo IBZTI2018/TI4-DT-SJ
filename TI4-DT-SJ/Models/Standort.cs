@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Standort
+  public class Standort
   {
     public int id;
     public string bezeichnung;
@@ -14,6 +14,7 @@ namespace TI4_DT_SJ.Models
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"bezeichnung", this.bezeichnung}
         };
       }
@@ -21,8 +22,11 @@ namespace TI4_DT_SJ.Models
 
     public Standort(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.bezeichnung = reader.GetString(1);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.bezeichnung = reader.GetString(1);
+      }
     }
 
     public Standort(string bezeichnung)
@@ -38,7 +42,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("standort", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("standort", values);
       return this.id;
     }
 

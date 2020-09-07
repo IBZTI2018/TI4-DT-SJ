@@ -67,6 +67,7 @@ namespace TI4_DT_SJ.Components {
         adresseForm.onSave = (Adresse adresse) =>
         {
           int id = adresse.Insert();
+          this.person.adresse = adresse;
           adresseForm.Close();
           listForm.reload();
         };
@@ -82,6 +83,8 @@ namespace TI4_DT_SJ.Components {
       this.person.nachname = this.inputNachname.Text;
       this.person.email = this.inputEmail.Text;
       this.person.geburtsdatum = this.dateTimePicker1.Value;
+      this.person.anrede_id = this.person.anrede.id;
+      this.person.adresse_id = this.person.adresse.id;
 
       if (this.onSave != null) this.onSave(this.person);
     }
