@@ -81,6 +81,8 @@ namespace TI4_DT_SJ.Models
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
       values.Remove("id");
+      if (((DateTime)values["aufnahmedatum"]).Year < 10) values.Remove("aufnahmedatum");
+      if (((DateTime)values["prov_aufnahmedatum"]).Year < 10) values.Remove("prov_aufnahmedatum");
       Database.Instance.updateCommand("anbieter", this.id, values);
     }
 

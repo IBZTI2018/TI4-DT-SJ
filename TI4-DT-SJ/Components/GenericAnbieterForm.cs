@@ -117,6 +117,7 @@ namespace TI4_DT_SJ.Components {
       if (this.anbieter.bonitaet && this.anbieter.unterschrift && this.anbieter.mitarbeiterbesuch)
       {
         this.anbieter.prov_aufnahmedatum = DateTime.Now;
+        this.anbieter.Update();
       } else
       {
         MessageBox.Show("Anbieter erfüllt die Bedingungen für eine provisorische Aufnahme nicht!");
@@ -130,7 +131,14 @@ namespace TI4_DT_SJ.Components {
       if (this.anbieter.bonitaet && this.anbieter.unterschrift && this.anbieter.mitarbeiterbesuch && this.anbieter.prov_aufnahmedatum.Year > 1)
       {
         int c = (int)Database.Instance.getCommand("SELECT COUNT(*) FROM qualitaetsbewertung WHERE anbieter_id = " + this.anbieter.id).ExecuteScalar();
-        this.anbieter.prov_aufnahmedatum = DateTime.Now;
+        if (c >= 2)
+        {
+          this.anbieter.prov_aufnahmedatum = DateTime.Now;
+          this.anbieter.Update();
+        } else
+        {
+          MessageBox.Show("Anbieter erfüllt die Bedingungen ("+c+"/2 Q-Bewertungen) für eine finale Aufnahme nicht!");
+        }
       }
       else
       {
