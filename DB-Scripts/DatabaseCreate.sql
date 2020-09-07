@@ -74,27 +74,27 @@ CREATE TABLE anbieter (
 
   CONSTRAINT ck_anbieter CHECK (
     -- Noch nicht aufgenommenes Mitglied hat keine Daten hinterlegt
-	(
-	  aufnahmedatum IS NULL AND
-	  prov_aufnahmedatum IS NULL
-	) OR
+  (
+    aufnahmedatum IS NULL AND
+    prov_aufnahmedatum IS NULL
+  ) OR
 
-	-- Provisorische Aufnahme kann nur eingetragen werden, wenn die
-	-- Bonitätsprüfung und Unterschrift OK sind
-	(
-	  aufnahmedatum IS NULL AND
-	  prov_aufnahmedatum IS NOT NULL AND
-	  bonitaetspruefung = 1 AND
-	  unterschrift = 1
-	 ) OR
+  -- Provisorische Aufnahme kann nur eingetragen werden, wenn die
+  -- Bonitätsprüfung und Unterschrift OK sind
+  (
+    aufnahmedatum IS NULL AND
+    prov_aufnahmedatum IS NOT NULL AND
+    bonitaetspruefung = 1 AND
+    unterschrift = 1
+   ) OR
 
-	 -- Finale Aufnahme kann nur eingetragen sein, wenn das Mitglied
-	 -- bereits provisorisch aufgenommen ist und mindestens 2 Q-Bewertungen hat.
-	 -- Letzteres kann nicht mit Constraints geprüft werden, nur mit Funktionen.
-	 (
-	   aufnahmedatum IS NOT NULL AND
-	   prov_aufnahmedatum IS NOT NULL
-	 )
+   -- Finale Aufnahme kann nur eingetragen sein, wenn das Mitglied
+   -- bereits provisorisch aufgenommen ist und mindestens 2 Q-Bewertungen hat.
+   -- Letzteres kann nicht mit Constraints geprüft werden, nur mit Funktionen.
+   (
+     aufnahmedatum IS NOT NULL AND
+     prov_aufnahmedatum IS NOT NULL
+   )
   )
 );
 
@@ -160,8 +160,8 @@ CREATE TABLE rechnung (
 
   -- Rechnungen müssen entweder einem Termin oder einem Abo zugewiesen sein
   CONSTRAINT ck_rechnung_fuer CHECK (
-	(abo_id IS NULL AND termin_id IS NOT NULL) OR
-	(abo_id IS NOT NULL AND termin_id IS NULL)
+  (abo_id IS NULL AND termin_id IS NOT NULL) OR
+  (abo_id IS NOT NULL AND termin_id IS NULL)
   )
 );
 
@@ -233,6 +233,67 @@ CREATE INDEX i_fk_qualitaetsbewertung_anbieter ON qualitaetsbewertung(anbieter_i
 CREATE INDEX i_fk_qualitaetsbewertung_qualitaetspruefer ON qualitaetsbewertung(qualitaetspruefer_id);
 
 ---------------------------------------------------------------------------------------------------
+-- Erstellung von Views für einfachere UI-Abfragen                                               --
+---------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE VIEW view_anbieter AS
+  SELECT 
+    anbieter.id,
+    anrede.bezeichnung AS anrede,
+    person.vorname,
+    person.nachname,
+    adresse.strassenname,
+    adresse.hausnummer,
+    ort.plz,
+    ort.ort,
+    person.geburtsdatum,
+    person.email,
+    anbieter.aufnahmedatum,
+    anbieter.prov_aufnahmedatum,
+    anbieter.bonitaetspruefung,
+    anbieter.unterschrift,
+    (SELECT COUNT(*) FROM qualitaetsbewertung 
+      WHERE qualitaetsbewertung.anbieter_id = anbieter.id
+    ) AS qbewertungen
+  FROM anbieter
+    INNER JOIN person
+      ON person.id = anbieter.person_id
+    INNER JOIN adresse
+      ON adresse.id = person.adresse_id
+    INNER JOIN ort
+      ON ort.id = adresse.ort_id
+    INNER JOIN anrede
+      ON anrede.id = person.anrede_id;
+
+GO
+
+CREATE VIEW view_nachfrager AS
+  SELECT 
+    nachfrager.id,
+    anrede.bezeichnung AS anrede,
+    person.vorname,
+    person.nachname,
+    adresse.strassenname,
+    adresse.hausnummer,
+    ort.plz,
+    ort.ort,
+    person.geburtsdatum,
+    person.email
+  FROM nachfrager
+    INNER JOIN person
+      ON person.id = nachfrager.person_id
+    INNER JOIN adresse
+      ON adresse.id = person.adresse_id
+    INNER JOIN ort
+      ON ort.id = adresse.ort_id
+    INNER JOIN anrede
+      ON anrede.id = person.anrede_id;
+
+GO
+
+---------------------------------------------------------------------------------------------------
 -- Erstellung von Rollen und Vergabe von Berechtungen                                            --
 ---------------------------------------------------------------------------------------------------
 
@@ -241,21 +302,23 @@ CREATE INDEX i_fk_qualitaetsbewertung_qualitaetspruefer ON qualitaetsbewertung(q
 -- Im Produktiven Einsatz sollte dieser Abschnitt nicht verwendt werden!
 CREATE ROLE casestudy_role_development;
 
-GRANT ALL ON anrede TO casestudy_role_development;
-GRANT ALL ON ort TO casestudy_role_development;
-GRANT ALL ON adresse TO casestudy_role_development;
-GRANT ALL ON person TO casestudy_role_development;
-GRANT ALL ON anbieter TO casestudy_role_development;
-GRANT ALL ON aboart TO casestudy_role_development;
-GRANT ALL ON abo TO casestudy_role_development;
-GRANT ALL ON standort TO casestudy_role_development;
-GRANT ALL ON standplatz TO casestudy_role_development;
-GRANT ALL ON termin TO casestudy_role_development;
-GRANT ALL ON rechnung TO casestudy_role_development;
-GRANT ALL ON nachfrager TO casestudy_role_development;
-GRANT ALL ON bewertung TO casestudy_role_development;
-GRANT ALL ON qualitaetspruefer TO casestudy_role_development;
-GRANT ALL ON qualitaetsbewertung TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON anrede TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ort TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON adresse TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON person TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON anbieter TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON aboart TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON abo TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON standort TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON standplatz TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON termin TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON rechnung TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON nachfrager TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bewertung TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON qualitaetspruefer TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON qualitaetsbewertung TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_anbieter TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_nachfrager TO casestudy_role_development;
 
 ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
 
@@ -271,6 +334,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON aboart TO casestudy_role_administration;
 GRANT SELECT, INSERT, UPDATE, DELETE ON person TO casestudy_role_administration;
 GRANT SELECT, INSERT, UPDATE, DELETE ON rechnung TO casestudy_role_administration;
 GRANT SELECT, INSERT, UPDATE, DELETE ON qualitaetspruefer TO casestudy_role_administration;
+GRANT SELECT ON view_anbieter TO casestudy_role_administration;
+GRANT SELECT ON view_nachfrager TO casestudy_role_administration;
 
 ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
 
@@ -288,6 +353,8 @@ GRANT SELECT, INSERT, UPDATE ON nachfrager TO casestudy_role_mitgliedsverwaltung
 GRANT SELECT, INSERT ON rechnung TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT, INSERT ON abo TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON aboart TO casestudy_role_mitgliedsverwaltung;
+GRANT SELECT ON view_anbieter TO casestudy_role_mitgliedsverwaltung;
+GRANT SELECT ON view_nachfrager TO casestudy_role_mitgliedsverwaltung;
 
 ALTER ROLE casestudy_role_mitgliedsverwaltung ADD MEMBER casestudy_mitgliederverwalter;
 
@@ -310,60 +377,3 @@ CREATE ROLE casestudy_role_qualitaetspruefung;
 GRANT SELECT, INSERT, UPDATE ON qualitaetsbewertung TO casestudy_role_qualitaetspruefung;
 
 ALTER ROLE casestudy_role_qualitaetspruefung ADD MEMBER casestudy_qualitaetsverantwortlicher;
-
----------------------------------------------------------------------------------------------------
--- Erstellung von Views für einfachere UI-Abfragen                                               --
----------------------------------------------------------------------------------------------------
-
-GO
-
-CREATE VIEW view_anbieter AS
-  SELECT 
-    anrede.bezeichnung AS anrede,
-    person.vorname,
-    person.nachname,
-    adresse.strassenname,
-    adresse.hausnummer,
-    ort.plz,
-    ort.ort,
-    person.geburtsdatum,
-    person.email,
-    anbieter.aufnahmedatum,
-    anbieter.prov_aufnahmedatum,
-    anbieter.bonitaetspruefung,
-    anbieter.unterschrift,
-	  (SELECT COUNT(*) FROM qualitaetsbewertung 
-	    WHERE qualitaetsbewertung.anbieter_id = anbieter.id
-    ) AS qbewertungen
-  FROM anbieter
-    INNER JOIN person
-      ON person.id = anbieter.person_id
-    INNER JOIN adresse
-      ON adresse.id = person.adresse_id
-    INNER JOIN ort
-      ON ort.id = adresse.ort_id
-    INNER JOIN anrede
-      ON anrede.id = person.anrede_id;
-
-GO
-
-CREATE VIEW view_nachfrager AS
-  SELECT 
-    anrede.bezeichnung AS anrede,
-    person.vorname,
-    person.nachname,
-    adresse.strassenname,
-    adresse.hausnummer,
-    ort.plz,
-    ort.ort,
-    person.geburtsdatum,
-    person.email
-  FROM nachfrager
-    INNER JOIN person
-      ON person.id = nachfrager.person_id
-    INNER JOIN adresse
-      ON adresse.id = person.adresse_id
-    INNER JOIN ort
-      ON ort.id = adresse.ort_id
-    INNER JOIN anrede
-      ON anrede.id = person.anrede_id;

@@ -34,12 +34,12 @@ namespace TI4_DT_SJ
     }
 
     private void button4_Click(object sender, EventArgs e)
-    {
+    {/*
       //this.openManagementForm();
       List<Dictionaryable> list = new List<Dictionaryable>();
       foreach (Models.Anrede anrede in Models.Anrede.List()) list.Add(anrede);
-      Components.ListForm x = new Components.ListForm(list);
-      x.Show();
+      Components.GenericListForm x = new Components.GenericListForm(list);
+      x.Show();*/
 
       //Anrede f5 = new Anrede();
       //f5.Show();

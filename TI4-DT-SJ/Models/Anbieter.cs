@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Anbieter
+  class Anbieter : Dictionaryable
   {
     public int id;
     public int person_id;
@@ -13,7 +13,7 @@ namespace TI4_DT_SJ.Models
     public bool bonitaet;
     public bool unterschrift;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {

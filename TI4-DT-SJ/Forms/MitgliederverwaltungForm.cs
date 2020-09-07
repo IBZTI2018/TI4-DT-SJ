@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TI4_DT_SJ.Components;
+using TI4_DT_SJ.Models;
 
 namespace TI4_DT_SJ
 {
@@ -22,8 +24,10 @@ namespace TI4_DT_SJ
 
     private void button2_Click(object sender, EventArgs e)
     {
-      AdresseForm f6 = new AdresseForm();
-      f6.Show();
+      List<Dictionaryable> models = new List<Dictionaryable>();
+      foreach (AnbieterView anrede in AnbieterView.List("")) models.Add(anrede);
+      GenericListForm listAnbieter = new GenericListForm("Anbieterliste", models);
+      listAnbieter.Show();
     }
 
     private void button1_Click(object sender, EventArgs e)

@@ -10,13 +10,17 @@ using System.Windows.Forms;
 using TI4_DT_SJ.Models;
 
 namespace TI4_DT_SJ.Components {
-  public partial class ListForm : Form {
-    public ListForm(List<Dictionaryable> values)
+  public partial class GenericListForm : Form {
+    public GenericListForm(string formTitle, List<Dictionaryable> values)
     {
       InitializeComponent();
 
       if (values.Count == 0) return;
 
+      // Change window title, if applicable
+      if (formTitle != null) this.Text = formTitle;
+
+      // Automatically fill dataGridView with data
       String[] keys = values[0].ValuesAsDict.Keys.ToArray();
       DataTable table = new DataTable();
       foreach (string key in keys) table.Columns.Add(key, typeof(string));
@@ -42,6 +46,11 @@ namespace TI4_DT_SJ.Components {
     }
 
     private void button2_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void GenericListForm_Load(object sender, EventArgs e)
     {
 
     }

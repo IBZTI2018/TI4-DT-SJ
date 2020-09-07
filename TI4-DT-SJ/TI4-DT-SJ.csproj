@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\ListForm.cs">
+    <Compile Include="Components\GenericListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Components\ListForm.Designer.cs">
-      <DependentUpon>ListForm.cs</DependentUpon>
+    <Compile Include="Components\GenericListForm.Designer.cs">
+      <DependentUpon>GenericListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Forms\AdministrationsForm.cs">
@@ -191,6 +191,7 @@
     <Compile Include="Models\Aboart.cs" />
     <Compile Include="Models\Adresse.cs" />
     <Compile Include="Models\Anbieter.cs" />
+    <Compile Include="Models\AnbieterView.cs" />
     <Compile Include="Models\Anrede.cs" />
     <Compile Include="Models\Bewertung.cs" />
     <Compile Include="Models\Qualitaetsbewertung.cs" />
@@ -267,8 +268,8 @@
     <EmbeddedResource Include="Forms\StandplatzverwaltungForm.resx">
       <DependentUpon>StandplatzverwaltungForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\ListForm.resx">
-      <DependentUpon>ListForm.cs</DependentUpon>
+    <EmbeddedResource Include="Components\GenericListForm.resx">
+      <DependentUpon>GenericListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
