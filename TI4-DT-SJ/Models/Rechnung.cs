@@ -74,7 +74,9 @@ namespace TI4_DT_SJ.Models
 
     public void Update()
     {
-      Database.Instance.updateCommand("rechnung", this.id, this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      Database.Instance.updateCommand("rechnung", this.id, values);
     }
 
     public void Delete()

@@ -19,6 +19,7 @@ namespace TI4_DT_SJ.Components {
     {
       InitializeComponent();
       this.nachfrager = nachfrager;
+      this.personLabel.Text = this.nachfrager.person.vorname + " " + this.nachfrager.person.nachname;
     }
 
     public GenericNachfragerForm()

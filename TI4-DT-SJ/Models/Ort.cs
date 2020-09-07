@@ -57,7 +57,9 @@ namespace TI4_DT_SJ.Models
 
     public void Update()
     {
-      Database.Instance.updateCommand("ort", this.id, this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      Database.Instance.updateCommand("ort", this.id, values);
     }
 
     public void Delete()

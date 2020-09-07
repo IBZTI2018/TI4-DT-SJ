@@ -59,7 +59,15 @@ namespace TI4_DT_SJ
       };
       opts.onUpdate = (GenericListForm listForm, int id) =>
       {
-
+        Nachfrager nachfrager = Nachfrager.Select(id);
+        GenericNachfragerForm nachfragerForm = new GenericNachfragerForm(nachfrager);
+        nachfragerForm.Show();
+        nachfragerForm.onSave = (Nachfrager nachfragerNeu) =>
+        {
+          nachfragerNeu.Update();
+          nachfragerForm.Close();
+          listForm.reload();
+        };
       };
 
       GenericListForm nachfragerViewList = new GenericListForm("Nachfrager", opts);

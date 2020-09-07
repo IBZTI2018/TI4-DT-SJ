@@ -72,7 +72,9 @@ namespace TI4_DT_SJ.Models
 
     public void Update()
     {
-      Database.Instance.updateCommand("anbieter", this.id, this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      Database.Instance.updateCommand("anbieter", this.id, values);
     }
 
     public void Delete()
