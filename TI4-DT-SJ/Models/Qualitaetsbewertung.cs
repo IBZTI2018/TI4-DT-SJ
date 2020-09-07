@@ -27,6 +27,8 @@ namespace TI4_DT_SJ.Models
     public Anbieter anbieter;
     public Qualitaetspruefer qualitaetspruefer;
 
+    public Qualitaetsbewertung() { }
+
     public Qualitaetsbewertung(SqlDataReader reader)
     {
       if (reader.HasRows)
@@ -57,7 +59,7 @@ namespace TI4_DT_SJ.Models
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
       values.Remove("id");
-      this.id = Database.Instance.insertCommand("qualitaetsbewertungbewertung", values);
+      this.id = Database.Instance.insertCommand("qualitaetsbewertung", values);
       return this.id;
     }
 
@@ -65,17 +67,17 @@ namespace TI4_DT_SJ.Models
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
       values.Remove("id");
-      Database.Instance.updateCommand("qualitaetsbewertungbewertung", this.id, values);
+      Database.Instance.updateCommand("qualitaetsbewertung", this.id, values);
     }
 
     public void Delete()
     {
-      Database.Instance.deleteCommand("qualitaetsbewertungbewertung", this.id);
+      Database.Instance.deleteCommand("qualitaetsbewertung", this.id);
     }
 
     public static Qualitaetsbewertung Select(int id)
     {
-      Qualitaetsbewertung model = (Qualitaetsbewertung)Database.Instance.selectCommand("qualitaetsbewertungbewertung", id, typeof(Qualitaetsbewertung));
+      Qualitaetsbewertung model = (Qualitaetsbewertung)Database.Instance.selectCommand("qualitaetsbewertung", id, typeof(Qualitaetsbewertung));
       model.qualitaetspruefer = Qualitaetspruefer.Select(model.qualitaetspruefer_id);
       model.anbieter = Anbieter.Select(model.anbieter_id);
       return model;

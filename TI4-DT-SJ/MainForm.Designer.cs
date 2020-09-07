@@ -104,7 +104,6 @@
       this.label3.Size = new System.Drawing.Size(157, 13);
       this.label3.TabIndex = 6;
       this.label3.Text = "Jennifer Mentner; Sven Gehring";
-      this.label3.Click += new System.EventHandler(this.label3_Click);
       // 
       // MainForm
       // 

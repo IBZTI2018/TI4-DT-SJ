@@ -54,5 +54,6 @@ DROP TABLE anrede;
 DROP VIEW view_anbieter;
 DROP VIEW view_nachfrager;
 DROP VIEW view_qualitaetspruefer;
+DROP VIEW view_qbewertung;
 DROP VIEW view_adresse;
 DROP VIEW view_person;

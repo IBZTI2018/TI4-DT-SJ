@@ -95,6 +95,12 @@
     <Compile Include="Components\GenericQbeauftrForm.Designer.cs">
       <DependentUpon>GenericQbeauftrForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GenericQBerichtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericQBerichtForm.Designer.cs">
+      <DependentUpon>GenericQBerichtForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Forms\AdministrationsForm.cs">
       <SubType>Form</SubType>
@@ -105,6 +111,7 @@
     </Compile>
     <Compile Include="Models\AdresseView.cs" />
     <Compile Include="Models\PersonView.cs" />
+    <Compile Include="Models\QualitaetsbewertungView.cs" />
     <Compile Include="Models\QualitaetsprueferView.cs" />
     <Compile Include="UnusedForms\AnredeForm.cs">
       <SubType>Form</SubType>
@@ -271,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericQbeauftrForm.resx">
       <DependentUpon>GenericQbeauftrForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GenericQBerichtForm.resx">
+      <DependentUpon>GenericQBerichtForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdministrationsForm.resx">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>

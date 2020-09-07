@@ -355,6 +355,25 @@ CREATE VIEW view_adresse AS
 
 GO
 
+CREATE VIEW view_qbewertung AS
+  SELECT
+    qualitaetsbewertung.id,
+    aperson.vorname,
+    aperson.nachname,
+    qperson.nachname AS pruefer,
+    qualitaetsbewertung.bezeichnung
+  FROM qualitaetsbewertung
+    INNER JOIN qualitaetspruefer
+      ON qualitaetspruefer.id = qualitaetsbewertung.qualitaetspruefer_id
+    INNER JOIN person AS qperson
+      ON qperson.id = qualitaetspruefer.person_id
+    INNER JOIN anbieter
+      ON anbieter.id = qualitaetsbewertung.anbieter_id
+    INNER JOIN person AS aperson
+      ON aperson.id = anbieter.person_id 
+
+GO
+
 ---------------------------------------------------------------------------------------------------
 -- Erstellung von Rollen und Vergabe von Berechtungen                                            --
 ---------------------------------------------------------------------------------------------------
@@ -441,6 +460,18 @@ ALTER ROLE casestudy_role_standplatzverwaltung ADD MEMBER casestudy_standplatzve
 
 CREATE ROLE casestudy_role_qualitaetspruefung;
 
-GRANT SELECT, INSERT, UPDATE ON qualitaetsbewertung TO casestudy_role_qualitaetspruefung;
+GRANT SELECT, INSERT, UPDATE, DELETE ON qualitaetsbewertung TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON view_qualitaetspruefer TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON view_anbieter TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON view_qbewertung TO casestudy_role_qualitaetspruefung;
+
+-- TODO: Improve this? 
+GRANT SELECT ON anbieter TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON qualitaetspruefer TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON aboart TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON person TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON anrede TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON adresse TO casestudy_role_qualitaetspruefung;
+GRANT SELECT ON ort TO casestudy_role_qualitaetspruefung;
 
 ALTER ROLE casestudy_role_qualitaetspruefung ADD MEMBER casestudy_qualitaetsverantwortlicher;

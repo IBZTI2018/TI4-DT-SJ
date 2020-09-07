@@ -60,13 +60,47 @@ namespace TI4_DT_SJ
       string databaseName = ConfigurationManager.AppSettings["databaseUserQav"];
       string databasePass = ConfigurationManager.AppSettings["databasePassQav"];
       Database.Instance.connect(true, databaseName, databasePass);
-      QualitätsprüferForm qprueferForm = new QualitätsprüferForm();
-      qprueferForm.Show();
-    }
 
-    private void label3_Click(object sender, EventArgs e)
-    {
 
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (QualitaetsbewertungView qbew in QualitaetsbewertungView.List()) models.Add(qbew);
+        return models;
+      };
+      opts.onCreate = (GenericListForm listForm) =>
+      {
+        GenericQBerichtForm qBerichtForm = new GenericQBerichtForm();
+        qBerichtForm.Show();
+        qBerichtForm.onSave = (Qualitaetsbewertung qbewNeu) =>
+        {
+          int id = qbewNeu.Insert();
+          qBerichtForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onUpdate = (GenericListForm listForm, int id) =>
+      {
+        Qualitaetsbewertung qbew = Qualitaetsbewertung.Select(id);
+        GenericQBerichtForm qBerichtForm = new GenericQBerichtForm(qbew);
+        qBerichtForm.Show();
+        qBerichtForm.onSave = (Qualitaetsbewertung qbewNeu) =>
+        {
+          qbewNeu.Update();
+          qBerichtForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onDelete = (GenericListForm listForm, int id) =>
+      {
+        Qualitaetsbewertung qbew = Qualitaetsbewertung.Select(id);
+        qbew.Delete();
+        listForm.reload();
+      };
+
+      GenericListForm qbewertungenList = new GenericListForm("Qualitätsbewertungen", opts);
+      qbewertungenList.Show();
     }
   }
 }

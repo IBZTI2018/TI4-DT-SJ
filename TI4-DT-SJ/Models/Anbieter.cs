@@ -90,5 +90,17 @@ namespace TI4_DT_SJ.Models
       model.person = Person.Select(model.person_id);
       return model;
     }
+
+    public static List<Anbieter> List(string where = "")
+    {
+      List<Anbieter> models = new List<Anbieter>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM anbieter " + where).ExecuteReader();
+      while (reader.Read())
+      {
+        models.Add(new Anbieter(reader));
+      }
+      reader.Close();
+      return models;
+    }
   }
 }
