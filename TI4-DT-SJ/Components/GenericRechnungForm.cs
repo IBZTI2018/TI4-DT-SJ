@@ -128,7 +128,17 @@ namespace TI4_DT_SJ.Components {
       if (this.rechnung.termin != null) this.rechnung.termin_id = this.rechnung.termin.id;
       if (this.rechnung.abo != null) this.rechnung.abo_id = this.rechnung.abo.id;
 
-      if (this.onSave != null) this.onSave(this.rechnung);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.rechnung);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
   }
 }

@@ -104,7 +104,17 @@ namespace TI4_DT_SJ.Components {
       this.person.anrede_id = this.person.anrede.id;
       this.person.adresse_id = this.person.adresse.id;
 
-      if (this.onSave != null) this.onSave(this.person);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.person);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
   }
 }

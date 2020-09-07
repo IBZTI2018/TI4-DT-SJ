@@ -75,7 +75,17 @@ namespace TI4_DT_SJ.Components {
       this.adresse.hausnummer = Convert.ToInt32(this.hausNrSelector.Value);
       this.adresse.ort_id = this.adresse.ort.id;
 
-      if (this.onSave != null) this.onSave(this.adresse);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.adresse);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
   }
 }

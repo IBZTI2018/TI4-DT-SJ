@@ -74,7 +74,17 @@ namespace TI4_DT_SJ.Components {
       this.qpruefer.person_id = this.qpruefer.person.id;
       this.qpruefer.lohn = Convert.ToDouble(this.lohnPicker.Value);
 
-      if (this.onSave != null) this.onSave(this.qpruefer);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.qpruefer);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
   }
 }

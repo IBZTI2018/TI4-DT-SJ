@@ -47,7 +47,17 @@ namespace TI4_DT_SJ.Components {
       this.bewertung.anbieter_id = this.bewertung.anbieter.id;
       this.bewertung.qualitaetspruefer_id = this.bewertung.qualitaetspruefer.id;
 
-      if (this.onSave != null) this.onSave(this.bewertung);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.bewertung);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
 
     private void anbieterSelector_Click(object sender, EventArgs e)

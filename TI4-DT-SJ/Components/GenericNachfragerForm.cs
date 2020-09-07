@@ -72,7 +72,17 @@ namespace TI4_DT_SJ.Components {
 
       this.nachfrager.person_id = this.nachfrager.person.id;
 
-      if (this.onSave != null) this.onSave(this.nachfrager);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.nachfrager);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
   }
 }

@@ -98,7 +98,17 @@ namespace TI4_DT_SJ.Components {
       this.anbieter.mitarbeiterbesuch = this.checkBesuch.Checked;
       this.anbieter.person_id = this.anbieter.person.id;
 
-      if (this.onSave != null) this.onSave(this.anbieter);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.anbieter);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
 
     private void provAufnehmButton_Click(object sender, EventArgs e)

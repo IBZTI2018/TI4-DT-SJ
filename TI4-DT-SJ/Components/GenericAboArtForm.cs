@@ -35,7 +35,16 @@ namespace TI4_DT_SJ.Components {
       this.aboart.bezeichnung = this.inputName.Text;
       this.aboart.gebuehr  = Convert.ToDouble(this.inputPrice.Value);
 
-      if (this.onSave != null) this.onSave(this.aboart);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.aboart);
+        } catch(Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
   }
 }

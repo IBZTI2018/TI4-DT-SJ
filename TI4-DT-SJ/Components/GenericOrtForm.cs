@@ -34,7 +34,17 @@ namespace TI4_DT_SJ.Components {
       this.ort.plz = Convert.ToInt32(this.plzSelector.Value);
       this.ort.ort = this.ortsname.Text;
 
-      if (this.onSave != null) this.onSave(this.ort);
+      if (this.onSave != null)
+      {
+        try
+        {
+          this.onSave(this.ort);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
+        }
+      }
     }
   }
 }
