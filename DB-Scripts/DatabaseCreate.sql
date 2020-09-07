@@ -258,6 +258,7 @@ CREATE VIEW view_anbieter AS
     anbieter.aufnahmedatum,
     anbieter.prov_aufnahmedatum,
     anbieter.bonitaetspruefung,
+    anbieter.mitarbeiterbesuch,
     anbieter.unterschrift,
     (SELECT COUNT(*) FROM qualitaetsbewertung 
       WHERE qualitaetsbewertung.anbieter_id = anbieter.id
@@ -447,6 +448,7 @@ GRANT SELECT, INSERT, UPDATE ON nachfrager TO casestudy_role_mitgliedsverwaltung
 GRANT SELECT, INSERT ON rechnung TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT, INSERT ON abo TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON aboart TO casestudy_role_mitgliedsverwaltung;
+GRANT SELECT ON qualitaetsbewertung TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON view_anbieter TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON view_nachfrager TO casestudy_role_mitgliedsverwaltung;
 

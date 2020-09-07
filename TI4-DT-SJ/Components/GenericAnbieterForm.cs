@@ -20,14 +20,29 @@ namespace TI4_DT_SJ.Components {
     {
       InitializeComponent();
       this.anbieter = anbieter;
-      if (this.anbieter.prov_aufnahmedatum.Year > 1) this.provAufnPicker.Value = this.anbieter.prov_aufnahmedatum;
-      if (this.anbieter.aufnahmedatum.Year > 1) this.aufnPicker.Value = this.anbieter.aufnahmedatum;
       this.checkBoni.Checked = this.anbieter.bonitaet;
       this.checkUnter.Checked = this.anbieter.unterschrift;
+      this.checkBesuch.Checked = this.anbieter.mitarbeiterbesuch;
       this.personLabel.Text = this.anbieter.person.vorname + " " + this.anbieter.person.nachname;
 
-      this.labelProvAufn.Text = (this.anbieter.prov_aufnahmedatum.Year > 1) ? this.anbieter.prov_aufnahmedatum.ToString() : "nie";
-      this.labelAufn.Text = (this.anbieter.aufnahmedatum.Year > 1) ? this.anbieter.aufnahmedatum.ToString() : "nie";
+      if (this.anbieter.prov_aufnahmedatum.Year > 1)
+      {
+        this.labelProvAufn.Text = this.anbieter.prov_aufnahmedatum.ToString();
+        this.provAufnehmButton.Visible = false;
+      } else
+      {
+        this.labelProvAufn.Text = "nie";
+      }
+
+      if (this.anbieter.aufnahmedatum.Year > 1)
+      {
+        this.labelAufn.Text = this.anbieter.aufnahmedatum.ToString();
+        this.aufnehmButton.Visible = false;
+      }
+      else
+      {
+        this.labelAufn.Text = "nie";
+      }
     }
 
     public GenericAnbieterForm()
@@ -78,13 +93,39 @@ namespace TI4_DT_SJ.Components {
         return;
       }
 
-      this.anbieter.prov_aufnahmedatum = this.provAufnPicker.Value;
-      this.anbieter.aufnahmedatum = this.aufnPicker.Value;
       this.anbieter.bonitaet = this.checkBoni.Checked;
       this.anbieter.unterschrift = this.checkUnter.Checked;
+      this.anbieter.mitarbeiterbesuch = this.checkBesuch.Checked;
       this.anbieter.person_id = this.anbieter.person.id;
 
       if (this.onSave != null) this.onSave(this.anbieter);
+    }
+
+    private void provAufnehmButton_Click(object sender, EventArgs e)
+    {
+      // Provisorische Aufnahme ist nur unter Bedingungen möglich
+      if (this.anbieter.bonitaet && this.anbieter.unterschrift && this.anbieter.mitarbeiterbesuch)
+      {
+        this.anbieter.prov_aufnahmedatum = DateTime.Now;
+      } else
+      {
+        MessageBox.Show("Anbieter erfüllt die Bedingungen für eine provisorische Aufnahme nicht!");
+      }
+    }
+
+    private void aufnehmButton_Click(object sender, EventArgs e)
+    {
+      // Finale Aufnahme ist nur unter Bedingungen möglich
+      // Provisorische Aufnahme ist nur unter Bedingungen möglich
+      if (this.anbieter.bonitaet && this.anbieter.unterschrift && this.anbieter.mitarbeiterbesuch && this.anbieter.prov_aufnahmedatum.Year > 1)
+      {
+        int c = (int)Database.Instance.getCommand("SELECT COUNT(*) FROM qualitaetsbewertung WHERE anbieter_id = " + this.anbieter.id).ExecuteScalar();
+        this.anbieter.prov_aufnahmedatum = DateTime.Now;
+      }
+      else
+      {
+        MessageBox.Show("Anbieter erfüllt die Bedingungen für eine finale Aufnahme nicht!");
+      }
     }
   }
 }

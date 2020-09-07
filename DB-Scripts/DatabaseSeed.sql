@@ -148,14 +148,14 @@ INSERT INTO termin (standplatz_id, anbieter_id, datum) VALUES
 INSERT INTO rechnung (abo_id, anbieter_id, termin_id, rechnungs_nr, betrag) VALUES
   (
     NULL,
-    (SELECT TOP 1 id FROM anbieter),
-    (SELECT TOP 1 id FROM termin),
+    (SELECT TOP 1 id FROM anbieter ORDER BY id),
+    (SELECT TOP 1 id FROM termin ORDER BY id),
     123456789,
     10.0
   ),
   (
-    (SELECT TOP 1 id FROM abo),
-    (SELECT TOP 1 id FROM anbieter),
+    (SELECT TOP 1 id FROM abo ORDER BY id),
+    (SELECT TOP 1 id FROM anbieter ORDER BY id),
     NULL,
     123456789,
     80.0
@@ -163,12 +163,12 @@ INSERT INTO rechnung (abo_id, anbieter_id, termin_id, rechnungs_nr, betrag) VALU
 
 INSERT INTO qualitaetsbewertung (anbieter_id, qualitaetspruefer_id, bezeichnung) VALUES
   (
-    (SELECT TOP 1 id FROM anbieter),
-    (SELECT TOP 1 id FROM qualitaetspruefer),
+    (SELECT TOP 1 id FROM anbieter ORDER BY id),
+    (SELECT TOP 1 id FROM qualitaetspruefer ORDER BY id),
     'Prüfungen bestanden!'
   ),
   (
-    (SELECT TOP 1 id FROM anbieter),
+    (SELECT TOP 1 id FROM anbieter ORDER BY id),
     (SELECT TOP 1 id FROM qualitaetspruefer),
     'Sieht immer noch alles gut aus!'
   );

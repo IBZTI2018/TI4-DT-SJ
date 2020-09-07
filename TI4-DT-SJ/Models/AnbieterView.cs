@@ -18,6 +18,7 @@ namespace TI4_DT_SJ.Models {
     public DateTime provAufnahmedatum;
     public bool bonitaet;
     public bool unterschrift;
+    public bool mitarbeiterbesuch;
     public int qbewertungen;
 
     public Dictionary<String, dynamic> ValuesAsDict
@@ -39,6 +40,7 @@ namespace TI4_DT_SJ.Models {
           {"provAufnahmedatum", this.provAufnahmedatum},
           {"bonitaet", this.bonitaet},
           {"unterschrift", this.unterschrift},
+          {"mitarbeiterbesuch", this.mitarbeiterbesuch},
           {"qbewertungen", this.qbewertungen}
         };
       }
@@ -64,7 +66,8 @@ namespace TI4_DT_SJ.Models {
         if (!reader.IsDBNull(11)) this.provAufnahmedatum = reader.GetDateTime(11);
         this.bonitaet = reader.GetBoolean(12);
         this.unterschrift = reader.GetBoolean(13);
-        this.qbewertungen = reader.GetInt32(14);
+        this.mitarbeiterbesuch = reader.GetBoolean(14);
+        this.qbewertungen = reader.GetInt32(15);
       }
     }
 

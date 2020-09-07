@@ -35,14 +35,16 @@
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
-      this.provAufnPicker = new System.Windows.Forms.DateTimePicker();
-      this.aufnPicker = new System.Windows.Forms.DateTimePicker();
       this.checkBoni = new System.Windows.Forms.CheckBox();
       this.checkUnter = new System.Windows.Forms.CheckBox();
       this.saveButton = new System.Windows.Forms.Button();
       this.personLabel = new System.Windows.Forms.Label();
       this.labelProvAufn = new System.Windows.Forms.Label();
       this.labelAufn = new System.Windows.Forms.Label();
+      this.provAufnehmButton = new System.Windows.Forms.Button();
+      this.aufnehmButton = new System.Windows.Forms.Button();
+      this.label6 = new System.Windows.Forms.Label();
+      this.checkBesuch = new System.Windows.Forms.CheckBox();
       this.SuspendLayout();
       // 
       // label1
@@ -124,20 +126,6 @@
       this.label5.TabIndex = 8;
       this.label5.Text = "Unterschrift";
       // 
-      // provAufnPicker
-      // 
-      this.provAufnPicker.Location = new System.Drawing.Point(285, 31);
-      this.provAufnPicker.Name = "provAufnPicker";
-      this.provAufnPicker.Size = new System.Drawing.Size(200, 20);
-      this.provAufnPicker.TabIndex = 9;
-      // 
-      // aufnPicker
-      // 
-      this.aufnPicker.Location = new System.Drawing.Point(285, 57);
-      this.aufnPicker.Name = "aufnPicker";
-      this.aufnPicker.Size = new System.Drawing.Size(200, 20);
-      this.aufnPicker.TabIndex = 10;
-      // 
       // checkBoni
       // 
       this.checkBoni.AutoSize = true;
@@ -160,7 +148,7 @@
       // 
       // saveButton
       // 
-      this.saveButton.Location = new System.Drawing.Point(79, 136);
+      this.saveButton.Location = new System.Drawing.Point(79, 160);
       this.saveButton.Name = "saveButton";
       this.saveButton.Size = new System.Drawing.Size(200, 23);
       this.saveButton.TabIndex = 13;
@@ -192,19 +180,60 @@
       this.labelAufn.Size = new System.Drawing.Size(0, 13);
       this.labelAufn.TabIndex = 16;
       // 
+      // provAufnehmButton
+      // 
+      this.provAufnehmButton.Location = new System.Drawing.Point(285, 32);
+      this.provAufnehmButton.Name = "provAufnehmButton";
+      this.provAufnehmButton.Size = new System.Drawing.Size(73, 23);
+      this.provAufnehmButton.TabIndex = 17;
+      this.provAufnehmButton.Text = "aufnehmen";
+      this.provAufnehmButton.UseVisualStyleBackColor = true;
+      this.provAufnehmButton.Click += new System.EventHandler(this.provAufnehmButton_Click);
+      // 
+      // aufnehmButton
+      // 
+      this.aufnehmButton.Location = new System.Drawing.Point(285, 58);
+      this.aufnehmButton.Name = "aufnehmButton";
+      this.aufnehmButton.Size = new System.Drawing.Size(73, 23);
+      this.aufnehmButton.TabIndex = 18;
+      this.aufnehmButton.Text = "aufnehmen";
+      this.aufnehmButton.UseVisualStyleBackColor = true;
+      this.aufnehmButton.Click += new System.EventHandler(this.aufnehmButton_Click);
+      // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Location = new System.Drawing.Point(12, 138);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(43, 13);
+      this.label6.TabIndex = 19;
+      this.label6.Text = "Besuch";
+      // 
+      // checkBesuch
+      // 
+      this.checkBesuch.AutoSize = true;
+      this.checkBesuch.Location = new System.Drawing.Point(79, 137);
+      this.checkBesuch.Name = "checkBesuch";
+      this.checkBesuch.Size = new System.Drawing.Size(41, 17);
+      this.checkBesuch.TabIndex = 20;
+      this.checkBesuch.Text = "OK";
+      this.checkBesuch.UseVisualStyleBackColor = true;
+      // 
       // GenericAnbieterForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(542, 172);
+      this.ClientSize = new System.Drawing.Size(364, 190);
+      this.Controls.Add(this.checkBesuch);
+      this.Controls.Add(this.label6);
+      this.Controls.Add(this.aufnehmButton);
+      this.Controls.Add(this.provAufnehmButton);
       this.Controls.Add(this.labelAufn);
       this.Controls.Add(this.labelProvAufn);
       this.Controls.Add(this.personLabel);
       this.Controls.Add(this.saveButton);
       this.Controls.Add(this.checkUnter);
       this.Controls.Add(this.checkBoni);
-      this.Controls.Add(this.aufnPicker);
-      this.Controls.Add(this.provAufnPicker);
       this.Controls.Add(this.label5);
       this.Controls.Add(this.label4);
       this.Controls.Add(this.label3);
@@ -232,13 +261,15 @@
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.DateTimePicker provAufnPicker;
-    private System.Windows.Forms.DateTimePicker aufnPicker;
     private System.Windows.Forms.CheckBox checkBoni;
     private System.Windows.Forms.CheckBox checkUnter;
     private System.Windows.Forms.Button saveButton;
     private System.Windows.Forms.Label personLabel;
     private System.Windows.Forms.Label labelProvAufn;
     private System.Windows.Forms.Label labelAufn;
+    private System.Windows.Forms.Button provAufnehmButton;
+    private System.Windows.Forms.Button aufnehmButton;
+    private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.CheckBox checkBesuch;
   }
 }
