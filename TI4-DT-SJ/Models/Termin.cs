@@ -80,5 +80,14 @@ namespace TI4_DT_SJ.Models
       model.standplatz = Standplatz.Select(model.standplatz_id);
       return model;
     }
+
+    public static List<Termin> List()
+    {
+      List<Termin> models = new List<Termin>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM termin;").ExecuteReader();
+      while (reader.Read()) models.Add(new Termin(reader));
+      reader.Close();
+      return models;
+    }
   }
 }

@@ -37,12 +37,13 @@
       this.button3 = new System.Windows.Forms.Button();
       this.button4 = new System.Windows.Forms.Button();
       this.button5 = new System.Windows.Forms.Button();
+      this.button6 = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(435, 9);
+      this.label3.Location = new System.Drawing.Point(616, 9);
       this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(157, 13);
@@ -62,7 +63,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(278, 9);
+      this.label1.Location = new System.Drawing.Point(373, 9);
       this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(72, 13);
@@ -72,7 +73,7 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(234, 68);
+      this.label4.Location = new System.Drawing.Point(341, 61);
       this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(142, 13);
@@ -129,9 +130,20 @@
       this.button5.UseVisualStyleBackColor = true;
       this.button5.Click += new System.EventHandler(this.aboartButton_Click);
       // 
+      // button6
+      // 
+      this.button6.Location = new System.Drawing.Point(651, 88);
+      this.button6.Name = "button6";
+      this.button6.Size = new System.Drawing.Size(122, 68);
+      this.button6.TabIndex = 21;
+      this.button6.Text = "Rechnungen";
+      this.button6.UseVisualStyleBackColor = true;
+      this.button6.Click += new System.EventHandler(this.rechnungButton_Click);
+      // 
       // AdministrationsForm
       // 
-      this.ClientSize = new System.Drawing.Size(656, 175);
+      this.ClientSize = new System.Drawing.Size(782, 175);
+      this.Controls.Add(this.button6);
       this.Controls.Add(this.button5);
       this.Controls.Add(this.button4);
       this.Controls.Add(this.button3);
@@ -160,5 +172,6 @@
     private System.Windows.Forms.Button button3;
     private System.Windows.Forms.Button button4;
     private System.Windows.Forms.Button button5;
+    private System.Windows.Forms.Button button6;
   }
 }

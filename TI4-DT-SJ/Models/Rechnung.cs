@@ -32,14 +32,16 @@ namespace TI4_DT_SJ.Models
     public Termin termin;
     public Anbieter anbieter;
 
+    public Rechnung() { }
+
     public Rechnung(SqlDataReader reader)
     {
       if (reader.HasRows)
       {
         this.id = reader.GetInt32(0);
-        this.abo_id = reader.GetInt32(1);
+        if (!reader.IsDBNull(1)) this.abo_id = reader.GetInt32(1);
         this.anbieter_id = reader.GetInt32(2);
-        this.termin_id = reader.GetInt32(3);
+        if (!reader.IsDBNull(3)) this.termin_id = reader.GetInt32(3);
         this.rechnungs_nr = reader.GetString(4);
         this.betrag = reader.GetDouble(5);
       }
@@ -76,6 +78,9 @@ namespace TI4_DT_SJ.Models
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
       values.Remove("id");
+      if (values["termin_id"] == 0) values.Remove("termin_id");
+      if (values["abo_id"] == 0) values.Remove("abo_id");
+
       Database.Instance.updateCommand("rechnung", this.id, values);
     }
 
@@ -87,10 +92,22 @@ namespace TI4_DT_SJ.Models
     public static Rechnung Select(int id)
     {
       Rechnung model = (Rechnung)Database.Instance.selectCommand("rechnung", id, typeof(Rechnung));
-      model.anbieter = Anbieter.Select(model.id);
+      model.anbieter = Anbieter.Select(model.anbieter_id);
       if (model.abo_id != 0) model.abo = Abo.Select(model.abo_id);
       if (model.termin_id != 0) model.termin = Termin.Select(model.termin_id);
       return model;
+    }
+
+    public static List<Rechnung> List()
+    {
+      List<Rechnung> models = new List<Rechnung>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM rechnung ").ExecuteReader();
+      while (reader.Read())
+      {
+        models.Add(new Rechnung(reader));
+      }
+      reader.Close();
+      return models;
     }
   }
 }

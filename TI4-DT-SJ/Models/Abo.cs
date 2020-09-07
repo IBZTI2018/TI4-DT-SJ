@@ -75,5 +75,14 @@ namespace TI4_DT_SJ.Models
       model.aboart = Aboart.Select(model.aboart_id);
       return model;
     }
+
+    public static List<Abo> List()
+    {
+      List<Abo> models = new List<Abo>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM abo;").ExecuteReader();
+      while (reader.Read()) models.Add(new Abo(reader));
+      reader.Close();
+      return models;
+    }
   }
 }

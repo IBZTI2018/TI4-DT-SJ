@@ -197,5 +197,37 @@ namespace TI4_DT_SJ
       GenericListForm aboartList = new GenericListForm("Abonnements-Typen", opts);
       aboartList.Show();
     }
+
+    private void rechnungButton_Click(object sender, EventArgs e)
+    {
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (Rechnung rechnung in Rechnung.List()) models.Add(rechnung);
+        return models;
+      };
+      opts.onUpdate = (GenericListForm listForm, int id) =>
+      {
+        Rechnung rechnung = Rechnung.Select(id);
+        GenericRechnungForm rechnungForm = new GenericRechnungForm(rechnung);
+        rechnungForm.Show();
+        rechnungForm.onSave = (Rechnung rechnungNeu) =>
+        {
+          rechnungNeu.Update();
+          rechnungForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onDelete = (GenericListForm listForm, int id) =>
+      {
+        Rechnung rechnung = Rechnung.Select(id);
+        rechnung.Delete();
+        listForm.reload();
+      };
+
+      GenericListForm rechnungList = new GenericListForm("Rechnungen", opts);
+      rechnungList.Show();
+    }
   }
 }
