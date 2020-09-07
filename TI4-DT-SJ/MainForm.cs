@@ -12,14 +12,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TI4_DT_SJ.Components;
 using TI4_DT_SJ.Models;
+using System.Configuration;
 
 namespace TI4_DT_SJ
 {
   public partial class MainForm : Form
   {
-    private string role = "";
-    //private AdministrationForm form = null;
-    
     public MainForm()
     {
       InitializeComponent();
@@ -32,33 +30,38 @@ namespace TI4_DT_SJ
 
     private void button1_Click(object sender, EventArgs e)
     {
-      this.role = "administration";
-      AdministrationsForm f1 = new AdministrationsForm();
-      f1.Show();
-
+      string databaseName = ConfigurationManager.AppSettings["databaseUserAdm"];
+      string databasePass = ConfigurationManager.AppSettings["databasePassAdm"];
+      Database.Instance.connect(true, databaseName, databasePass);
+      AdministrationsForm administrationForm = new AdministrationsForm();
+      administrationForm.Show();
     }
 
     private void button2_Click(object sender, EventArgs e)
     {
-      this.role = "mitgliederverwaltung";
-      MitgliederverwaltungForm f2 = new MitgliederverwaltungForm();
-      f2.Show();
+      string databaseName = ConfigurationManager.AppSettings["databaseUserMgv"];
+      string databasePass = ConfigurationManager.AppSettings["databasePassMgv"];
+      Database.Instance.connect(true, databaseName, databasePass);
+      MitgliederverwaltungForm mitgliederForm = new MitgliederverwaltungForm();
+      mitgliederForm.Show();
     }
 
     private void button3_Click(object sender, EventArgs e)
     {
-      this.role = "standplatzverwaltung";
-      StandplatzverwaltungForm f3 = new StandplatzverwaltungForm();
-      f3.Show();
-     
+      string databaseName = ConfigurationManager.AppSettings["databaseUserStv"];
+      string databasePass = ConfigurationManager.AppSettings["databasePassStv"];
+      Database.Instance.connect(true, databaseName, databasePass);
+      StandplatzverwaltungForm standplatzForm = new StandplatzverwaltungForm();
+      standplatzForm.Show();
     }
 
     private void button4_Click(object sender, EventArgs e)
     {
-      this.role = "qualitaetsbeauftragter";
-      QualitätsprüferForm f4 = new QualitätsprüferForm();
-      f4.Show();
-
+      string databaseName = ConfigurationManager.AppSettings["databaseUserQav"];
+      string databasePass = ConfigurationManager.AppSettings["databasePassQav"];
+      Database.Instance.connect(true, databaseName, databasePass);
+      QualitätsprüferForm qprueferForm = new QualitätsprüferForm();
+      qprueferForm.Show();
     }
 
     private void label3_Click(object sender, EventArgs e)

@@ -98,6 +98,7 @@ namespace TI4_DT_SJ.Components {
     {
       if (this.dataGridView1 == null) return;
       if (this.dataGridView1.CurrentRow == null) return;
+      if (this.dataIndex >= this.dataSource.Count) return;
 
       this.dataIndex = this.dataGridView1.CurrentRow.Index;
       Dictionary<string, dynamic> data = this.dataSource[this.dataIndex].ValuesAsDict;

@@ -33,7 +33,6 @@ namespace TI4_DT_SJ
           MessageBox.Show("Finished running script DatabaseSeed");
           break;
         default:
-          Database.Instance.connect(withDatabase: true);
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
           Application.Run(new MainForm());
