@@ -54,7 +54,7 @@ namespace TI4_DT_SJ
       opts.dataLoader = () =>
       {
         List<Dictionaryable> models = new List<Dictionaryable>();
-        foreach (Adresse adresse in Adresse.List()) models.Add(adresse);
+        foreach (AdresseView adresseView in AdresseView.List()) models.Add(adresseView);
         return models;
       };
       opts.onUpdate = (GenericListForm listForm, int id) =>
@@ -118,7 +118,7 @@ namespace TI4_DT_SJ
       opts.dataLoader = () =>
       {
         List<Dictionaryable> models = new List<Dictionaryable>();
-        foreach (Person person in Person.List("")) models.Add(person);
+        foreach (PersonView personView in PersonView.List("")) models.Add(personView);
         return models;
       };
       opts.onUpdate = (GenericListForm listForm, int id) =>

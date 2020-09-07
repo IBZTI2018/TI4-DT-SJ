@@ -295,6 +295,65 @@ CREATE VIEW view_nachfrager AS
 
 GO
 
+CREATE VIEW view_qualitaetspruefer AS
+  SELECT 
+    qualitaetspruefer.id,
+    anrede.bezeichnung AS anrede,
+    person.vorname,
+    person.nachname,
+    adresse.strassenname,
+    adresse.hausnummer,
+    ort.plz,
+    ort.ort,
+    person.geburtsdatum,
+    person.email
+  FROM qualitaetspruefer
+    INNER JOIN person
+      ON person.id = qualitaetspruefer.person_id
+    INNER JOIN adresse
+      ON adresse.id = person.adresse_id
+    INNER JOIN ort
+      ON ort.id = adresse.ort_id
+    INNER JOIN anrede
+      ON anrede.id = person.anrede_id;
+
+GO
+
+CREATE VIEW view_person AS
+  SELECT 
+    person.id,
+    anrede.bezeichnung AS anrede,
+    person.vorname,
+    person.nachname,
+    adresse.strassenname,
+    adresse.hausnummer,
+    ort.plz,
+    ort.ort,
+    person.geburtsdatum,
+    person.email
+  FROM person
+    INNER JOIN adresse
+      ON adresse.id = person.adresse_id
+    INNER JOIN ort
+      ON ort.id = adresse.ort_id
+    INNER JOIN anrede
+      ON anrede.id = person.anrede_id;
+
+GO
+
+CREATE VIEW view_adresse AS
+  SELECT 
+    adresse.id,
+    adresse.strassenname,
+    adresse.hausnummer,
+    ort.plz,
+    ort.ort
+  FROM adresse
+    INNER JOIN ort
+      ON ort.id = adresse.ort_id;
+
+GO
+
 ---------------------------------------------------------------------------------------------------
 -- Erstellung von Rollen und Vergabe von Berechtungen                                            --
 ---------------------------------------------------------------------------------------------------
@@ -339,6 +398,9 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON rechnung TO casestudy_role_administratio
 GRANT SELECT, INSERT, UPDATE, DELETE ON qualitaetspruefer TO casestudy_role_administration;
 GRANT SELECT ON view_anbieter TO casestudy_role_administration;
 GRANT SELECT ON view_nachfrager TO casestudy_role_administration;
+GRANT SELECT ON view_person TO casestudy_role_administration;
+GRANT SELECT ON view_adresse TO casestudy_role_administration;
+GRANT SELECT ON view_qualitaetspruefer TO casestudy_role_administration;
 
 ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
 

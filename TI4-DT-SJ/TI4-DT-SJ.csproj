@@ -97,6 +97,9 @@
     <Compile Include="Forms\AdministrationsForm.Designer.cs">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdresseView.cs" />
+    <Compile Include="Models\PersonView.cs" />
+    <Compile Include="Models\QualitaetsprueferView.cs" />
     <Compile Include="UnusedForms\AnredeForm.cs">
       <SubType>Form</SubType>
     </Compile>
