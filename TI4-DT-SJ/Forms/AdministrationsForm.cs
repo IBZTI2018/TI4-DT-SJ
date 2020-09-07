@@ -80,10 +80,36 @@ namespace TI4_DT_SJ
       adressList.Show();
     }
 
-    private void button3_Click(object sender, EventArgs e)
+    private void qBeauftragteButton_Click(object sender, EventArgs e)
     {
-      PersonForm f8 = new PersonForm();
-      f8.Show();
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (Qualitaetspruefer qpruefer in Qualitaetspruefer.List()) models.Add(qpruefer);
+        return models;
+      };
+      opts.onUpdate = (GenericListForm listForm, int id) =>
+      {
+        Qualitaetspruefer qpruefer = Qualitaetspruefer.Select(id);
+        GenericQbeauftrForm qbeauftrForm = new GenericQbeauftrForm(qpruefer);
+        qbeauftrForm.Show();
+        qbeauftrForm.onSave = (Qualitaetspruefer qprueferNeu) =>
+        {
+          qprueferNeu.Update();
+          qbeauftrForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onDelete = (GenericListForm listForm, int id) =>
+      {
+        Qualitaetspruefer qpruefer = Qualitaetspruefer.Select(id);
+        qpruefer.Delete();
+        listForm.reload();
+      };
+
+      GenericListForm qPrueferList = new GenericListForm("Qualitätsprüfer", opts);
+      qPrueferList.Show();
     }
 
     private void personButton_Click(object sender, EventArgs e)

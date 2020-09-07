@@ -83,6 +83,12 @@
     <Compile Include="Components\GenericPersonForm.Designer.cs">
       <DependentUpon>GenericPersonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GenericQbeauftrForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericQbeauftrForm.Designer.cs">
+      <DependentUpon>GenericQbeauftrForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Forms\AdministrationsForm.cs">
       <SubType>Form</SubType>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericPersonForm.resx">
       <DependentUpon>GenericPersonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GenericQbeauftrForm.resx">
+      <DependentUpon>GenericQbeauftrForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdministrationsForm.resx">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>

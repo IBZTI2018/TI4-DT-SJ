@@ -24,6 +24,8 @@ namespace TI4_DT_SJ.Models
 
     public Person person;
 
+    public Qualitaetspruefer() { }
+
     public Qualitaetspruefer(SqlDataReader reader)
     {
       if (reader.HasRows)
@@ -72,6 +74,18 @@ namespace TI4_DT_SJ.Models
       Qualitaetspruefer model = (Qualitaetspruefer)Database.Instance.selectCommand("qualitaetspruefer", id, typeof(Qualitaetspruefer));
       model.person = Person.Select(model.person_id);
       return model;
+    }
+
+    public static List<Qualitaetspruefer> List(string where = "")
+    {
+      List<Qualitaetspruefer> models = new List<Qualitaetspruefer>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM qualitaetspruefer " + where).ExecuteReader();
+      while (reader.Read())
+      {
+        models.Add(new Qualitaetspruefer(reader));
+      }
+      reader.Close();
+      return models;
     }
   }
 }
