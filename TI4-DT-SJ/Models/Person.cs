@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  internal class Person : Dictionaryable
+  public class Person : Dictionaryable
   {
     public int id;
     public int anrede_id;
@@ -31,6 +31,8 @@ namespace TI4_DT_SJ.Models
 
     public Anrede anrede;
     public Adresse adresse;
+
+    public Person() { }
 
     public Person(SqlDataReader reader)
     {
@@ -66,15 +68,9 @@ namespace TI4_DT_SJ.Models
 
     public int Insert()
     {
-      this.id = Database.Instance.insertCommand("person", new Dictionary<String, dynamic>() {
-        {"id", this.id},
-        {"anrede_id", this.anrede_id},
-        {"adresse_id", this.adresse_id},
-        {"vorname", this.vorname},
-        {"nachname", this.nachname},
-        {"email", this.email},
-        {"geburtsdatum", this.geburtsdatum}
-      });
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id = Database.Instance.insertCommand("person", values);
       return this.id;
     }
 

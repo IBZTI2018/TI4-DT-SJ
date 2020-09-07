@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Anrede : Dictionaryable
+  public class Anrede : Dictionaryable
   {
     public int id;
     public string bezeichnung;

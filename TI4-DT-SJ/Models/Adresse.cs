@@ -5,18 +5,19 @@ using System.Runtime.CompilerServices;
 
 namespace TI4_DT_SJ.Models
 {
-  public class Adresse
+  public class Adresse : Dictionaryable
   {
     public int id;
     public int ort_id;
     public string strassenname;
     public int hausnummer;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
         return new Dictionary<String, dynamic>() {
+          {"id", this.id },
           {"ort_id", this.ort_id},
           {"strassenname", this.strassenname},
           {"hausnummer", this.hausnummer}
@@ -52,7 +53,9 @@ namespace TI4_DT_SJ.Models
     }
     public int Insert()
     {
-      this.id =  Database.Instance.insertCommand("adresse", this.ValuesAsDict);
+      Dictionary<string, dynamic> values = this.ValuesAsDict;
+      values.Remove("id");
+      this.id =  Database.Instance.insertCommand("adresse", values);
       return this.id;
     }
 
@@ -71,6 +74,15 @@ namespace TI4_DT_SJ.Models
       Adresse model = (Adresse)Database.Instance.selectCommand("adresse", id, typeof(Adresse));
       model.ort = Ort.Select(model.ort_id);
       return model;
+    }
+
+    public static List<Adresse> List()
+    {
+      List<Adresse> models = new List<Adresse>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM adresse;").ExecuteReader();
+      while (reader.Read()) models.Add(new Adresse(reader));
+      reader.Close();
+      return models;
     }
   }
 }

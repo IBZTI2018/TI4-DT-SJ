@@ -71,6 +71,12 @@
     <Compile Include="Components\GenericOrtForm.Designer.cs">
       <DependentUpon>GenericOrtForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GenericPersonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericPersonForm.Designer.cs">
+      <DependentUpon>GenericPersonForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Forms\AdministrationsForm.cs">
       <SubType>Form</SubType>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericOrtForm.resx">
       <DependentUpon>GenericOrtForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GenericPersonForm.resx">
+      <DependentUpon>GenericPersonForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdministrationsForm.resx">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>

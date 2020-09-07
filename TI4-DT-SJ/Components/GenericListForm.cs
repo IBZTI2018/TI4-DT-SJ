@@ -19,7 +19,7 @@ namespace TI4_DT_SJ.Components {
 
     private GenericListFormOptions options;
 
-    public GenericListForm(string formTitle, List<Dictionaryable> values,  GenericListFormOptions options)
+    public GenericListForm(string formTitle,  GenericListFormOptions options)
     {
       InitializeComponent();
 
@@ -34,25 +34,41 @@ namespace TI4_DT_SJ.Components {
       this.options = options;
 
       // Automatically fill dataGridView with data
-      if (values.Count == 0) return;
-      this.dataSource = values;
-      String[] keys = values[0].ValuesAsDict.Keys.ToArray();
-      DataTable table = new DataTable();
-      foreach (string key in keys) table.Columns.Add(key, typeof(string));
-      foreach (Dictionaryable value in values) {
-        object[] fields = new object[keys.Length];
-        for (int i = 0; i < keys.Length; i++) {
-          fields[i] = value.ValuesAsDict[keys[i]];
-        }
-        table.Rows.Add(fields);
-      }
+      loadDataFromDataLoader();
+    }
 
-      if (this.dataGridView1.Columns["id"] != null)
+    public void reload()
+    {
+      this.loadDataFromDataLoader();
+    }
+
+    private void loadDataFromDataLoader()
+    {
+      if (options.dataLoader != null)
       {
-        this.dataGridView1.Columns["id"].Visible = false;
-      }
+        List<Dictionaryable> values = options.dataLoader();
+        if (values.Count == 0) return;
+        this.dataSource = values;
+        String[] keys = values[0].ValuesAsDict.Keys.ToArray();
+        DataTable table = new DataTable();
+        foreach (string key in keys) table.Columns.Add(key, typeof(string));
+        foreach (Dictionaryable value in values)
+        {
+          object[] fields = new object[keys.Length];
+          for (int i = 0; i < keys.Length; i++)
+          {
+            fields[i] = value.ValuesAsDict[keys[i]];
+          }
+          table.Rows.Add(fields);
+        }
 
-      this.dataGridView1.DataSource = table;
+        if (this.dataGridView1.Columns["id"] != null)
+        {
+          this.dataGridView1.Columns["id"].Visible = false;
+        }
+
+        this.dataGridView1.DataSource = table;
+      }
     }
 
     private void selectButton_Click(object sender, EventArgs e)
@@ -64,20 +80,25 @@ namespace TI4_DT_SJ.Components {
     private void deleteButton_Click(object sender, EventArgs e)
     {
       this.options.onDelete(this.dataId);
+      this.loadDataFromDataLoader();
     }
 
     private void createButton_Click(object sender, EventArgs e)
     {
-      this.options.onCreate();
+      this.options.onCreate(this);
     }
 
     private void updateButton_Click(object sender, EventArgs e)
     {
       this.options.onUpdate(this.dataId);
+      this.loadDataFromDataLoader();
     }
 
     private void dataGridView1_SelectionChanged(object sender, EventArgs e)
     {
+      if (this.dataGridView1 == null) return;
+      if (this.dataGridView1.CurrentRow == null) return;
+
       this.dataIndex = this.dataGridView1.CurrentRow.Index;
       Dictionary<string, dynamic> data = this.dataSource[this.dataIndex].ValuesAsDict;
       if (data.ContainsKey("id")) this.dataId = data["id"];
@@ -88,6 +109,8 @@ namespace TI4_DT_SJ.Components {
     public Action<int> onSelect;
     public Action<int> onUpdate;
     public Action<int> onDelete;
-    public Action onCreate;
+    public Action<GenericListForm> onCreate;
+
+    public Func<List<Dictionaryable>> dataLoader;
   }
 }

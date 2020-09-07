@@ -345,6 +345,7 @@ ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
 
 CREATE ROLE casestudy_role_mitgliedsverwaltung;
 
+GRANT SELECT ON anrede TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT, INSERT ON ort TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT, INSERT ON person TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT, INSERT ON adresse TO casestudy_role_mitgliedsverwaltung;

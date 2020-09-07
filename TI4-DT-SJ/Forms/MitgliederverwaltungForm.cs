@@ -29,17 +29,17 @@ namespace TI4_DT_SJ
       List<Dictionaryable> models = new List<Dictionaryable>();
       foreach (AnbieterView anrede in AnbieterView.List("")) models.Add(anrede);
       GenericListFormOptions opts = new GenericListFormOptions();
-      opts.onCreate = () => {
-        GenericAnbieterForm form = new GenericAnbieterForm();
-        form.Show();
-      };
-      GenericListForm listAnbieter = new GenericListForm("Anbieterliste", models, opts);
-      listAnbieter.Show();
+      //opts.onCreate = () => {
+      //  GenericAnbieterForm form = new GenericAnbieterForm();
+      //  form.Show();
+      //};
+      //GenericListForm listAnbieter = new GenericListForm("Anbieterliste", models, opts);
+      //listAnbieter.Show();
     }
 
     private void button1_Click(object sender, EventArgs e)
     {
-      GenericAdresseForm f = new GenericAdresseForm();
+      GenericPersonForm f = new GenericPersonForm();
       f.Show();
     }
 
