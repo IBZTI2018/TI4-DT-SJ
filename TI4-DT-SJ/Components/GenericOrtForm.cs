@@ -19,6 +19,8 @@ namespace TI4_DT_SJ.Components {
     {
       InitializeComponent();
       this.ort = ort;
+      this.plzSelector.Value = Convert.ToDecimal(this.ort.plz);
+      this.ortsname.Text = this.ort.ort;
     }
 
     public GenericOrtForm()

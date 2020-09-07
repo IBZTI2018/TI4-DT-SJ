@@ -19,6 +19,8 @@ namespace TI4_DT_SJ.Components {
     {
       InitializeComponent();
       this.adresse = adresse;
+      this.strasseInput.Text = this.adresse.strassenname;
+      this.hausNrSelector.Value = Convert.ToDecimal(this.adresse.hausnummer);
       this.ortLabel.Text = this.adresse.ort.plz + " " + this.adresse.ort.ort;
     }
 

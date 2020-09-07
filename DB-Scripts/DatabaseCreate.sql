@@ -55,7 +55,7 @@ CREATE TABLE person (
   vorname VARCHAR(255) NOT NULL,
   nachname VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  geburtsdatum DATE NULL,
+  geburtsdatum DATE NOT NULL,
 
   CONSTRAINT u_person_email UNIQUE(email)
 );

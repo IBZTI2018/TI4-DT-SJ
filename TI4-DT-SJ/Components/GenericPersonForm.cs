@@ -19,6 +19,12 @@ namespace TI4_DT_SJ.Components {
     {
       InitializeComponent();
       this.person = person;
+      this.inputVorname.Text = this.person.vorname;
+      this.inputNachname.Text = this.person.nachname;
+      this.inputEmail.Text = this.person.email;
+      this.dateTimePicker1.Value = this.person.geburtsdatum;
+      this.anredeLabel.Text = this.person.anrede.bezeichnung;
+      this.adresseLabel.Text = this.person.adresse.strassenname + " in " + this.person.adresse.ort.ort;
     }
 
     public GenericPersonForm()
