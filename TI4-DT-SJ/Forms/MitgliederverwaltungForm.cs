@@ -26,7 +26,8 @@ namespace TI4_DT_SJ
     {
       List<Dictionaryable> models = new List<Dictionaryable>();
       foreach (AnbieterView anrede in AnbieterView.List("")) models.Add(anrede);
-      GenericListForm listAnbieter = new GenericListForm("Anbieterliste", models);
+      GenericListFormOptions opts = new GenericListFormOptions(false, true, true, false);
+      GenericListForm listAnbieter = new GenericListForm("Anbieterliste", models, opts);
       listAnbieter.Show();
     }
 
