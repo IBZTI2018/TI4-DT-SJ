@@ -69,8 +69,9 @@ CREATE TABLE anbieter (
   person_id INT FOREIGN KEY REFERENCES person(id) NOT NULL,
   aufnahmedatum DATE NULL ,
   prov_aufnahmedatum DATE NULL,
-  bonitaetspruefung BIT NOT NULL,
-  unterschrift BIT NOT NULL,
+  bonitaetspruefung BIT NOT NULL DEFAULT 0,
+  unterschrift BIT NOT NULL DEFAULT 0,
+  mitarbeiterbesuch BIT NOT NULL DEFAULT 0,
 
   CONSTRAINT ck_anbieter CHECK (
     -- Noch nicht aufgenommenes Mitglied hat keine Daten hinterlegt
@@ -85,7 +86,8 @@ CREATE TABLE anbieter (
     aufnahmedatum IS NULL AND
     prov_aufnahmedatum IS NOT NULL AND
     bonitaetspruefung = 1 AND
-    unterschrift = 1
+    unterschrift = 1 AND
+    mitarbeiterbesuch = 1
    ) OR
 
    -- Finale Aufnahme kann nur eingetragen sein, wenn das Mitglied
@@ -95,7 +97,8 @@ CREATE TABLE anbieter (
      aufnahmedatum IS NOT NULL AND
      prov_aufnahmedatum IS NOT NULL AND
      bonitaetspruefung = 1 AND
-     unterschrift = 1
+     unterschrift = 1 AND
+      mitarbeiterbesuch = 1
    )
   )
 );
@@ -465,7 +468,9 @@ GRANT SELECT ON view_qualitaetspruefer TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON view_anbieter TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON view_qbewertung TO casestudy_role_qualitaetspruefung;
 
--- TODO: Improve this? 
+-- NOTIZ: Dies sollte eigentlich nicht notwendig sein. Durch den Aufbau des Frameworks auf
+--        Seiten der UI, ist es allerdings momentan notwendig, auch die unterliegenden
+--        Tabellen eines Views zugreifbar zu machen!
 GRANT SELECT ON anbieter TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON qualitaetspruefer TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON aboart TO casestudy_role_qualitaetspruefung;
