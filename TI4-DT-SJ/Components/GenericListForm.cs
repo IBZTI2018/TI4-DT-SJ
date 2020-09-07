@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +17,7 @@ namespace TI4_DT_SJ.Components {
     private int dataIndex;
     private int dataId;
 
-    public int selectedId;
+    private GenericListFormOptions options;
 
     public GenericListForm(string formTitle, List<Dictionaryable> values,  GenericListFormOptions options)
     {
@@ -25,17 +27,16 @@ namespace TI4_DT_SJ.Components {
       if (formTitle != null) this.Text = formTitle;
 
       // Apply button permissions
-      if (!options.showSelectButton) this.selectButton.Visible = false;
-      if (!options.showCreateButton) this.createButton.Visible = false;
-      if (!options.showUpdateButton) this.updateButton.Visible = false;
-      if (!options.showDeleteButton) this.deleteButton.Visible = false;
+      if (options.onSelect == null) this.selectButton.Visible = false;
+      if (options.onCreate == null) this.createButton.Visible = false;
+      if (options.onUpdate == null) this.updateButton.Visible = false;
+      if (options.onDelete == null) this.deleteButton.Visible = false;
+      this.options = options;
 
       // Automatically fill dataGridView with data
       if (values.Count == 0) return;
       this.dataSource = values;
-      List<string> keyList = values[0].ValuesAsDict.Keys.ToList();
-      keyList.Remove("id");
-      String[] keys = keyList.ToArray();
+      String[] keys = values[0].ValuesAsDict.Keys.ToArray();
       DataTable table = new DataTable();
       foreach (string key in keys) table.Columns.Add(key, typeof(string));
       foreach (Dictionaryable value in values) {
@@ -46,23 +47,33 @@ namespace TI4_DT_SJ.Components {
         table.Rows.Add(fields);
       }
 
-      dataGridView1.DataSource = table;
+      if (this.dataGridView1.Columns["id"] != null)
+      {
+        this.dataGridView1.Columns["id"].Visible = false;
+      }
+
+      this.dataGridView1.DataSource = table;
     }
 
     private void selectButton_Click(object sender, EventArgs e)
     {
-      this.selectedId = this.dataId;
+      this.options.onSelect(this.dataId);
       this.Close();
     }
 
     private void deleteButton_Click(object sender, EventArgs e)
     {
-
+      this.options.onDelete(this.dataId);
     }
 
-    private void GenericListForm_Load(object sender, EventArgs e)
+    private void createButton_Click(object sender, EventArgs e)
     {
+      this.options.onCreate();
+    }
 
+    private void updateButton_Click(object sender, EventArgs e)
+    {
+      this.options.onUpdate(this.dataId);
     }
 
     private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -71,32 +82,12 @@ namespace TI4_DT_SJ.Components {
       Dictionary<string, dynamic> data = this.dataSource[this.dataIndex].ValuesAsDict;
       if (data.ContainsKey("id")) this.dataId = data["id"];
     }
-
-    private void createButton_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void updateButton_Click(object sender, EventArgs e)
-    {
-
-    }
   }
 
   public class GenericListFormOptions {
-    public bool showSelectButton;
-    public bool showCreateButton;
-    public bool showUpdateButton;
-    public bool showDeleteButton;
-
-    public Form modelForm;
-
-    public GenericListFormOptions(bool select, bool create, bool update, bool delete)
-    {
-      this.showSelectButton = select;
-      this.showCreateButton = create;
-      this.showUpdateButton = update;
-      this.showDeleteButton = delete;
-    }
+    public Action<int> onSelect;
+    public Action<int> onUpdate;
+    public Action<int> onDelete;
+    public Action onCreate;
   }
 }

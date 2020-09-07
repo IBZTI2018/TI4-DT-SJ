@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  internal class Person
+  internal class Person : Dictionaryable
   {
     public int id;
     public int anrede_id;
@@ -14,7 +14,7 @@ namespace TI4_DT_SJ.Models
     public string email;
     public DateTime geburtsdatum;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
@@ -94,6 +94,18 @@ namespace TI4_DT_SJ.Models
       model.anrede = Anrede.Select(model.anrede_id);
       model.adresse = Adresse.Select(model.adresse_id);
       return model;
+    }
+
+    public static List<Person> List(string where = "")
+    {
+      List<Person> models = new List<Person>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM person " + where).ExecuteReader();
+      while (reader.Read())
+      {
+        models.Add(new Person(reader));
+      }
+      reader.Close();
+      return models;
     }
   }
 }

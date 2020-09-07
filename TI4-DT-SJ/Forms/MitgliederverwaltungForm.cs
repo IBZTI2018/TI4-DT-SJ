@@ -12,6 +12,8 @@ namespace TI4_DT_SJ
 {
   public partial class MitgliederverwaltungForm : Form
   {
+    delegate void deleteDelegate(int id);
+
     public MitgliederverwaltungForm()
     {
       InitializeComponent();
@@ -26,15 +28,19 @@ namespace TI4_DT_SJ
     {
       List<Dictionaryable> models = new List<Dictionaryable>();
       foreach (AnbieterView anrede in AnbieterView.List("")) models.Add(anrede);
-      GenericListFormOptions opts = new GenericListFormOptions(false, true, true, false);
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.onCreate = () => {
+        GenericAnbieterForm form = new GenericAnbieterForm();
+        form.Show();
+      };
       GenericListForm listAnbieter = new GenericListForm("Anbieterliste", models, opts);
       listAnbieter.Show();
     }
 
     private void button1_Click(object sender, EventArgs e)
     {
-      OrtForm f7 = new OrtForm();
-      f7.Show();
+      GenericAdresseForm f = new GenericAdresseForm();
+      f.Show();
     }
 
     private void button3_Click(object sender, EventArgs e)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  class Ort : Dictionaryable
+  public class Ort : Dictionaryable
   {
     public int id;
     public int plz;
@@ -15,17 +15,23 @@ namespace TI4_DT_SJ.Models
       get
       {
         return new Dictionary<String, dynamic>() {
+        { "id", this.id },
         { "plz", this.plz },
         { "ort", this.ort }
         };
       }
     }
 
+    public Ort() { }
+
     public Ort(SqlDataReader reader)
     {
-      this.id = reader.GetInt32(0);
-      this.plz = reader.GetInt32(1);
-      this.ort = reader.GetString(2);
+      if (reader.HasRows)
+      {
+        this.id = reader.GetInt32(0);
+        this.plz = reader.GetInt32(1);
+        this.ort = reader.GetString(2);
+      }
     }
 
     public Ort(int plz, string ort)

@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models {
-  class AnbieterView : Dictionaryable {
+  public class AnbieterView : Dictionaryable {
     public int id;
     public string anrede;
     public string vorname;
@@ -43,6 +43,8 @@ namespace TI4_DT_SJ.Models {
         };
       }
     }
+
+    public AnbieterView() { }
 
     public AnbieterView(SqlDataReader reader)
     {

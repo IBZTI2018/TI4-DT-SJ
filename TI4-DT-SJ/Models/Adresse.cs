@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace TI4_DT_SJ.Models
 {
-  class Adresse
+  public class Adresse
   {
     public int id;
     public int ort_id;
@@ -25,6 +25,8 @@ namespace TI4_DT_SJ.Models
     }
 
     public Ort ort;
+
+    public Adresse() { }
 
     public Adresse(SqlDataReader reader)
     {

@@ -97,7 +97,6 @@
       this.Controls.Add(this.dataGridView1);
       this.Name = "GenericListForm";
       this.Text = "Auswahlliste";
-      this.Load += new System.EventHandler(this.GenericListForm_Load);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.ResumeLayout(false);
 
