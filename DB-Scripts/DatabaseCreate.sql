@@ -313,7 +313,14 @@ CREATE VIEW view_qualitaetspruefer AS
     ort.plz,
     ort.ort,
     person.geburtsdatum,
-    person.email
+    person.email,
+    (
+      qualitaetspruefer.lohn *
+      (
+        SELECT SUM(stunden) FROM qualitaetsbewertung
+          WHERE qualitaetspruefer_id = qualitaetspruefer.id
+      )
+    ) AS gesamtlohn
   FROM qualitaetspruefer
     INNER JOIN person
       ON person.id = qualitaetspruefer.person_id

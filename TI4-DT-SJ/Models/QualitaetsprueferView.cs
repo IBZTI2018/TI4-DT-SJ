@@ -15,6 +15,7 @@ namespace TI4_DT_SJ.Models {
     public string ort;
     public DateTime geburtsdatum;
     public string email;
+    public double gesamtlohn;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -31,7 +32,8 @@ namespace TI4_DT_SJ.Models {
           {"plz", this.plz},
           {"ort", this.ort},
           {"geburtsdatum", this.geburtsdatum},
-          {"email", this.email}
+          {"email", this.email},
+          {"gesamtlohn", this.gesamtlohn}
         };
       }
     }
@@ -53,6 +55,7 @@ namespace TI4_DT_SJ.Models {
         this.ort = reader.GetString(8);
         this.geburtsdatum = reader.GetDateTime(9);
         this.email = reader.GetString(10);
+        this.gesamtlohn = (!reader.IsDBNull(11)) ? reader.GetDouble(11) : 0.0;
       }
     }
 
