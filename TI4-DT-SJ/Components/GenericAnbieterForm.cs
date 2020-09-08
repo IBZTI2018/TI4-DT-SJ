@@ -118,9 +118,10 @@ namespace TI4_DT_SJ.Components {
       {
         this.anbieter.prov_aufnahmedatum = DateTime.Now;
         this.anbieter.Update();
+        this.labelProvAufn.Text = this.anbieter.prov_aufnahmedatum.ToString();
       } else
       {
-        MessageBox.Show("Anbieter erfüllt die Bedingungen für eine provisorische Aufnahme nicht!");
+        MessageBox.Show("Anbieter erfüllt die Bedingungen für eine provisorische Aufnahme nicht!\nLaden Sie das Fenster ggf neu.");
       }
     }
 
@@ -135,6 +136,7 @@ namespace TI4_DT_SJ.Components {
         {
           this.anbieter.prov_aufnahmedatum = DateTime.Now;
           this.anbieter.Update();
+          this.labelAufn.Text = this.anbieter.aufnahmedatum.ToString();
         } else
         {
           MessageBox.Show("Anbieter erfüllt die Bedingungen ("+c+"/2 Q-Bewertungen) für eine finale Aufnahme nicht!");
@@ -142,7 +144,7 @@ namespace TI4_DT_SJ.Components {
       }
       else
       {
-        MessageBox.Show("Anbieter erfüllt die Bedingungen für eine finale Aufnahme nicht!");
+        MessageBox.Show("Anbieter erfüllt die Bedingungen für eine finale Aufnahme nicht!\nLaden Sie das Fenster ggf neu.");
       }
     }
   }
