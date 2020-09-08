@@ -387,6 +387,8 @@ CREATE VIEW view_qbewertung AS
     INNER JOIN person AS aperson
       ON aperson.id = anbieter.person_id 
 
+GO
+
 CREATE VIEW view_abo AS
   SELECT
     abo.id,
@@ -457,6 +459,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON view_qbewertung TO casestudy_role_develo
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_adresse TO casestudy_role_development;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_person TO casestudy_role_development;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_rechnung TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_abo TO casestudy_role_development;
 
 ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
 
@@ -484,6 +487,7 @@ GRANT SELECT ON view_person TO casestudy_role_administration;
 GRANT SELECT ON view_adresse TO casestudy_role_administration;
 GRANT SELECT ON view_qualitaetspruefer TO casestudy_role_administration;
 GRANT SELECT ON view_rechnung TO casestudy_role_administration;
+GRANT SELECT ON view_abo TO casestudy_role_administration;
 
 ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
 
@@ -505,6 +509,7 @@ GRANT SELECT ON aboart TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON qualitaetsbewertung TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON view_anbieter TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON view_nachfrager TO casestudy_role_mitgliedsverwaltung;
+GRANT SELECT ON view_abo TO casestudy_role_mitgliedsverwaltung;
 
 ALTER ROLE casestudy_role_mitgliedsverwaltung ADD MEMBER casestudy_mitgliederverwalter;
 

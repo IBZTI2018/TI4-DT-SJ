@@ -36,7 +36,8 @@ namespace TI4_DT_SJ.Components {
       opts.dataLoader = () =>
       {
         List<Dictionaryable> models = new List<Dictionaryable>();
-        foreach (AnbieterView anbieterView in AnbieterView.List()) models.Add(anbieterView);
+        string onlyAcceptedMembers = "WHERE aufnahmedatum IS NOT NULL AND prov_aufnahmedatum IS NOT NULL";
+        foreach (AnbieterView anbieterView in AnbieterView.List(onlyAcceptedMembers)) models.Add(anbieterView);
         return models;
       };
 

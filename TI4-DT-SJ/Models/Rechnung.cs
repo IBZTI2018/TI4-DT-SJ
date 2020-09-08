@@ -47,16 +47,23 @@ namespace TI4_DT_SJ.Models
       }
     }
 
-    public Rechnung(int abo_id, int anbieter_id, int termin_id, string rechnungs_nr, float betrag)
+    public Rechnung(int abo_id, int anbieter_id, string rechnungs_nr, double betrag)
     {
       this.abo_id = abo_id;
+      this.anbieter_id = anbieter_id;
+      this.rechnungs_nr = rechnungs_nr;
+      this.betrag = betrag;
+    }
+
+    public Rechnung(int anbieter_id, int termin_id, double betrag, string rechnungs_nr)
+    {
       this.anbieter_id = anbieter_id;
       this.termin_id = termin_id;
       this.rechnungs_nr = rechnungs_nr;
       this.betrag = betrag;
     }
 
-    public Rechnung(int id, int abo_id, int anbieter_id, int termin_id, string rechnungs_nr, float betrag)
+    public Rechnung(int id, int abo_id, int anbieter_id, int termin_id, string rechnungs_nr, double betrag)
     {
       this.id = id;
       this.abo_id = abo_id;
@@ -70,6 +77,8 @@ namespace TI4_DT_SJ.Models
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
       values.Remove("id");
+      if (values["termin_id"] == 0) values.Remove("termin_id");
+      if (values["abo_id"] == 0) values.Remove("abo_id");
       this.id = Database.Instance.insertCommand("rechnung", values);
       return this.id;
     }

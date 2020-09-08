@@ -113,7 +113,22 @@ namespace TI4_DT_SJ
         aboForm.Show();
         aboForm.onSave = (Abo abo) =>
         {
-          int id = abo.Insert();
+          Database.Instance.getCommand("BEGIN TRANSACTION").ExecuteNonQuery();
+          try
+          {
+            int id = abo.Insert();
+
+            // Der Abschluss eines Abos erzeugt immer automatisch auch eine Rechnung!
+            Rechnung rechnung = new Rechnung(abo.id, abo.anbieter_id, "VK-ABO-"+abo.id, abo.aboart.gebuehr);
+            rechnung.Insert();
+
+            Database.Instance.getCommand("COMMIT").ExecuteNonQuery();
+          } catch(Exception ex)
+          {
+            Database.Instance.getCommand("ROLLBACK").ExecuteNonQuery();
+            MessageBox.Show("Fehler beim Lösen des Abos!\n" + ex.Message);
+          }
+
           aboForm.Close();
           listForm.reload();
         };
