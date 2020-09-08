@@ -22,6 +22,8 @@ namespace TI4_DT_SJ.Components {
       this.labelAnbieter.Text = this.bewertung.anbieter.person.vorname + " " + this.bewertung.anbieter.person.nachname;
       this.labelPruefer.Text = this.bewertung.qualitaetspruefer.person.vorname + " " + this.bewertung.qualitaetspruefer.person.nachname;
       this.inputText.Text = this.bewertung.bezeichnung;
+      this.inputDate.Value = this.bewertung.datum;
+      this.inputStunden.Value = Convert.ToDecimal(this.bewertung.stunden);
     }
 
     public GenericQBerichtForm()
@@ -44,6 +46,8 @@ namespace TI4_DT_SJ.Components {
       }
 
       this.bewertung.bezeichnung = this.inputText.Text;
+      this.bewertung.datum = this.inputDate.Value;
+      this.bewertung.stunden = Convert.ToDouble(this.inputStunden.Value);
       this.bewertung.anbieter_id = this.bewertung.anbieter.id;
       this.bewertung.qualitaetspruefer_id = this.bewertung.qualitaetspruefer.id;
 

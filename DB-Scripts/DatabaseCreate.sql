@@ -209,7 +209,9 @@ CREATE TABLE qualitaetsbewertung (
   id INT PRIMARY KEY IDENTITY(1, 1),
   anbieter_id INT FOREIGN KEY REFERENCES anbieter(id) NOT NULL,
   qualitaetspruefer_id INT FOREIGN KEY REFERENCES qualitaetspruefer(id) NOT NULL,
-  bezeichnung TEXT NULL
+  bezeichnung TEXT NULL,
+  datum DATE NOT NULL,
+  stunden FLOAT NOT NULL
 );
 
 GO
@@ -365,6 +367,8 @@ CREATE VIEW view_qbewertung AS
     aperson.vorname,
     aperson.nachname,
     qperson.nachname AS pruefer,
+    qualitaetsbewertung.datum,
+    qualitaetsbewertung.stunden,
     qualitaetsbewertung.bezeichnung
   FROM qualitaetsbewertung
     INNER JOIN qualitaetspruefer
@@ -385,7 +389,7 @@ CREATE VIEW view_rechnung AS
     rechnung.betrag,
     aperson.vorname,
     aperson.nachname,
-    aboart.bezeichnung, AS abo
+    aboart.bezeichnung AS abo,
     termin.datum AS termin
   FROM rechnung
     INNER JOIN anbieter

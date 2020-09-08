@@ -161,14 +161,18 @@ INSERT INTO rechnung (abo_id, anbieter_id, termin_id, rechnungs_nr, betrag) VALU
     80.0
   );
 
-INSERT INTO qualitaetsbewertung (anbieter_id, qualitaetspruefer_id, bezeichnung) VALUES
+INSERT INTO qualitaetsbewertung (anbieter_id, qualitaetspruefer_id, bezeichnung, datum, stunden) VALUES
   (
     (SELECT TOP 1 id FROM anbieter ORDER BY id),
     (SELECT TOP 1 id FROM qualitaetspruefer ORDER BY id),
-    'Prüfungen bestanden!'
+    'Prüfungen bestanden!',
+    '20200120',
+    1.5
   ),
   (
     (SELECT TOP 1 id FROM anbieter ORDER BY id),
     (SELECT TOP 1 id FROM qualitaetspruefer),
-    'Sieht immer noch alles gut aus!'
+    'Sieht immer noch alles gut aus!',
+    '20200514',
+    5.5
   );

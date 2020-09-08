@@ -11,6 +11,8 @@ namespace TI4_DT_SJ.Models {
     public string vorname;
     public string nachname;
     public string pruefer;
+    public DateTime datum;
+    public double stunden;
     public string bezeichnung;
 
     public Dictionary<String, dynamic> ValuesAsDict
@@ -22,7 +24,9 @@ namespace TI4_DT_SJ.Models {
           {"vorname", this.vorname},
           {"nachname", this.nachname},
           {"pruefer", this.pruefer},
-          {"bezeichnung", this.bezeichnung},
+          {"datum", this.datum},
+          {"stunden", this.stunden},
+          {"bezeichnung", this.bezeichnung}
         };
       }
     }
@@ -37,7 +41,9 @@ namespace TI4_DT_SJ.Models {
         this.vorname = reader.GetString(1);
         this.nachname = reader.GetString(2);
         this.pruefer = reader.GetString(3);
-        this.bezeichnung = reader.GetString(4);
+        this.datum = reader.GetDateTime(4);
+        this.stunden = reader.GetDouble(5);
+        this.bezeichnung = reader.GetString(6);
       }
     }
 

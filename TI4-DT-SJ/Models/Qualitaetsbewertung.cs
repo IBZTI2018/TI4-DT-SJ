@@ -10,6 +10,8 @@ namespace TI4_DT_SJ.Models
     public int anbieter_id;
     public int qualitaetspruefer_id;
     public string bezeichnung;
+    public DateTime datum;
+    public double stunden;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -19,7 +21,9 @@ namespace TI4_DT_SJ.Models
           {"id", this.id },
           {"anbieter_id", this.anbieter_id},
           {"qualitaetspruefer_id", this.qualitaetspruefer_id},
-          {"bezeichnung", this.bezeichnung}
+          {"bezeichnung", this.bezeichnung},
+          {"datum", this.datum},
+          {"stunden", this.stunden}
         };
       }
     }
@@ -37,22 +41,28 @@ namespace TI4_DT_SJ.Models
         this.anbieter_id = reader.GetInt32(1);
         this.qualitaetspruefer_id = reader.GetInt32(2);
         this.bezeichnung = reader.GetString(3);
+        this.datum = reader.GetDateTime(4);
+        this.stunden = reader.GetDouble(5);
       }
     }
 
-    public Qualitaetsbewertung(int anbieter_id, int qualitaetspruefer_id, string bezeichnung, float score)
+    public Qualitaetsbewertung(int anbieter_id, int qualitaetspruefer_id, string bezeichnung, DateTime datum, float stunden)
     {
       this.anbieter_id = anbieter_id;
       this.qualitaetspruefer_id = qualitaetspruefer_id;
       this.bezeichnung = bezeichnung;
+      this.datum = datum;
+      this.stunden = stunden;
     }
 
-    public Qualitaetsbewertung(int id, int anbieter_id, int qualitaetspruefer_id, string bezeichnung, float score)
+    public Qualitaetsbewertung(int id, int anbieter_id, int qualitaetspruefer_id, string bezeichnung, DateTime datum, float stunden)
     {
       this.id = id;
       this.anbieter_id = anbieter_id;
       this.qualitaetspruefer_id = qualitaetspruefer_id;
       this.bezeichnung = bezeichnung;
+      this.datum = datum;
+      this.stunden = stunden;
     }
 
     public int Insert()

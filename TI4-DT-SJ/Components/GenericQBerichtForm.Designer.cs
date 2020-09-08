@@ -35,6 +35,11 @@
       this.anbieterSelector = new System.Windows.Forms.Button();
       this.prueferSelector = new System.Windows.Forms.Button();
       this.saveButton = new System.Windows.Forms.Button();
+      this.inputDate = new System.Windows.Forms.DateTimePicker();
+      this.inputStunden = new System.Windows.Forms.NumericUpDown();
+      this.label4 = new System.Windows.Forms.Label();
+      this.label5 = new System.Windows.Forms.Label();
+      ((System.ComponentModel.ISupportInitialize)(this.inputStunden)).BeginInit();
       this.SuspendLayout();
       // 
       // label1
@@ -110,7 +115,7 @@
       // 
       // saveButton
       // 
-      this.saveButton.Location = new System.Drawing.Point(99, 196);
+      this.saveButton.Location = new System.Drawing.Point(99, 248);
       this.saveButton.Name = "saveButton";
       this.saveButton.Size = new System.Drawing.Size(183, 23);
       this.saveButton.TabIndex = 8;
@@ -118,11 +123,53 @@
       this.saveButton.UseVisualStyleBackColor = true;
       this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
       // 
+      // inputDate
+      // 
+      this.inputDate.Location = new System.Drawing.Point(99, 196);
+      this.inputDate.Name = "inputDate";
+      this.inputDate.Size = new System.Drawing.Size(183, 20);
+      this.inputDate.TabIndex = 9;
+      // 
+      // inputStunden
+      // 
+      this.inputStunden.DecimalPlaces = 2;
+      this.inputStunden.Location = new System.Drawing.Point(99, 222);
+      this.inputStunden.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+      this.inputStunden.Name = "inputStunden";
+      this.inputStunden.Size = new System.Drawing.Size(183, 20);
+      this.inputStunden.TabIndex = 10;
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(12, 202);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(38, 13);
+      this.label4.TabIndex = 11;
+      this.label4.Text = "Datum";
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(12, 224);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(47, 13);
+      this.label5.TabIndex = 12;
+      this.label5.Text = "Stunden";
+      // 
       // GenericQBerichtForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(327, 232);
+      this.ClientSize = new System.Drawing.Size(320, 284);
+      this.Controls.Add(this.label5);
+      this.Controls.Add(this.label4);
+      this.Controls.Add(this.inputStunden);
+      this.Controls.Add(this.inputDate);
       this.Controls.Add(this.saveButton);
       this.Controls.Add(this.prueferSelector);
       this.Controls.Add(this.anbieterSelector);
@@ -134,6 +181,7 @@
       this.Controls.Add(this.label1);
       this.Name = "GenericQBerichtForm";
       this.Text = "Qualitätsbericht";
+      ((System.ComponentModel.ISupportInitialize)(this.inputStunden)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -150,5 +198,9 @@
         private System.Windows.Forms.Button anbieterSelector;
         private System.Windows.Forms.Button prueferSelector;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.DateTimePicker inputDate;
+        private System.Windows.Forms.NumericUpDown inputStunden;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
