@@ -138,10 +138,18 @@ namespace TI4_DT_SJ
       aboViewList.Show();
     }
 
-    private void button4_Click(object sender, EventArgs e)
+    private void rechnungenButton_Click(object sender, EventArgs e)
     {
-      RechnungForm f16 = new RechnungForm();
-      f16.Show();
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (RechnungView rechnung in RechnungView.List()) models.Add(rechnung);
+        return models;
+      };
+
+      GenericListForm rechnungViewList = new GenericListForm("Rechnungen", opts);
+      rechnungViewList.Show();
     }
   }
 }

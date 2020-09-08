@@ -510,6 +510,7 @@ GRANT SELECT ON qualitaetsbewertung TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON view_anbieter TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON view_nachfrager TO casestudy_role_mitgliedsverwaltung;
 GRANT SELECT ON view_abo TO casestudy_role_mitgliedsverwaltung;
+GRANT SELECT ON view_rechnung TO casestudy_role_mitgliedsverwaltung;
 
 ALTER ROLE casestudy_role_mitgliedsverwaltung ADD MEMBER casestudy_mitgliederverwalter;
 

@@ -105,9 +105,9 @@
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(122, 68);
       this.button4.TabIndex = 20;
-      this.button4.Text = "x";
+      this.button4.Text = "Rechnungen";
       this.button4.UseVisualStyleBackColor = true;
-      this.button4.Click += new System.EventHandler(this.button4_Click);
+      this.button4.Click += new System.EventHandler(this.rechnungenButton_Click);
       // 
       // label4
       // 
