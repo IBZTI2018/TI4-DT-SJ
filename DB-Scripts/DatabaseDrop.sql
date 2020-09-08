@@ -57,3 +57,4 @@ DROP VIEW view_qualitaetspruefer;
 DROP VIEW view_qbewertung;
 DROP VIEW view_adresse;
 DROP VIEW view_person;
+DROP VIEW view_rechnung;

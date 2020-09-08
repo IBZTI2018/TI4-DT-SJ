@@ -378,6 +378,29 @@ CREATE VIEW view_qbewertung AS
 
 GO
 
+CREATE VIEW view_rechnung AS
+  SELECT 
+    rechnung.id,
+    rechnung.rechnungs_nr,
+    rechnung.betrag,
+    aperson.vorname,
+    aperson.nachname,
+    aboart.bezeichnung, AS abo
+    termin.datum AS termin
+  FROM rechnung
+    INNER JOIN anbieter
+      ON anbieter.id = rechnung.anbieter_id
+    INNER JOIN person AS aperson
+      ON aperson.id = anbieter.person_id
+    LEFT OUTER JOIN abo
+      ON abo.id = rechnung.abo_id
+    INNER JOIN aboart
+      ON aboart.id = abo.aboart_id
+    LEFT OUTER JOIN termin
+      ON termin.id = rechnung.termin_id;
+
+GO
+
 ---------------------------------------------------------------------------------------------------
 -- Erstellung von Rollen und Vergabe von Berechtungen                                            --
 ---------------------------------------------------------------------------------------------------
@@ -404,6 +427,11 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON qualitaetspruefer TO casestudy_role_deve
 GRANT SELECT, INSERT, UPDATE, DELETE ON qualitaetsbewertung TO casestudy_role_development;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_anbieter TO casestudy_role_development;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_nachfrager TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_qualitaetspruefer TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_qbewertung TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_adresse TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_person TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_rechnung TO casestudy_role_development;
 
 ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
 
@@ -430,6 +458,7 @@ GRANT SELECT ON view_nachfrager TO casestudy_role_administration;
 GRANT SELECT ON view_person TO casestudy_role_administration;
 GRANT SELECT ON view_adresse TO casestudy_role_administration;
 GRANT SELECT ON view_qualitaetspruefer TO casestudy_role_administration;
+GRANT SELECT ON view_rechnung TO casestudy_role_administration;
 
 ALTER ROLE casestudy_role_administration ADD MEMBER casestudy_administration;
 

@@ -204,7 +204,7 @@ namespace TI4_DT_SJ
       opts.dataLoader = () =>
       {
         List<Dictionaryable> models = new List<Dictionaryable>();
-        foreach (Rechnung rechnung in Rechnung.List()) models.Add(rechnung);
+        foreach (RechnungView rechnung in RechnungView.List()) models.Add(rechnung);
         return models;
       };
       opts.onUpdate = (GenericListForm listForm, int id) =>
