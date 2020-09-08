@@ -228,10 +228,10 @@
     <Compile Include="Forms\MitgliederverwaltungForm.Designer.cs">
       <DependentUpon>MitgliederverwaltungForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnusedForms\StandplatzverwaltungForm.cs">
+    <Compile Include="Forms\StandplatzverwaltungForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UnusedForms\StandplatzverwaltungForm.Designer.cs">
+    <Compile Include="Forms\StandplatzverwaltungForm.Designer.cs">
       <DependentUpon>StandplatzverwaltungForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UnusedForms\QualitätsprüferForm.cs">
@@ -352,7 +352,7 @@
     <EmbeddedResource Include="UnusedForms\QualitätsprüferForm.resx">
       <DependentUpon>QualitätsprüferForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\StandplatzverwaltungForm.resx">
+    <EmbeddedResource Include="Forms\StandplatzverwaltungForm.resx">
       <DependentUpon>StandplatzverwaltungForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericListForm.resx">

@@ -44,7 +44,7 @@
       this.label3.Location = new System.Drawing.Point(391, 9);
       this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(210, 17);
+      this.label3.Size = new System.Drawing.Size(157, 13);
       this.label3.TabIndex = 7;
       this.label3.Text = "Jennifer Mentner; Sven Gehring";
       this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -55,7 +55,7 @@
       this.label2.Location = new System.Drawing.Point(4, 9);
       this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(160, 17);
+      this.label2.Size = new System.Drawing.Size(122, 13);
       this.label2.TabIndex = 8;
       this.label2.Text = "TI4-ZH DT3 Case-Study";
       this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -66,7 +66,7 @@
       this.label1.Location = new System.Drawing.Point(226, 9);
       this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(132, 17);
+      this.label1.Size = new System.Drawing.Size(100, 13);
       this.label1.TabIndex = 9;
       this.label1.Text = "Standplatzverwalter";
       this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -96,7 +96,7 @@
       // button3
       // 
       this.button3.AccessibleDescription = "button3_Click";
-      this.button3.Location = new System.Drawing.Point(171, 96);
+      this.button3.Location = new System.Drawing.Point(167, 97);
       this.button3.Name = "button3";
       this.button3.Size = new System.Drawing.Size(123, 68);
       this.button3.TabIndex = 12;
@@ -121,11 +121,11 @@
       this.label4.Location = new System.Drawing.Point(205, 76);
       this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(187, 17);
+      this.label4.Size = new System.Drawing.Size(142, 13);
       this.label4.TabIndex = 14;
       this.label4.Text = "Was wollen Sie bearbeiten...";
       // 
-      // Standplatzverwaltung
+      // StandplatzverwaltungForm
       // 
       this.ClientSize = new System.Drawing.Size(601, 178);
       this.Controls.Add(this.label4);
@@ -137,7 +137,7 @@
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label3);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-      this.Name = "Standplatzverwaltung";
+      this.Name = "StandplatzverwaltungForm";
       this.Text = "Freier Markt im Kleinen";
       this.Load += new System.EventHandler(this.Form3_Load);
       this.ResumeLayout(false);
