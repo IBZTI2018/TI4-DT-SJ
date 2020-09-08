@@ -245,6 +245,8 @@ CREATE INDEX i_fk_qualitaetsbewertung_qualitaetspruefer ON qualitaetsbewertung(q
 
 GO
 
+-- Das Anbieter View wird verwendet um einen Anbieter mitsamt seinen Personendaten, sowie seinen
+-- Metadaten des Anmeldungsprozesses abzubilden. Auch die Anzahl Q-Bewertungen wird ausgegeben.
 CREATE VIEW view_anbieter AS
   SELECT 
     anbieter.id,
@@ -277,6 +279,7 @@ CREATE VIEW view_anbieter AS
 
 GO
 
+-- Das Nachfragen View wird verwendet um einen Nachfragen mitsamt seinen Personendaten abzubilden.
 CREATE VIEW view_nachfrager AS
   SELECT 
     nachfrager.id,
@@ -301,6 +304,9 @@ CREATE VIEW view_nachfrager AS
 
 GO
 
+-- Das Q-Prüfer View wird verwendet um einen Q-Prüfer mitsamt seinen Personendaten, sowie seinem
+-- Lohn abzubilden. Momentan wird immer der gesamte erwirtschaftete Betrag ausgegeben, je nach
+-- zukünftiger Vorgabe des Auftraggebers, könnte dies aber noch angepasst werden.
 CREATE VIEW view_qualitaetspruefer AS
   SELECT 
     qualitaetspruefer.id,
@@ -333,6 +339,8 @@ CREATE VIEW view_qualitaetspruefer AS
 
 GO
 
+
+-- Das Person View wird verwendet um einen Person mitsamt Anrede und Adresse auszugeben.
 CREATE VIEW view_person AS
   SELECT 
     person.id,
@@ -355,6 +363,7 @@ CREATE VIEW view_person AS
 
 GO
 
+-- Das Adresse View wird verwendet um einen Adresse mitsamt Ortsinformationen auszugeben.
 CREATE VIEW view_adresse AS
   SELECT 
     adresse.id,
@@ -368,6 +377,8 @@ CREATE VIEW view_adresse AS
 
 GO
 
+-- Das Q-Bewertung View wird verwendet um einen Q-Bewertung mitsamt Personendaten der
+-- zugehörigen Anbieter und Q-Prüfer auszugeben.
 CREATE VIEW view_qbewertung AS
   SELECT
     qualitaetsbewertung.id,
@@ -389,6 +400,7 @@ CREATE VIEW view_qbewertung AS
 
 GO
 
+-- Das Abo View wird verwendet um ein Abo mitsamt Personendaten des Anbieters und Abo-Art auszugeben.
 CREATE VIEW view_abo AS
   SELECT
     abo.id,
@@ -405,6 +417,8 @@ CREATE VIEW view_abo AS
       ON aboart.id = abo.aboart_id;
 GO
 
+-- Das Rechnung View wird verwendet um einen Rechnung mitsamt den Personendaten des zugehörigen
+-- Anbieters sowie entwerder der zugehörigen Abo-Art oder dem Zugehörigen Termindatum auszugeben.
 CREATE VIEW view_rechnung AS
   SELECT 
     rechnung.id,
