@@ -9,6 +9,7 @@ namespace TI4_DT_SJ.Models
     public int id;
     public int anbieter_id;
     public int aboart_id;
+    public DateTime abschlussdatum;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -17,13 +18,16 @@ namespace TI4_DT_SJ.Models
         return new Dictionary<String, dynamic>() {
           {"id", this.id },
           { "anbieter_id", this.anbieter_id },
-          { "aboart_id", this.aboart_id }
+          { "aboart_id", this.aboart_id },
+          { "abschlussdatum", this.abschlussdatum }
         };
       }
     }
 
     public Anbieter anbieter;
     public Aboart aboart;
+
+    public Abo() { }
 
     public Abo(SqlDataReader reader)
     {
@@ -32,20 +36,23 @@ namespace TI4_DT_SJ.Models
         this.id = reader.GetInt32(0);
         this.anbieter_id = reader.GetInt32(1);
         this.aboart_id = reader.GetInt32(2);
+        this.abschlussdatum = reader.GetDateTime(3);
       }
     }
 
-    public Abo(int anbieter_id, int aboart_id)
+    public Abo(int anbieter_id, int aboart_id, DateTime abschlussdatum)
     {
       this.anbieter_id = anbieter_id;
       this.aboart_id = aboart_id;
+      this.abschlussdatum = abschlussdatum;
     }
 
-    public Abo(int id, int anbieter_id, int aboart_id)
+    public Abo(int id, int anbieter_id, int aboart_id, DateTime abschlussdatum)
     {
       this.id = id;
       this.anbieter_id = anbieter_id;
       this.aboart_id = aboart_id;
+      this.abschlussdatum = abschlussdatum;
     }
 
     public int Insert()

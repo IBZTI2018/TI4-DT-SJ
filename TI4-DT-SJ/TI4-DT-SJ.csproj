@@ -53,6 +53,12 @@
     <Compile Include="Components\GenericAboArtForm.Designer.cs">
       <DependentUpon>GenericAboArtForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GenericAboForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericAboForm.Designer.cs">
+      <DependentUpon>GenericAboForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\GenericAdresseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,7 @@
     <Compile Include="Forms\AdministrationsForm.Designer.cs">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AboView.cs" />
     <Compile Include="Models\AdresseView.cs" />
     <Compile Include="Models\PersonView.cs" />
     <Compile Include="Models\QualitaetsbewertungView.cs" />
@@ -267,6 +274,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Components\GenericAboArtForm.resx">
       <DependentUpon>GenericAboArtForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GenericAboForm.resx">
+      <DependentUpon>GenericAboForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericAdresseForm.resx">
       <DependentUpon>GenericAdresseForm.cs</DependentUpon>

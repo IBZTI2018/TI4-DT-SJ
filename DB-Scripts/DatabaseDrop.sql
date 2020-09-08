@@ -58,3 +58,4 @@ DROP VIEW view_qbewertung;
 DROP VIEW view_adresse;
 DROP VIEW view_person;
 DROP VIEW view_rechnung;
+DROP VIEW view_abo;

@@ -387,6 +387,20 @@ CREATE VIEW view_qbewertung AS
     INNER JOIN person AS aperson
       ON aperson.id = anbieter.person_id 
 
+CREATE VIEW view_abo AS
+  SELECT
+    abo.id,
+    aperson.vorname,
+    aperson.nachname,
+    aboart.bezeichnung AS abotyp,
+    abo.abschlussdatum
+  FROM abo
+    INNER JOIN anbieter
+      ON anbieter.id = abo.anbieter_id
+    INNER JOIN person AS aperson
+      ON aperson.id = anbieter.person_id 
+    INNER JOIN aboart
+      ON aboart.id = abo.aboart_id;
 GO
 
 CREATE VIEW view_rechnung AS

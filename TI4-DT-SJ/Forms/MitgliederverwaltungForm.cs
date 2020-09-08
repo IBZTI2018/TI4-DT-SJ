@@ -98,10 +98,29 @@ namespace TI4_DT_SJ
       nachfragerViewList.Show();
     }
 
-    private void button3_Click(object sender, EventArgs e)
+    private void aboButton_Click(object sender, EventArgs e)
     {
-      PersonForm f8 = new PersonForm();
-      f8.Show();
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (AboView abo in AboView.List()) models.Add(abo);
+        return models;
+      };
+      opts.onCreate = (GenericListForm listForm) =>
+      {
+        GenericAboForm aboForm = new GenericAboForm();
+        aboForm.Show();
+        aboForm.onSave = (Abo abo) =>
+        {
+          int id = abo.Insert();
+          aboForm.Close();
+          listForm.reload();
+        };
+      };
+
+      GenericListForm aboViewList = new GenericListForm("Abonnemente", opts);
+      aboViewList.Show();
     }
 
     private void button4_Click(object sender, EventArgs e)
