@@ -113,6 +113,12 @@
     <Compile Include="Components\GenericRechnungForm.Designer.cs">
       <DependentUpon>GenericRechnungForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GenericStandortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericStandortForm.Designer.cs">
+      <DependentUpon>GenericStandortForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Forms\AdministrationsForm.cs">
       <SubType>Form</SubType>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericRechnungForm.resx">
       <DependentUpon>GenericRechnungForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GenericStandortForm.resx">
+      <DependentUpon>GenericStandortForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdministrationsForm.resx">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>
