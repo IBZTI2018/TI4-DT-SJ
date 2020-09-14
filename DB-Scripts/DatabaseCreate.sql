@@ -71,36 +71,9 @@ CREATE TABLE anbieter (
   prov_aufnahmedatum DATE NULL,
   bonitaetspruefung BIT NOT NULL DEFAULT 0,
   unterschrift BIT NOT NULL DEFAULT 0,
-  mitarbeiterbesuch BIT NOT NULL DEFAULT 0,
+  mitarbeiterbesuch BIT NOT NULL DEFAULT 0
 
-  CONSTRAINT ck_anbieter CHECK (
-    -- Noch nicht aufgenommenes Mitglied hat keine Daten hinterlegt
-  (
-    aufnahmedatum IS NULL AND
-    prov_aufnahmedatum IS NULL
-  ) OR
-
-  -- Provisorische Aufnahme kann nur eingetragen werden, wenn die
-  -- Bonitätsprüfung und Unterschrift OK sind
-  (
-    aufnahmedatum IS NULL AND
-    prov_aufnahmedatum IS NOT NULL AND
-    bonitaetspruefung = 1 AND
-    unterschrift = 1 AND
-    mitarbeiterbesuch = 1
-   ) OR
-
-   -- Finale Aufnahme kann nur eingetragen sein, wenn das Mitglied
-   -- bereits provisorisch aufgenommen ist und mindestens 2 Q-Bewertungen hat.
-   -- Letzteres kann nicht mit Constraints geprüft werden, nur mit Funktionen.
-   (
-     aufnahmedatum IS NOT NULL AND
-     prov_aufnahmedatum IS NOT NULL AND
-     bonitaetspruefung = 1 AND
-     unterschrift = 1 AND
-      mitarbeiterbesuch = 1
-   )
-  )
+  -- Check constraint wird am Ende der Tabellenerstellung definiert.
 );
 
 -- In der Abo-Art-Tabelle werden alle möglichen Arten von Abonnements, welche an Anbieter verkauft
@@ -217,6 +190,54 @@ CREATE TABLE qualitaetsbewertung (
 GO
 
 ---------------------------------------------------------------------------------------------------
+-- Erstellung von UDF für komplexere CHECK queries                                               --
+---------------------------------------------------------------------------------------------------
+
+CREATE FUNCTION dbo.anzahlChecksFuerAnbieter(@anbieterId int) RETURNS int AS
+	BEGIN
+		DECLARE @nqbew int;
+		SELECT @nqbew = COUNT(*) FROM qualitaetsbewertung WHERE anbieter_id = @anbieterId;
+		RETURN @nqbew;
+	END;
+
+GO
+
+---------------------------------------------------------------------------------------------------
+-- Erstellung von komplexem CHECK query für Anbieter-Fortschritt                                 --
+---------------------------------------------------------------------------------------------------
+
+ALTER TABLE anbieter ADD CONSTRAINT ck_anbieter CHECK (
+  -- Noch nicht aufgenommenes Mitglied hat keine Daten hinterlegt
+  (
+    aufnahmedatum IS NULL AND
+    prov_aufnahmedatum IS NULL
+  ) OR
+
+  -- Provisorische Aufnahme kann nur eingetragen werden, wenn die
+  -- Bonitätsprüfung und Unterschrift OK sind
+  (
+    aufnahmedatum IS NULL AND
+    prov_aufnahmedatum IS NOT NULL AND
+    bonitaetspruefung = 1 AND
+    unterschrift = 1 AND
+    mitarbeiterbesuch = 1
+  ) OR
+
+  -- Finale Aufnahme kann nur eingetragen sein, wenn das Mitglied
+  -- bereits provisorisch aufgenommen ist und mindestens 2 Q-Bewertungen hat.
+  (
+    aufnahmedatum IS NOT NULL AND
+    prov_aufnahmedatum IS NOT NULL AND
+    bonitaetspruefung = 1 AND
+    unterschrift = 1 AND
+    mitarbeiterbesuch = 1 AND
+    dbo.anzahlChecksFuerAnbieter(id) >= 2
+  )
+);
+
+GO
+
+---------------------------------------------------------------------------------------------------
 -- Erstellung von Indizes für schnellere Abfragen                                                --
 ---------------------------------------------------------------------------------------------------
 
@@ -239,11 +260,11 @@ CREATE INDEX i_fk_qualitaetspruefer_person ON qualitaetspruefer(person_id);
 CREATE INDEX i_fk_qualitaetsbewertung_anbieter ON qualitaetsbewertung(anbieter_id);
 CREATE INDEX i_fk_qualitaetsbewertung_qualitaetspruefer ON qualitaetsbewertung(qualitaetspruefer_id);
 
+GO
+
 ---------------------------------------------------------------------------------------------------
 -- Erstellung von Views für einfachere UI-Abfragen                                               --
 ---------------------------------------------------------------------------------------------------
-
-GO
 
 -- Das Anbieter View wird verwendet um einen Anbieter mitsamt seinen Personendaten, sowie seinen
 -- Metadaten des Anmeldungsprozesses abzubilden. Auch die Anzahl Q-Bewertungen wird ausgegeben.

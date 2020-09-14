@@ -59,3 +59,9 @@ DROP VIEW view_adresse;
 DROP VIEW view_person;
 DROP VIEW view_rechnung;
 DROP VIEW view_abo;
+
+---------------------------------------------------------------------------------------------------
+-- Löschung von Funktionen                                                                       --
+---------------------------------------------------------------------------------------------------
+
+DROP FUNCTION dbo.anzahlChecksFuerAnbieter;

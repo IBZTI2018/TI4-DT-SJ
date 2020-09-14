@@ -99,7 +99,7 @@ INSERT INTO person (anrede_id, adresse_id, vorname, nachname, geburtsdatum, emai
   );
 
 INSERT INTO anbieter (person_id, aufnahmedatum, prov_aufnahmedatum, bonitaetspruefung, unterschrift, mitarbeiterbesuch) VALUES 
-  ((SELECT id FROM person WHERE vorname = 'Jennifer' AND nachname = 'Mentner'), '20200520', '20200201', 1, 1, 1),
+  ((SELECT id FROM person WHERE vorname = 'Jennifer' AND nachname = 'Mentner'), NULL, '20200201', 1, 1, 1),
   ((SELECT id FROM person WHERE vorname = 'Sven' AND nachname = 'Gehring'), NULL, '20200521', 1, 1, 1),
   ((SELECT id FROM person WHERE vorname = 'Fritz' AND nachname = 'Meyer'), NULL, NULL, 1, 1, 0),
   ((SELECT id FROM person WHERE vorname = 'Günther' AND nachname = 'Kusch'), NULL, NULL, 0, 0, 0);
