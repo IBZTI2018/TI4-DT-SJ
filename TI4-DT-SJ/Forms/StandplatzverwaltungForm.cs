@@ -37,22 +37,65 @@ namespace TI4_DT_SJ
 
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void rechnungButton_Click(object sender, EventArgs e)
     {
-      TerminForm f15 = new TerminForm();
-      f15.Show();
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (RechnungView rechnung in RechnungView.List()) models.Add(rechnung);
+        return models;
+      };
+
+      GenericListForm rechnungList = new GenericListForm("Rechnungen", opts);
+      rechnungList.Show();
     }
 
-    private void button2_Click(object sender, EventArgs e)
+    private void terminButton_Click(object sender, EventArgs e)
     {
-      RechnungForm f16 = new RechnungForm();
-      f16.Show();
     }
 
-    private void button3_Click(object sender, EventArgs e)
+    private void standplatzButton_Click(object sender, EventArgs e)
     {
-      StandortForm f17 = new StandortForm();
-      f17.Show();
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (StandplatzView standplatz in StandplatzView.List()) models.Add(standplatz);
+        return models;
+      };
+      opts.onCreate = (GenericListForm listForm) =>
+      {
+        GenericStandplatzForm standplatzForm = new GenericStandplatzForm();
+        standplatzForm.Show();
+        standplatzForm.onSave = (Standplatz newStandplatz) =>
+        {
+          int id = newStandplatz.Insert();
+          standplatzForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onUpdate = (GenericListForm listForm, int id) =>
+      {
+        Standplatz standplatz = Standplatz.Select(id);
+        GenericStandplatzForm standplatzForm = new GenericStandplatzForm(standplatz);
+        standplatzForm.Show();
+        standplatzForm.onSave = (Standplatz newStandplatz) =>
+        {
+          newStandplatz.Update();
+          standplatzForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onDelete = (GenericListForm listForm, int id) =>
+      {
+        Standplatz standort = Standplatz.Select(id);
+        standort.Delete();
+        listForm.reload();
+      };
+
+      GenericListForm standplatzList = new GenericListForm("Standplätze", opts);
+      standplatzList.Show();
     }
 
     private void standortButton_Click(object sender, EventArgs e)
@@ -94,8 +137,8 @@ namespace TI4_DT_SJ
         listForm.reload();
       };
 
-      GenericListForm nachfragerViewList = new GenericListForm("Nachfrager", opts);
-      nachfragerViewList.Show();
+      GenericListForm standortList = new GenericListForm("Standorte", opts);
+      standortList.Show();
     }
   }
 }

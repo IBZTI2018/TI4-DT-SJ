@@ -119,6 +119,12 @@
     <Compile Include="Components\GenericStandortForm.Designer.cs">
       <DependentUpon>GenericStandortForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GenericStandplatzForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericStandplatzForm.Designer.cs">
+      <DependentUpon>GenericStandplatzForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Forms\AdministrationsForm.cs">
       <SubType>Form</SubType>
@@ -133,6 +139,7 @@
     <Compile Include="Models\QualitaetsbewertungView.cs" />
     <Compile Include="Models\QualitaetsprueferView.cs" />
     <Compile Include="Models\RechnungView.cs" />
+    <Compile Include="Models\StandplatzView.cs" />
     <Compile Include="UnusedForms\AnredeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericStandortForm.resx">
       <DependentUpon>GenericStandortForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GenericStandplatzForm.resx">
+      <DependentUpon>GenericStandplatzForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdministrationsForm.resx">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>

@@ -463,6 +463,18 @@ CREATE VIEW view_rechnung AS
 
 GO
 
+-- Das Standplatz View wird verwendet um einen Standplatz mit zugehörigem Standortnamen anzuzeigen
+CREATE VIEW view_standplatz AS
+  SELECT
+    standplatz.id,
+    standplatz.standplatz_nr,
+    standort.bezeichnung AS standort
+  FROM standplatz
+    INNER JOIN standort
+      ON standort.id = standplatz.standort_id;
+
+GO
+
 ---------------------------------------------------------------------------------------------------
 -- Erstellung von Rollen und Vergabe von Berechtungen                                            --
 ---------------------------------------------------------------------------------------------------
@@ -495,6 +507,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON view_adresse TO casestudy_role_developme
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_person TO casestudy_role_development;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_rechnung TO casestudy_role_development;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_abo TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_standplatz TO casestudy_role_development;
 
 ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
 
@@ -558,6 +571,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON standort TO casestudy_role_standplatzver
 GRANT SELECT, INSERT, UPDATE, DELETE ON standplatz TO casestudy_role_standplatzverwaltung;
 GRANT SELECT, INSERT, UPDATE, DELETE ON termin TO casestudy_role_standplatzverwaltung;
 GRANT SELECT, INSERT  ON rechnung TO casestudy_role_standplatzverwaltung;
+GRANT SELECT ON view_standplatz TO casestudy_role_standplatzverwaltung;
 
 ALTER ROLE casestudy_role_standplatzverwaltung ADD MEMBER casestudy_standplatzverwalter;
 

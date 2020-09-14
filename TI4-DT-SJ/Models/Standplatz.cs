@@ -24,6 +24,8 @@ namespace TI4_DT_SJ.Models
 
     public Standort standort;
 
+    public Standplatz() { }
+
     public Standplatz(SqlDataReader reader)
     {
       if (reader.HasRows)
@@ -72,6 +74,18 @@ namespace TI4_DT_SJ.Models
       Standplatz model = (Standplatz)Database.Instance.selectCommand("standplatz", id, typeof(Standplatz));
       model.standort = Standort.Select(model.standort_id);
       return model;
+    }
+
+    public static List<Standplatz> List()
+    {
+      List<Standplatz> models = new List<Standplatz>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM standplatz ").ExecuteReader();
+      while (reader.Read())
+      {
+        models.Add(new Standplatz(reader));
+      }
+      reader.Close();
+      return models;
     }
   }
 }

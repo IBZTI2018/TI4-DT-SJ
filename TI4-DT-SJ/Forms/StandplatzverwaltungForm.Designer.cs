@@ -78,9 +78,9 @@
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(122, 69);
       this.button1.TabIndex = 10;
-      this.button1.Text = "Termin";
+      this.button1.Text = "Rechnung";
       this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
+      this.button1.Click += new System.EventHandler(this.rechnungButton_Click);
       // 
       // button2
       // 
@@ -89,9 +89,9 @@
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(123, 68);
       this.button2.TabIndex = 11;
-      this.button2.Text = "Rechnung";
+      this.button2.Text = "Termin";
       this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.button2_Click);
+      this.button2.Click += new System.EventHandler(this.terminButton_Click);
       // 
       // button3
       // 
@@ -102,7 +102,7 @@
       this.button3.TabIndex = 12;
       this.button3.Text = "Standplatz";
       this.button3.UseVisualStyleBackColor = true;
-      this.button3.Click += new System.EventHandler(this.button3_Click);
+      this.button3.Click += new System.EventHandler(this.standplatzButton_Click);
       // 
       // button4
       // 

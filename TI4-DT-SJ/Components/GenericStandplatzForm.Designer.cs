@@ -31,7 +31,8 @@
       this.labelStandort = new System.Windows.Forms.Label();
       this.standortPicker = new System.Windows.Forms.Button();
       this.saveButton = new System.Windows.Forms.Button();
-      this.textBox1 = new System.Windows.Forms.TextBox();
+      this.inputNumber = new System.Windows.Forms.NumericUpDown();
+      ((System.ComponentModel.ISupportInitialize)(this.inputNumber)).BeginInit();
       this.SuspendLayout();
       // 
       // label1
@@ -80,19 +81,24 @@
       this.saveButton.UseVisualStyleBackColor = true;
       this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
       // 
-      // textBox1
+      // inputNumber
       // 
-      this.textBox1.Location = new System.Drawing.Point(111, 40);
-      this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(100, 20);
-      this.textBox1.TabIndex = 5;
+      this.inputNumber.Location = new System.Drawing.Point(111, 35);
+      this.inputNumber.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+      this.inputNumber.Name = "inputNumber";
+      this.inputNumber.Size = new System.Drawing.Size(100, 20);
+      this.inputNumber.TabIndex = 5;
       // 
       // GenericStandplatzForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(247, 96);
-      this.Controls.Add(this.textBox1);
+      this.Controls.Add(this.inputNumber);
       this.Controls.Add(this.saveButton);
       this.Controls.Add(this.standortPicker);
       this.Controls.Add(this.labelStandort);
@@ -100,6 +106,7 @@
       this.Controls.Add(this.label1);
       this.Name = "GenericStandplatzForm";
       this.Text = "Standplatz";
+      ((System.ComponentModel.ISupportInitialize)(this.inputNumber)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -112,6 +119,6 @@
     private System.Windows.Forms.Label labelStandort;
     private System.Windows.Forms.Button standortPicker;
     private System.Windows.Forms.Button saveButton;
-    private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.NumericUpDown inputNumber;
   }
 }
