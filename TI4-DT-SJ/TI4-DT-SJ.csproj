@@ -140,108 +140,6 @@
     <Compile Include="Models\QualitaetsprueferView.cs" />
     <Compile Include="Models\RechnungView.cs" />
     <Compile Include="Models\StandplatzView.cs" />
-    <Compile Include="UnusedForms\AnredeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\AnredeForm.Designer.cs">
-      <DependentUpon>AnredeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\AdresseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\AdresseForm.Designer.cs">
-      <DependentUpon>AdresseForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\AboArtForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\AboArtForm.Designer.cs">
-      <DependentUpon>AboArtForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\QualiberichterstellenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\QualiberichterstellenForm.Designer.cs">
-      <DependentUpon>QualiberichterstellenForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\StandplatzlöschenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\StandplatzlöschenForm.Designer.cs">
-      <DependentUpon>StandplatzlöschenForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\RechnungerstellenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\RechnungerstellenForm.Designer.cs">
-      <DependentUpon>RechnungerstellenForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\StandplatzForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\StandplatzForm.Designer.cs">
-      <DependentUpon>StandplatzForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\StandortForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\StandortForm.Designer.cs">
-      <DependentUpon>StandortForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\RechnungForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\RechnungForm.Designer.cs">
-      <DependentUpon>RechnungForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\TerminForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\TerminForm.Designer.cs">
-      <DependentUpon>TerminForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\PersonalleanzeigenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\PersonalleanzeigenForm.Designer.cs">
-      <DependentUpon>PersonalleanzeigenForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\PersonerstellenqualitätsprüferForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\PersonerstellenqualitätsprüferForm.Designer.cs">
-      <DependentUpon>PersonerstellenqualitätsprüferForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\PersonerstellennachfragerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\PersonerstellennachfragerForm.Designer.cs">
-      <DependentUpon>PersonerstellennachfragerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\PersonerstellenanbieterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\PersonerstellenanbieterForm.Designer.cs">
-      <DependentUpon>PersonerstellenanbieterForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\PersonerstellenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\PersonerstellenForm.Designer.cs">
-      <DependentUpon>PersonerstellenForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\PersonForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\PersonForm.Designer.cs">
-      <DependentUpon>PersonForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\OrtForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\OrtForm.Designer.cs">
-      <DependentUpon>OrtForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\MitgliederverwaltungForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,12 +151,6 @@
     </Compile>
     <Compile Include="Forms\StandplatzverwaltungForm.Designer.cs">
       <DependentUpon>StandplatzverwaltungForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnusedForms\QualitätsprüferForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnusedForms\QualitätsprüferForm.Designer.cs">
-      <DependentUpon>QualitätsprüferForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -324,62 +216,8 @@
     <EmbeddedResource Include="Forms\AdministrationsForm.resx">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\AnredeForm.resx">
-      <DependentUpon>AnredeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\AdresseForm.resx">
-      <DependentUpon>AdresseForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\AboArtForm.resx">
-      <DependentUpon>AboArtForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\QualiberichterstellenForm.resx">
-      <DependentUpon>QualiberichterstellenForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\StandortForm.resx">
-      <DependentUpon>StandortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\StandplatzlöschenForm.resx">
-      <DependentUpon>StandplatzlöschenForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\RechnungerstellenForm.resx">
-      <DependentUpon>RechnungerstellenForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\RechnungForm.resx">
-      <DependentUpon>RechnungForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\StandplatzForm.resx">
-      <DependentUpon>StandplatzForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\TerminForm.resx">
-      <DependentUpon>TerminForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\PersonalleanzeigenForm.resx">
-      <DependentUpon>PersonalleanzeigenForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\PersonerstellenqualitätsprüferForm.resx">
-      <DependentUpon>PersonerstellenqualitätsprüferForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\PersonerstellennachfragerForm.resx">
-      <DependentUpon>PersonerstellennachfragerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\PersonerstellenanbieterForm.resx">
-      <DependentUpon>PersonerstellenanbieterForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\PersonerstellenForm.resx">
-      <DependentUpon>PersonerstellenForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\PersonForm.resx">
-      <DependentUpon>PersonForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\OrtForm.resx">
-      <DependentUpon>OrtForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MitgliederverwaltungForm.resx">
       <DependentUpon>MitgliederverwaltungForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnusedForms\QualitätsprüferForm.resx">
-      <DependentUpon>QualitätsprüferForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StandplatzverwaltungForm.resx">
       <DependentUpon>StandplatzverwaltungForm.cs</DependentUpon>
