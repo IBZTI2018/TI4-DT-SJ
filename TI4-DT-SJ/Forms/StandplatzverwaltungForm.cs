@@ -66,7 +66,24 @@ namespace TI4_DT_SJ
         terminForm.Show();
         terminForm.onSave = (Termin newTermin) =>
         {
-          int id = newTermin.Insert();
+          Database.Instance.getCommand("BEGIN TRANSACTION").ExecuteNonQuery();
+          try
+          {
+            int id = newTermin.Insert();
+
+            // Die Erstellung eines Termins erzeugt eine Rechnung, falls das Abo-Kontingent aufgebraucht ist!
+            // TODO: Abo-Kontingent einbauen
+            Rechnung rechnung = new Rechnung(newTermin.anbieter_id, newTermin.id, 20.00, "VK-TRM-" + newTermin.id);
+            rechnung.Insert();
+
+            Database.Instance.getCommand("COMMIT").ExecuteNonQuery();
+          }
+          catch (Exception ex)
+          {
+            Database.Instance.getCommand("ROLLBACK").ExecuteNonQuery();
+            MessageBox.Show("Fehler beim Erstellen des Termins!\n" + ex.Message);
+          }
+
           terminForm.Close();
           listForm.reload();
         };
