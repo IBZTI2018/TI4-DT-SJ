@@ -53,6 +53,45 @@ namespace TI4_DT_SJ
 
     private void terminButton_Click(object sender, EventArgs e)
     {
+      GenericListFormOptions opts = new GenericListFormOptions();
+      opts.dataLoader = () =>
+      {
+        List<Dictionaryable> models = new List<Dictionaryable>();
+        foreach (TerminView termin in TerminView.List()) models.Add(termin);
+        return models;
+      };
+      opts.onCreate = (GenericListForm listForm) =>
+      {
+        GenericTerminForm terminForm = new GenericTerminForm();
+        terminForm.Show();
+        terminForm.onSave = (Termin newTermin) =>
+        {
+          int id = newTermin.Insert();
+          terminForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onUpdate = (GenericListForm listForm, int id) =>
+      {
+        Termin termin = Termin.Select(id);
+        GenericTerminForm terminForm = new GenericTerminForm(termin);
+        terminForm.Show();
+        terminForm.onSave = (Termin newTermin) =>
+        {
+          newTermin.Update();
+          terminForm.Close();
+          listForm.reload();
+        };
+      };
+      opts.onDelete = (GenericListForm listForm, int id) =>
+      {
+        Termin termin = Termin.Select(id);
+        termin.Delete();
+        listForm.reload();
+      };
+
+      GenericListForm terminList = new GenericListForm("Termine", opts);
+      terminList.Show();
     }
 
     private void standplatzButton_Click(object sender, EventArgs e)

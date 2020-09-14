@@ -125,6 +125,12 @@
     <Compile Include="Components\GenericStandplatzForm.Designer.cs">
       <DependentUpon>GenericStandplatzForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GenericTerminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\GenericTerminForm.Designer.cs">
+      <DependentUpon>GenericTerminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Forms\AdministrationsForm.cs">
       <SubType>Form</SubType>
@@ -175,6 +181,7 @@
     <Compile Include="Models\Qualitaetspruefer.cs" />
     <Compile Include="Models\Standort.cs" />
     <Compile Include="Models\Standplatz.cs" />
+    <Compile Include="Models\TerminView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Components\GenericAboArtForm.resx">
@@ -212,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\GenericStandplatzForm.resx">
       <DependentUpon>GenericStandplatzForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GenericTerminForm.resx">
+      <DependentUpon>GenericTerminForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdministrationsForm.resx">
       <DependentUpon>AdministrationsForm.cs</DependentUpon>

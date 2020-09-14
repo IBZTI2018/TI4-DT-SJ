@@ -475,6 +475,27 @@ CREATE VIEW view_standplatz AS
 
 GO
 
+-- Das Termin View wird verwendet um einen Termin samt Anbieter und Standplatz-Infos anzuzeigen
+CREATE VIEW view_termin AS
+  SELECT
+    termin.id,
+    termin.datum,
+    aperson.vorname,
+    aperson.nachname,
+    standort.bezeichnung AS standort,
+    standplatz.standplatz_nr
+  FROM termin
+    INNER JOIN anbieter
+      ON anbieter.id = termin.anbieter_id
+    INNER JOIN person AS aperson
+      ON aperson.id = anbieter.person_id
+    INNER JOIN standplatz
+      ON standplatz.id = termin.standplatz_id
+    INNER JOIN standort
+      ON standort.id = standplatz.standort_id;
+
+GO
+
 ---------------------------------------------------------------------------------------------------
 -- Erstellung von Rollen und Vergabe von Berechtungen                                            --
 ---------------------------------------------------------------------------------------------------
@@ -508,6 +529,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON view_person TO casestudy_role_developmen
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_rechnung TO casestudy_role_development;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_abo TO casestudy_role_development;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_standplatz TO casestudy_role_development;
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_termin TO casestudy_role_development;
 
 ALTER ROLE casestudy_role_development ADD MEMBER casestudy;
 
@@ -573,6 +595,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON termin TO casestudy_role_standplatzverwa
 GRANT SELECT, INSERT  ON rechnung TO casestudy_role_standplatzverwaltung;
 GRANT SELECT ON view_standplatz TO casestudy_role_standplatzverwaltung;
 GRANT SELECT ON view_rechnung TO casestudy_role_standplatzverwaltung;
+GRANT SELECT ON view_termin TO casestudy_role_standplatzverwaltung;
 
 ALTER ROLE casestudy_role_standplatzverwaltung ADD MEMBER casestudy_standplatzverwalter;
 
@@ -585,9 +608,19 @@ GRANT SELECT ON view_qualitaetspruefer TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON view_anbieter TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON view_qbewertung TO casestudy_role_qualitaetspruefung;
 
+ALTER ROLE casestudy_role_qualitaetspruefung ADD MEMBER casestudy_qualitaetsverantwortlicher;
+
+
+---------------------------------------------------------------------------------------------------
 -- NOTIZ: Dies sollte eigentlich nicht notwendig sein. Durch den Aufbau des Frameworks auf
 --        Seiten der UI, ist es allerdings momentan notwendig, auch die unterliegenden
 --        Tabellen eines Views zugreifbar zu machen!
+GRANT SELECT ON anbieter TO casestudy_role_standplatzverwaltung;
+GRANT SELECT ON person TO casestudy_role_standplatzverwaltung;
+GRANT SELECT ON anrede TO casestudy_role_standplatzverwaltung;
+GRANT SELECT ON adresse TO casestudy_role_standplatzverwaltung;
+GRANT SELECT ON ort TO casestudy_role_standplatzverwaltung;
+
 GRANT SELECT ON anbieter TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON qualitaetspruefer TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON aboart TO casestudy_role_qualitaetspruefung;
@@ -595,5 +628,3 @@ GRANT SELECT ON person TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON anrede TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON adresse TO casestudy_role_qualitaetspruefung;
 GRANT SELECT ON ort TO casestudy_role_qualitaetspruefung;
-
-ALTER ROLE casestudy_role_qualitaetspruefung ADD MEMBER casestudy_qualitaetsverantwortlicher;

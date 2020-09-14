@@ -27,6 +27,8 @@ namespace TI4_DT_SJ.Models
     public Standplatz standplatz;
     public Anbieter anbieter;
 
+    public Termin() { }
+
     public Termin(SqlDataReader reader)
     {
       if (reader.HasRows)
