@@ -596,6 +596,7 @@ GRANT SELECT, INSERT  ON rechnung TO casestudy_role_standplatzverwaltung;
 GRANT SELECT ON view_standplatz TO casestudy_role_standplatzverwaltung;
 GRANT SELECT ON view_rechnung TO casestudy_role_standplatzverwaltung;
 GRANT SELECT ON view_termin TO casestudy_role_standplatzverwaltung;
+GRANT SELECT ON view_anbieter TO casestudy_role_standplatzverwaltung;
 
 ALTER ROLE casestudy_role_standplatzverwaltung ADD MEMBER casestudy_standplatzverwalter;
 
