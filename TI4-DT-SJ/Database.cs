@@ -69,6 +69,9 @@ namespace TI4_DT_SJ
     /// </summary>
     public Database disconnect()
     {
+      // Happens when no role was selected
+      if (this.connection == null) return this;
+
       this.connection.Close();
       return this;
     }
