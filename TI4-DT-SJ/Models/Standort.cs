@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace TI4_DT_SJ.Models
 {
-  public class Standort
+  public class Standort : Dictionaryable
   {
     public int id;
     public string bezeichnung;
 
-    private Dictionary<String, dynamic> ValuesAsDict
+    public Dictionary<String, dynamic> ValuesAsDict
     {
       get
       {
@@ -19,6 +19,8 @@ namespace TI4_DT_SJ.Models
         };
       }
     }
+
+    public Standort() { }
 
     public Standort(SqlDataReader reader)
     {
@@ -63,6 +65,18 @@ namespace TI4_DT_SJ.Models
     public static Standort Select(int id)
     {
       return (Standort)Database.Instance.selectCommand("standort", id, typeof(Standort));
+    }
+
+    public static List<Standort> List()
+    {
+      List<Standort> models = new List<Standort>();
+      SqlDataReader reader = Database.Instance.getCommand("SELECT * FROM standort ").ExecuteReader();
+      while (reader.Read())
+      {
+        models.Add(new Standort(reader));
+      }
+      reader.Close();
+      return models;
     }
   }
 }
