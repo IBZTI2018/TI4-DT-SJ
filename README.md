@@ -1,18 +1,18 @@
 # TI4-DT-SJ Case-Study
-The following preparations need to be done manually on the system before working with this project.
+Das nachfolgende Dokument erklärt die Verwendung der Case-Study Datenbank und ihrer Beispielssoftware. Einige Aktionen wurden hier bewusst auf den Systemadministrator ausgelagert und nicht automatisiert, da die Gegebenheiten auf jedem System anders sind und es keine "One-size-fits-all" Lösung gibt.
 
-#### 1. Creating the database
-```sql
-CREATE DATABASE casestudy;
-```
+---
 
-#### 2. Create a user for development
-Use the SQL Server management studio to create a user and password for yourself and give it all permissions on the `casestudy` database. The credentials must then be configured in `TI4-DT-SJ/App.config`.
+### 1. Erstellung der Datenbank
+Die Case-Study Datenbank muss vor der Verwendung manuell mit erstellt werden. (z.B mit `CREATE DATABASE casestudy;`)
 
-You can use `git update-index --assume-unchanged TI4-DT-SJ/App.config` to prevent commiting changes to that file (e.g. your personal credentials).
+### 2. Erstellung der Benutzer und Logins
+Wir mussten feststellen, dass sich dieser Prozess je nach Setup und aktueller Einrichtung des SQL-Servers stark unterscheidet. Deshalb haben wir diesen Schritt nicht in das Create script eingebunden.
 
-#### 3. Creating database users
-The following SQL script will create all users required for running the case study database demonstration. It must be run with a user that has the permission to create and modify login/user information, such as the windows administrator.
+Der Datenbankadministrator muss für jede Benutzerrolle - und falls gewünscht für die Entwcklung zusätzlich - Logins und User erstellen und ihnen Zugriff auf die `casestudy` Datenbank zuweisen.
+
+Die Beispielskonfiguration in der `App.config` verwendet folgendes User/Login Setup. Bei Bedarf muss dies vom Administrator angepasst werden.
+
 ```sql
 -- Make sure this is run on the casestudy database!
 USE casestudy;
@@ -35,26 +35,14 @@ CREATE LOGIN casestudy_qualitaetsverantwortlicher WITH PASSWORD = 'password', CH
 CREATE USER casestudy_qualitaetsverantwortlicher FOR LOGIN casestudy_qualitaetsverantwortlicher WITH DEFAULT_SCHEMA=casestudy;
 ```
 
-#### 4. Run and Test
-You may now run the application. Since the application is built for a proof-of-concept case study, there is no intention for it to ever run as a properly compiled application. It is currently only intended to run from Visual Studio.
+### 3. Applikation in Betrieb nehmen
+Nach dem Start der Demo-Applikation werden 4 Buttons angezeigt. Diese repräsentieren die implementierten Benutzerrollen (siehe Doku). Durch einen Klick auf einen der Buttons wird eine Verbidung zur Datenbank mit den entsprechenden Zugangsdaten aufgebaut und die UI des entsprechenden Nutzers angezeigt.
 
-The following command line options are supported for launching:
-* `create` - Run the `DatabaseCreate.sql` script.
-* `drop` - Run the `DatabaseDrop.sql` script.
-* `seed` - Run the `DatabaseSeed.sql` script.
-* `test` - Run `DatabaseCreate.sql`, all four different database test classes and `DatabaseDrop.sql`.
-* `testonly` - Run just the database test classees
-* _none_ - Run the UI. (Run `create` and `seed` first!)
+---
 
-The following is what you might want to do in this state:
-* Run `test` to run the automated database tests
-* Run `create`, then `seed` and then without params, to access the UI (then run `drop`)
-* Instead of using the program parameters, you could also run the `create`, `seed` and `drop` scripts in the management studio.
+### 4. (Clean up)
+Das folgende Snippet macht die Nutzer/Login Erstellung rückgängig. Dies ist nur ein Template, es wird davon ausgegangen, dass der Datenbankadministrator dieses entsprechend anpasst!
 
-When the program crashes between properly creating and dropping the database, there might be leftovers that prevent future runs from succeeding. After a crash, make sure to use SQL management studio to remove all tables and roles!
-
-#### 5. Clean up
-After testing, the following commands can be run to drop all the users and logins that have been created by the section above for properly testing the database and its permission limits.
 ```sql
 -- Make sure this is run on the casestudy database!
 USE casestudy;
