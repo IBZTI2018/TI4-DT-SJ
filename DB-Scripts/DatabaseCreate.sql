@@ -499,13 +499,13 @@ CREATE VIEW view_rechnung AS
     aboart.bezeichnung AS abo,
     termin.datum AS termin
   FROM rechnung
-    INNER JOIN anbieter
+    LEFT OUTER JOIN anbieter
       ON anbieter.id = rechnung.anbieter_id
-    INNER JOIN person AS aperson
+    LEFT OUTER JOIN person AS aperson
       ON aperson.id = anbieter.person_id
     LEFT OUTER JOIN abo
       ON abo.id = rechnung.abo_id
-    INNER JOIN aboart
+    LEFT OUTER JOIN aboart
       ON aboart.id = abo.aboart_id
     LEFT OUTER JOIN termin
       ON termin.id = rechnung.termin_id;

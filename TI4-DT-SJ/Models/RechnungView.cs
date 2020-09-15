@@ -39,7 +39,7 @@ namespace TI4_DT_SJ.Models {
         this.betrag = reader.GetDouble(2);
         this.vorname = reader.GetString(3);
         this.nachname = reader.GetString(4);
-        this.bezeichnung = reader.GetString(5);
+        if (!reader.IsDBNull(5)) this.bezeichnung = reader.GetString(5);
         if (!reader.IsDBNull(6)) this.datum = reader.GetDateTime(6);
       }
     }
