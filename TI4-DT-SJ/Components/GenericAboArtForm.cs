@@ -22,6 +22,8 @@ namespace TI4_DT_SJ.Components {
       this.aboart = aboart;
       this.inputName.Text = this.aboart.bezeichnung;
       this.inputPrice.Value = Convert.ToDecimal(this.aboart.gebuehr);
+      this.inputMonate.Value = Convert.ToDecimal(this.aboart.monate);
+      this.inputStandorte.Value = Convert.ToDecimal(this.aboart.standorte);
     }
 
     public GenericAboArtForm()
@@ -33,7 +35,9 @@ namespace TI4_DT_SJ.Components {
     private void saveButton_Click(object sender, EventArgs e)
     {
       this.aboart.bezeichnung = this.inputName.Text;
-      this.aboart.gebuehr  = Convert.ToDouble(this.inputPrice.Value);
+      this.aboart.gebuehr = Convert.ToDouble(this.inputPrice.Value);
+      this.aboart.monate = Convert.ToInt32(this.inputMonate.Value);
+      this.aboart.standorte = Convert.ToInt32(this.inputStandorte.Value);
 
       if (this.onSave != null)
       {
@@ -45,6 +49,26 @@ namespace TI4_DT_SJ.Components {
           MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten!\n\n" + ex.Message);
         }
       }
+    }
+
+    private void inputMonate_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void inputPrice_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void inputStandorte_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void inputName_TextChanged(object sender, EventArgs e)
+    {
+
     }
   }
 }

@@ -86,6 +86,8 @@ CREATE TABLE aboart (
   id INT PRIMARY KEY IDENTITY(1, 1),
   bezeichnung VARCHAR(255) NOT NULL,
   gebuehr FLOAT NOT NULL,
+  monate INT NOT NULL,
+  standorte INT NOT NULL
 
   CONSTRAINT u_bezeichnung UNIQUE(bezeichnung)
 );

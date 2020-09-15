@@ -9,6 +9,8 @@ namespace TI4_DT_SJ.Models
     public int id;
     public string bezeichnung;
     public double gebuehr;
+    public int monate;
+    public int standorte;
 
     public Dictionary<String, dynamic> ValuesAsDict
     {
@@ -17,7 +19,9 @@ namespace TI4_DT_SJ.Models
         return new Dictionary<String, dynamic>() {
           {"id", this.id },
           {"bezeichnung", this.bezeichnung},
-          {"gebuehr", this.gebuehr}
+          {"gebuehr", this.gebuehr},
+          {"monate", this.monate},
+          {"standorte", this.standorte}
         };
       }
     }
@@ -31,20 +35,26 @@ namespace TI4_DT_SJ.Models
         this.id = reader.GetInt32(0);
         this.bezeichnung = reader.GetString(1);
         this.gebuehr = reader.GetDouble(2);
+        this.monate = reader.GetInt32(3);
+        this.standorte = reader.GetInt32(4);
       }
     }
 
-    public Aboart(string bezeichnung, float gebuehr)
+    public Aboart(string bezeichnung, float gebuehr, int monate, int standorte)
     {
       this.bezeichnung = bezeichnung;
       this.gebuehr = gebuehr;
+      this.monate = monate;
+      this.standorte = standorte;
     }
 
-    public Aboart(int id, string bezeichnung, float gebuehr)
+    public Aboart(int id, string bezeichnung, float gebuehr, int monate, int standorte)
     {
       this.id = id;
       this.bezeichnung = bezeichnung;
       this.gebuehr = gebuehr;
+      this.monate = monate;
+      this.standorte = standorte;
     }
 
     public int Insert()

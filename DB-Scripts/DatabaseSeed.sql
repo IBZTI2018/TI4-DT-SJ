@@ -115,11 +115,11 @@ INSERT INTO qualitaetspruefer (person_id, lohn) VALUES
 INSERT INTO bewertung (anbieter_id, nachfrager_id, bezeichnung, score) VALUES
   ((SELECT TOP 1 id FROM anbieter), (SELECT TOP 1 id FROM nachfrager), 'Preis ok, Aussehen sehr gut', 5.0);
 
-INSERT INTO aboart (bezeichnung, gebuehr) VALUES
-  ('Small', 40.0),
-  ('Medium', 60.0),
-  ('Large', 80.0),
-  ('X-Large', 100.0);
+INSERT INTO aboart (bezeichnung, gebuehr, monate, standorte) VALUES
+  ('Small', 40.0, 6, 1),
+  ('Medium', 60.0, 12, 1),
+  ('Large', 80.0, 6, 3),
+  ('X-Large', 100.0, 12, 3);
 
 INSERT INTO abo (anbieter_id, aboart_id, abschlussdatum) VALUES
   (
