@@ -57,7 +57,19 @@ namespace TI4_DT_SJ.Components {
           object[] fields = new object[keys.Length];
           for (int i = 0; i < keys.Length; i++)
           {
-            fields[i] = value.ValuesAsDict[keys[i]];
+            if (value.ValuesAsDict[keys[i]] is DateTime)
+            {
+              if (((DateTime)value.ValuesAsDict[keys[i]]).Year > 1)
+              {
+                fields[i] = value.ValuesAsDict[keys[i]];
+              } else
+              {
+                fields[i] = "";
+              }
+            } else
+            {
+              fields[i] = value.ValuesAsDict[keys[i]];
+            }
           }
           table.Rows.Add(fields);
         }
