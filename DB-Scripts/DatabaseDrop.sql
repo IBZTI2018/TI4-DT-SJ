@@ -59,7 +59,7 @@ DROP VIEW view_adresse;
 DROP VIEW view_person;
 DROP VIEW view_rechnung;
 DROP VIEW view_abo;
-DROP VIEW view_standort;
+DROP VIEW view_standplatz;
 DROP VIEW view_termin;
 
 ---------------------------------------------------------------------------------------------------
@@ -67,3 +67,5 @@ DROP VIEW view_termin;
 ---------------------------------------------------------------------------------------------------
 
 DROP FUNCTION dbo.anzahlChecksFuerAnbieter;
+DROP FUNCTION dbo.standorteFuerAnbieter;
+DROP FUNCTION dbo.levelVonAnbieter;

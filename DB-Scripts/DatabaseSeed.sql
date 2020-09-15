@@ -141,8 +141,8 @@ INSERT INTO standplatz (standort_id, standplatz_nr) VALUES
 INSERT INTO termin (standplatz_id, anbieter_id, datum) VALUES
   (
     (SELECT id FROM standplatz WHERE standplatz_nr = 10),
-    (SELECT TOP 1 id FROM anbieter),
-    '20200822'
+    (SELECT TOP 1 id FROM anbieter ORDER BY id),
+    '20210822'
   );
 
 INSERT INTO rechnung (abo_id, anbieter_id, termin_id, rechnungs_nr, betrag) VALUES

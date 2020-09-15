@@ -71,9 +71,12 @@ CREATE TABLE anbieter (
   prov_aufnahmedatum DATE NULL,
   bonitaetspruefung BIT NOT NULL DEFAULT 0,
   unterschrift BIT NOT NULL DEFAULT 0,
-  mitarbeiterbesuch BIT NOT NULL DEFAULT 0
+  mitarbeiterbesuch BIT NOT NULL DEFAULT 0,
 
-  -- Check constraint wird am Ende der Tabellenerstellung definiert.
+  -- Provisorisches Aufnahmedatum und Aufnahmedatum müssen 2 Monate auseinander liegen
+  CONSTRAINT ck_anbieter_daten CHECK (DATEDIFF(month, prov_aufnahmedatum, aufnahmedatum) >= 2)
+
+  -- Check constraint für Aufnahmebedingungen wird am Ende der Tabellenerstellung definiert.
 );
 
 -- In der Abo-Art-Tabelle werden alle möglichen Arten von Abonnements, welche an Anbieter verkauft
@@ -190,22 +193,54 @@ CREATE TABLE qualitaetsbewertung (
 GO
 
 ---------------------------------------------------------------------------------------------------
--- Erstellung von UDF für komplexere CHECK queries                                               --
+-- Erstellung von UDFs für komplexere CHECK queries                                              --
 ---------------------------------------------------------------------------------------------------
 
+-- Gibt das "Level" eines Anbieters zurück
+-- 0 = In Abklärung
+-- 1 = Provisorisch aufgenommen
+-- 2 = Aufgenommenes Mitglied
+CREATE FUNCTION dbo.levelVonAnbieter(@anbieterId int) RETURNS int AS
+  BEGIN
+    DECLARE @level int;
+    SELECT @level = (
+      (CASE WHEN aufnahmedatum IS NOT NULL THEN 1 ELSE 0 END) +
+      (CASE WHEN prov_aufnahmedatum IS NOT NULL THEN 1 ELSE 0 END)
+    ) FROM anbieter WHERE id = @anbieterId;
+    RETURN @level;
+  END;
+
+GO
+
+-- Gibt die Anzahl vergangene Qualitätsbewertungen für einen Anbieter zurück
 CREATE FUNCTION dbo.anzahlChecksFuerAnbieter(@anbieterId int) RETURNS int AS
-	BEGIN
-		DECLARE @nqbew int;
-		SELECT @nqbew = COUNT(*) FROM qualitaetsbewertung WHERE anbieter_id = @anbieterId;
-		RETURN @nqbew;
-	END;
+  BEGIN
+    DECLARE @nqbew int;
+    SELECT @nqbew = COUNT(*) FROM qualitaetsbewertung
+      WHERE anbieter_id = @anbieterId AND datum < GETDATE();
+    RETURN @nqbew;
+  END;
+
+GO
+
+-- Gibt die Standort-IDs aus, welche momentan von einem bestimmten Anbieter gemietet werden
+CREATE FUNCTION dbo.standorteFuerAnbieter(@anbieterId int) RETURNS table AS
+  RETURN (
+    SELECT standort.id FROM termin
+      INNER JOIN standplatz
+        ON standplatz.id = termin.standplatz_id
+      INNER JOIN standort
+        ON standort.id = standplatz.standort_id
+      WHERE anbieter_id = @anbieterId
+  );
 
 GO
 
 ---------------------------------------------------------------------------------------------------
--- Erstellung von komplexem CHECK query für Anbieter-Fortschritt                                 --
+-- Erstellung von komplexeren CHECK queries mit UDF Unterstützung                                --
 ---------------------------------------------------------------------------------------------------
 
+-- Fortschritt des Aufnahmeprozesses eines Anbieters
 ALTER TABLE anbieter ADD CONSTRAINT ck_anbieter CHECK (
   -- Noch nicht aufgenommenes Mitglied hat keine Daten hinterlegt
   (
@@ -232,6 +267,20 @@ ALTER TABLE anbieter ADD CONSTRAINT ck_anbieter CHECK (
     unterschrift = 1 AND
     mitarbeiterbesuch = 1 AND
     dbo.anzahlChecksFuerAnbieter(id) >= 2
+  )
+);
+
+-- Erstellung eines Termins abhängig von der Aufnahme eines Anbieters
+ALTER TABLE termin ADD CONSTRAINT ck_termin_anbieter_datum CHECK(
+  -- Entweder Anbieter ist provisorisch aufgenommen und bucht 2 Monate im voraus
+  (
+    dbo.levelVonAnbieter(anbieter_id) = 1 AND
+    DATEDIFF(month, GETDATE(), datum) >= 2
+  ) OR
+
+  -- Oder Anbieter ist bereits Mitglied und kann buchen wann immer er will
+  (
+    dbo.levelVonAnbieter(anbieter_id) = 2
   )
 );
 
