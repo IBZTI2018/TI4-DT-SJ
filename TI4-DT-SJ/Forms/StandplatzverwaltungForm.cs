@@ -69,6 +69,19 @@ namespace TI4_DT_SJ
           Database.Instance.getCommand("BEGIN TRANSACTION").ExecuteNonQuery();
           try
           {
+            // Falls ein Mitglied provisorisch ist, darf es nur an einem Standort buchen. Konnte nicht DB-Seitig prüfen
+            int userLevel = (int)Database.Instance.getCommand("SELECT dbo.levelVonAnbieter(" + newTermin.anbieter_id + ")").ExecuteScalar();
+            int userTermine = (int)Database.Instance.getCommand("SELECT COUNT(*) FROM termin WHERE anbieter_id = " + newTermin.anbieter_id).ExecuteScalar();
+            if (userLevel == 1 && userTermine != 0)
+            {
+              Standplatz standplatz = Standplatz.Select(newTermin.standplatz_id);
+              int existingLocation = (int)Database.Instance.getCommand("SELECT TOP 1 standort.id FROM termin INNER JOIN standplatz ON standplatz.id = termin.standplatz_id INNER JOIN standort ON standort.id = standplatz.standort_id WHERE anbieter_id = " + newTermin.anbieter_id).ExecuteScalar();
+              if (existingLocation != standplatz.standort_id)
+              {
+                throw new Exception("Ein provisorischer Nutzer darf nur an einem Standort buchen!");
+              }
+            }
+
             int id = newTermin.Insert();
 
             // Die Erstellung eines Termins erzeugt eine Rechnung, falls das Abo-Kontingent aufgebraucht ist!
