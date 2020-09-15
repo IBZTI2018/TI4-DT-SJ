@@ -75,7 +75,7 @@ namespace TI4_DT_SJ
             if (userLevel == 1 && userTermine != 0)
             {
               Standplatz standplatz = Standplatz.Select(newTermin.standplatz_id);
-              int existingLocation = (int)Database.Instance.getCommand("SELECT TOP 1 standort.id FROM termin INNER JOIN standplatz ON standplatz.id = termin.standplatz_id INNER JOIN standort ON standort.id = standplatz.standort_id WHERE anbieter_id = " + newTermin.anbieter_id).ExecuteScalar();
+              int existingLocation = (int)Database.Instance.getCommand("SELECT TOP 1 id FROM dbo.standorteVonAnbieter(" + newTermin.anbieter_id + ")").ExecuteScalar();
               if (existingLocation != standplatz.standort_id)
               {
                 throw new Exception("Ein provisorischer Nutzer darf nur an einem Standort buchen!");
@@ -85,9 +85,16 @@ namespace TI4_DT_SJ
             int id = newTermin.Insert();
 
             // Die Erstellung eines Termins erzeugt eine Rechnung, falls das Abo-Kontingent aufgebraucht ist!
-            // TODO: Abo-Kontingent einbauen
-            Rechnung rechnung = new Rechnung(newTermin.anbieter_id, newTermin.id, Termin.FIXPREIS, "VK-TRM-" + newTermin.id);
-            rechnung.Insert();
+            int usedPlaces = (int)Database.Instance.getCommand("SELECT COUNT(*) FROM dbo.standorteVonAnbieter(" + newTermin.anbieter_id + ")").ExecuteScalar();
+            object freePlacesO = Database.Instance.getCommand("SELECT dbo.standorteFuerAnbieter(" + newTermin.anbieter_id + ", '" + newTermin.datum.ToString("yyyy MM dd").Replace(" ", String.Empty) + "')").ExecuteScalar();
+            int freePlaces = (freePlacesO != System.DBNull.Value) ? Convert.ToInt32(freePlacesO) : 0;
+
+            // Wäre höher falls neuer Standort da Termin bereits in Transaction erstellt!
+            if (usedPlaces > freePlaces)
+            {
+              Rechnung rechnung = new Rechnung(newTermin.anbieter_id, newTermin.id, Termin.FIXPREIS, "VK-TRM-" + newTermin.id);
+              rechnung.Insert();
+            }
 
             Database.Instance.getCommand("COMMIT").ExecuteNonQuery();
           }

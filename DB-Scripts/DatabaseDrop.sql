@@ -68,4 +68,5 @@ DROP VIEW view_termin;
 
 DROP FUNCTION dbo.anzahlChecksFuerAnbieter;
 DROP FUNCTION dbo.standorteFuerAnbieter;
+DROP FUNCTION dbo.standorteVonAnbieter;
 DROP FUNCTION dbo.levelVonAnbieter;

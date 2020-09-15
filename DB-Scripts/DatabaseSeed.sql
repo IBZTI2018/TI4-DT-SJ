@@ -121,13 +121,6 @@ INSERT INTO aboart (bezeichnung, gebuehr, monate, standorte) VALUES
   ('Large', 80.0, 6, 3),
   ('X-Large', 100.0, 12, 3);
 
-INSERT INTO abo (anbieter_id, aboart_id, abschlussdatum) VALUES
-  (
-    (SELECT TOP 1 id FROM anbieter),
-    (SELECT id FROM aboart WHERE bezeichnung = CONVERT(VARCHAR, 'Large')),
-    GETDATE()
-  );
-
 INSERT INTO standort (bezeichnung) VALUES
   ('Hallenstadion Zürich'),
   ('Marktplatz Aarau'),
@@ -145,22 +138,6 @@ INSERT INTO termin (standplatz_id, anbieter_id, datum) VALUES
     '20210822'
   );
 
-INSERT INTO rechnung (abo_id, anbieter_id, termin_id, rechnungs_nr, betrag) VALUES
-  (
-    NULL,
-    (SELECT TOP 1 id FROM anbieter ORDER BY id),
-    (SELECT TOP 1 id FROM termin ORDER BY id),
-    123456789,
-    10.0
-  ),
-  (
-    (SELECT TOP 1 id FROM abo ORDER BY id),
-    (SELECT TOP 1 id FROM anbieter ORDER BY id),
-    NULL,
-    123456789,
-    80.0
-  );
-
 INSERT INTO qualitaetsbewertung (anbieter_id, qualitaetspruefer_id, bezeichnung, datum, stunden) VALUES
   (
     (SELECT TOP 1 id FROM anbieter ORDER BY id),
@@ -175,4 +152,30 @@ INSERT INTO qualitaetsbewertung (anbieter_id, qualitaetspruefer_id, bezeichnung,
     'Sieht immer noch alles gut aus!',
     '20200514',
     5.5
+  );
+
+-- Muss nach Q-Bewertungen gemacht werden, da 2 notwendig!
+UPDATE anbieter SET aufnahmedatum = GETDATE() WHERE id = 1;
+
+INSERT INTO abo (anbieter_id, aboart_id, abschlussdatum) VALUES
+  (
+    (SELECT TOP 1 id FROM anbieter ORDER BY id),
+    (SELECT id FROM aboart WHERE bezeichnung = CONVERT(VARCHAR, 'Large')),
+    GETDATE()
+  );
+
+INSERT INTO rechnung (abo_id, anbieter_id, termin_id, rechnungs_nr, betrag) VALUES
+  (
+    NULL,
+    (SELECT TOP 1 id FROM anbieter ORDER BY id),
+    (SELECT TOP 1 id FROM termin ORDER BY id),
+    123456789,
+    10.0
+  ),
+  (
+    (SELECT TOP 1 id FROM abo ORDER BY id),
+    (SELECT TOP 1 id FROM anbieter ORDER BY id),
+    NULL,
+    123456789,
+    80.0
   );

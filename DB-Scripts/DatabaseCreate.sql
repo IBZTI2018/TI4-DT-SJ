@@ -226,7 +226,7 @@ CREATE FUNCTION dbo.anzahlChecksFuerAnbieter(@anbieterId int) RETURNS int AS
 GO
 
 -- Gibt die Standort-IDs aus, welche momentan von einem bestimmten Anbieter gemietet werden
-CREATE FUNCTION dbo.standorteFuerAnbieter(@anbieterId int) RETURNS table AS
+CREATE FUNCTION dbo.standorteVonAnbieter(@anbieterId int) RETURNS table AS
   RETURN (
     SELECT standort.id FROM termin
       INNER JOIN standplatz
@@ -235,6 +235,24 @@ CREATE FUNCTION dbo.standorteFuerAnbieter(@anbieterId int) RETURNS table AS
         ON standort.id = standplatz.standort_id
       WHERE anbieter_id = @anbieterId
   );
+
+GO
+
+-- Gibt das Standort-Kontingent eines Anbieters basierend auf seinen laufenden Abos aus
+CREATE FUNCTION dbo.standorteFuerAnbieter(@anbieterId int, @terminDatum date) RETURNS int AS
+  BEGIN
+    DECLARE @nstaa int;
+    SELECT @nstaa = kontingent.standorte FROM (
+      SELECT
+        MAX(standorte) as standorte,
+        DATEADD(month, MAX(monate), MAX(abschlussdatum)) as bis
+        FROM abo
+          INNER JOIN aboart
+            ON aboart.id = abo.aboart_id
+          WHERE anbieter_id = @anbieterId
+      ) kontingent WHERE kontingent.bis >= @terminDatum;
+    RETURN @nstaa;
+  END;
 
 GO
 
@@ -649,6 +667,8 @@ GRANT SELECT ON view_rechnung TO casestudy_role_standplatzverwaltung;
 GRANT SELECT ON view_termin TO casestudy_role_standplatzverwaltung;
 GRANT SELECT ON view_anbieter TO casestudy_role_standplatzverwaltung;
 GRANT EXECUTE ON dbo.levelVonAnbieter TO casestudy_role_standplatzverwaltung;
+GRANT EXECUTE ON dbo.standorteFuerAnbieter TO casestudy_role_standplatzverwaltung;
+GRANT SELECT ON dbo.standorteVonAnbieter TO casestudy_role_standplatzverwaltung;
 
 ALTER ROLE casestudy_role_standplatzverwaltung ADD MEMBER casestudy_standplatzverwalter;
 
