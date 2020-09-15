@@ -86,7 +86,7 @@ namespace TI4_DT_SJ
 
             // Die Erstellung eines Termins erzeugt eine Rechnung, falls das Abo-Kontingent aufgebraucht ist!
             // TODO: Abo-Kontingent einbauen
-            Rechnung rechnung = new Rechnung(newTermin.anbieter_id, newTermin.id, 20.00, "VK-TRM-" + newTermin.id);
+            Rechnung rechnung = new Rechnung(newTermin.anbieter_id, newTermin.id, Termin.FIXPREIS, "VK-TRM-" + newTermin.id);
             rechnung.Insert();
 
             Database.Instance.getCommand("COMMIT").ExecuteNonQuery();

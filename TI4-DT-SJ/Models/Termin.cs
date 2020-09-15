@@ -6,6 +6,9 @@ namespace TI4_DT_SJ.Models
 {
   public class Termin : Dictionaryable
   {
+    // TODO: Discuss this with PO.
+    public static double FIXPREIS = 20.0;
+
     public int id;
     public int standplatz_id;
     public int anbieter_id;
