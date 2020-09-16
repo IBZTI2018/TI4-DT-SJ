@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using TI4_DT_SJ.Models;
 
 namespace TI4_DT_SJ.Components {
@@ -94,6 +95,13 @@ namespace TI4_DT_SJ.Components {
       if (this.person.adresse == null)
       {
         MessageBox.Show("Es muss eine Adresse zugewiesen werden!");
+        return;
+      }
+
+      Regex mailRegex = new Regex(@"^.*@.*\..*$");
+      if (!mailRegex.IsMatch(this.inputEmail.Text))
+      {
+        MessageBox.Show("Es muss eine E-Mail Adresse angegeben werden!");
         return;
       }
 
