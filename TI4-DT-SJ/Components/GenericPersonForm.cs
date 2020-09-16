@@ -58,7 +58,7 @@ namespace TI4_DT_SJ.Components {
       opts.dataLoader = () =>
       {
         List<Dictionaryable> models = new List<Dictionaryable>();
-        foreach (Adresse adresse in Adresse.List()) models.Add(adresse);
+        foreach (AdresseView adresse in AdresseView.List()) models.Add(adresse);
         return models;
       };
       opts.onSelect = (int id) =>
@@ -79,7 +79,7 @@ namespace TI4_DT_SJ.Components {
         };
       };
 
-      GenericListForm form = new GenericListForm("Anrede", opts);
+      GenericListForm form = new GenericListForm("Adressen", opts);
       form.Show();
     }
 
