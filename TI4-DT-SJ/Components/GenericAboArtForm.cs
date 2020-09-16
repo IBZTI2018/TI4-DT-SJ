@@ -34,7 +34,7 @@ namespace TI4_DT_SJ.Components {
 
     private void saveButton_Click(object sender, EventArgs e)
     {
-      this.aboart.bezeichnung = this.inputName.Text;
+      if (!String.IsNullOrWhiteSpace(this.inputName.Text)) this.aboart.bezeichnung = this.inputName.Text;
       this.aboart.gebuehr = Convert.ToDouble(this.inputPrice.Value);
       this.aboart.monate = Convert.ToInt32(this.inputMonate.Value);
       this.aboart.standorte = Convert.ToInt32(this.inputStandorte.Value);

@@ -45,7 +45,7 @@ namespace TI4_DT_SJ.Components {
         return;
       }
 
-      this.bewertung.bezeichnung = this.inputText.Text;
+      if (!String.IsNullOrWhiteSpace(this.inputText.Text)) this.bewertung.bezeichnung = this.inputText.Text;
       this.bewertung.datum = this.inputDate.Value;
       this.bewertung.stunden = Convert.ToDouble(this.inputStunden.Value);
       this.bewertung.anbieter_id = this.bewertung.anbieter.id;

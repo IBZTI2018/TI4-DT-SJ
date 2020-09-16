@@ -122,7 +122,7 @@ namespace TI4_DT_SJ.Components {
         return;
       }
 
-      this.rechnung.rechnungs_nr = this.nrInput.Text;
+      if (!String.IsNullOrWhiteSpace(this.nrInput.Text)) this.rechnung.rechnungs_nr = this.nrInput.Text;
       this.rechnung.betrag = Convert.ToDouble(this.betragInput.Value);
       this.rechnung.anbieter_id = this.rechnung.anbieter.id;
       if (this.rechnung.termin != null) this.rechnung.termin_id = this.rechnung.termin.id;

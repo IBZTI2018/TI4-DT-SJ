@@ -32,7 +32,7 @@ namespace TI4_DT_SJ.Components {
     private void saveButton_Click(object sender, EventArgs e)
     {
       this.ort.plz = Convert.ToInt32(this.plzSelector.Value);
-      this.ort.ort = this.ortsname.Text;
+      if (!String.IsNullOrWhiteSpace(this.ortsname.Text)) this.ort.ort = this.ortsname.Text;
 
       if (this.onSave != null)
       {

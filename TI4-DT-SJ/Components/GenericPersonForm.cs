@@ -105,9 +105,9 @@ namespace TI4_DT_SJ.Components {
         return;
       }
 
-      this.person.vorname = this.inputVorname.Text;
-      this.person.nachname = this.inputNachname.Text;
-      this.person.email = this.inputEmail.Text;
+      if (!String.IsNullOrWhiteSpace(this.inputVorname.Text)) this.person.vorname = this.inputVorname.Text;
+      if (!String.IsNullOrWhiteSpace(this.inputNachname.Text)) this.person.nachname = this.inputNachname.Text;
+      if (!String.IsNullOrWhiteSpace(this.inputEmail.Text)) this.person.email = this.inputEmail.Text;
       this.person.geburtsdatum = this.dateTimePicker1.Value;
       this.person.anrede_id = this.person.anrede.id;
       this.person.adresse_id = this.person.adresse.id;

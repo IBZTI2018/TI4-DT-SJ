@@ -30,7 +30,7 @@ namespace TI4_DT_SJ.Components {
 
     private void saveButton_Click(object sender, EventArgs e)
     {
-      this.standort.bezeichnung = this.inputName.Text;
+      if (!String.IsNullOrWhiteSpace(this.inputName.Text)) this.standort.bezeichnung = this.inputName.Text;
 
       if (this.onSave != null)
       {

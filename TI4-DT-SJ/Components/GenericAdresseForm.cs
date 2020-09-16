@@ -71,7 +71,7 @@ namespace TI4_DT_SJ.Components {
         return;
       }
 
-      this.adresse.strassenname = this.strasseInput.Text;
+      if (!String.IsNullOrWhiteSpace(this.strasseInput.Text)) this.adresse.strassenname = this.strasseInput.Text;
       this.adresse.hausnummer = Convert.ToInt32(this.hausNrSelector.Value);
       this.adresse.ort_id = this.adresse.ort.id;
 
