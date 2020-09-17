@@ -116,9 +116,15 @@ namespace TI4_DT_SJ.Components {
       // Provisorische Aufnahme ist nur unter Bedingungen möglich
       if (this.anbieter.bonitaet && this.anbieter.unterschrift && this.anbieter.mitarbeiterbesuch)
       {
-        this.anbieter.prov_aufnahmedatum = DateTime.Now;
-        this.anbieter.Update();
-        this.labelProvAufn.Text = this.anbieter.prov_aufnahmedatum.ToString();
+        try
+        {
+          this.anbieter.prov_aufnahmedatum = DateTime.Now;
+          this.anbieter.Update();
+          this.labelProvAufn.Text = this.anbieter.prov_aufnahmedatum.ToString();
+        } catch(Exception ex)
+        {
+          MessageBox.Show("Fehler beim provisorischen Aufnehmen des Anbieters!\n" + ex.Message);
+        }
       } else
       {
         MessageBox.Show("Anbieter erfüllt die Bedingungen für eine provisorische Aufnahme nicht!\nLaden Sie das Fenster ggf neu.");
@@ -134,9 +140,15 @@ namespace TI4_DT_SJ.Components {
         int c = (int)Database.Instance.getCommand("SELECT COUNT(*) FROM qualitaetsbewertung WHERE anbieter_id = " + this.anbieter.id).ExecuteScalar();
         if (c >= 2)
         {
-          this.anbieter.prov_aufnahmedatum = DateTime.Now;
-          this.anbieter.Update();
-          this.labelAufn.Text = this.anbieter.aufnahmedatum.ToString();
+          try {
+            this.anbieter.aufnahmedatum = DateTime.Now;
+            this.anbieter.Update();
+            this.labelAufn.Text = this.anbieter.aufnahmedatum.ToString();
+          }
+          catch (Exception ex)
+          {
+            MessageBox.Show("Fehler beim Aufnehmen des Anbieters!\n" + ex.Message);
+          }
         } else
         {
           MessageBox.Show("Anbieter erfüllt die Bedingungen ("+c+"/2 Q-Bewertungen) für eine finale Aufnahme nicht!");
