@@ -115,7 +115,9 @@ CREATE TABLE standort (
 CREATE TABLE standplatz (
   id INT PRIMARY KEY IDENTITY(1, 1),
   standort_id INT FOREIGN KEY REFERENCES standort(id) NOT NULL,
-  standplatz_nr INT NOT NULL
+  standplatz_nr INT NOT NULL,
+
+  CONSTRAINT uq_ort_nr UNIQUE(standort_id, standplatz_nr)
 );
 
 -- In der Termin-Tabelle werden sämtliche Termine eines Anbieters bzw. eines Standplatzes mit dem
