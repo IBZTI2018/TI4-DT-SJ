@@ -60,6 +60,9 @@ namespace TI4_DT_SJ.Models
     public int Insert()
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
+      if (this.gebuehr == 0.0) values.Remove("gebuehr");
+      if (this.monate == 0.0) values.Remove("monate");
+      if (this.standorte == 0.0) values.Remove("standorte");
       values.Remove("id");
       this.id = Database.Instance.insertCommand("aboart", values);
       return this.id;
@@ -68,6 +71,9 @@ namespace TI4_DT_SJ.Models
     public void Update()
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
+      if (this.gebuehr == 0.0) values.Remove("gebuehr");
+      if (this.monate == 0.0) values.Remove("monate");
+      if (this.standorte == 0.0) values.Remove("standorte");
       values.Remove("id");
       Database.Instance.updateCommand("aboart", this.id, values);
     }

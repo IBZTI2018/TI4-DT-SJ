@@ -76,6 +76,7 @@ namespace TI4_DT_SJ.Models
     public int Insert()
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
+      if (this.betrag == 0.0) values.Remove("betrag");
       values.Remove("id");
       if (values["termin_id"] == 0) values.Remove("termin_id");
       if (values["abo_id"] == 0) values.Remove("abo_id");
@@ -86,6 +87,7 @@ namespace TI4_DT_SJ.Models
     public void Update()
     {
       Dictionary<string, dynamic> values = this.ValuesAsDict;
+      if (this.betrag == 0.0) values.Remove("betrag");
       values.Remove("id");
       if (values["termin_id"] == 0) values.Remove("termin_id");
       if (values["abo_id"] == 0) values.Remove("abo_id");
